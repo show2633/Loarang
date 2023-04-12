@@ -3,10 +3,214 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Loarang"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:local="clr-namespace:Loarang"        
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Width="1250" Height="900">
     <Grid>
+    <Border CornerRadius="12">
+      <Border.Background>
+        <ImageBrush></ImageBrush>
+      </Border.Background>
 
-    </Grid>
+      <Border CornerRadius="10"
+            BorderThickness="1"
+            Opacity="0.95">
+        <Border.BorderBrush>
+          <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
+            <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.5"/>
+            <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
+          </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <!-- Navigation Menu -->
+            <ColumnDefinition Width="250"/>
+
+            <!-- Content section -->
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+
+          <!-- Navigation Menu -->
+          <Border CornerRadius="10, 0, 0, 10"
+                Grid.Column="0">
+            <Border.Background>
+              <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+              </LinearGradientBrush>
+            </Border.Background>
+
+            <StackPanel>
+              <!-- Logo -->
+              <StackPanel Orientation="Horizontal"
+                        Height="35"
+                        Margin="15, 25, 0, 40">
+                <Image Height="30"/>
+                <TextBlock Text="LoaRang"
+                         Foreground="{StaticResource titleColor2}"
+                         FontSize="20"
+                         FontFamily="./Fonts/#SEBANG Gothic Bold"
+                         FontWeight="Medium"
+                         VerticalAlignment="Center"
+                         Margin="10, 0, 0, 0"/>
+              </StackPanel>
+
+              <!-- Menu Buttons -->
+              <RadioButton Style="{StaticResource menuButton}"
+                       Tag="{StaticResource color1}">
+                <StackPanel Orientation="Horizontal">
+                  <fa:IconImage Icon="CalendarCheck" Style="{StaticResource menuButtonIcon}"/>
+                  <TextBlock Text="컨텐츠" Style="{StaticResource menuButtonText}"/>
+                </StackPanel>
+              </RadioButton>
+
+              <RadioButton Style="{StaticResource menuButton}"
+                       Tag="{StaticResource color7}">
+                <StackPanel Orientation="Horizontal">
+                  <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
+                  <TextBlock Text="캐릭터" Style="{StaticResource menuButtonText}"/>
+                </StackPanel>
+              </RadioButton>
+
+              <RadioButton Style="{StaticResource menuButton}"
+                       Tag="{StaticResource color8}">
+                <StackPanel Orientation="Horizontal">
+                  <fa:IconImage Icon="Heart" Style="{StaticResource menuButtonIcon}"/>
+                  <TextBlock Text="내실" Style="{StaticResource menuButtonText}"/>
+                </StackPanel>
+              </RadioButton>
+
+
+            </StackPanel>
+          </Border>
+
+          <!-- Main Section -->
+          <Border CornerRadius="0, 10, 10, 0" 
+                Grid.Column="1">
+            <Border.Background>
+              <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
+                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+              </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+              <Grid.RowDefinitions>
+                <!-- Control bar -->
+                <RowDefinition Height="25"/>
+                <!-- Header / Caption -->
+                <RowDefinition Height="35"/>
+                <!-- Content section / Child views -->
+                <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+
+              <!-- Control bar -->
+              <StackPanel x:Name="pnlControlBar"
+                        Grid.Row="0"
+                        Orientation="Horizontal"
+                        FlowDirection="RightToLeft"
+                        Background="Transparent"
+                        Margin="0, 0, 5, 0"
+                        MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                        MouseEnter="pnlControlBar_MouseEnter">
+                <Button x:Name="btnClose"
+                      Style="{StaticResource controlButton}"
+                      Tag="{StaticResource color4}"
+                      Click="btnClose_Click">
+                  <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+
+                <Button x:Name="btnMaximize"
+                      Style="{StaticResource controlButton}"
+                      Tag="{StaticResource color4}"
+                      Click="btnMaximize_Click">
+                  <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+
+
+                <Button x:Name="btnMinimize"
+                      Style="{StaticResource controlButton}"
+                      Tag="{StaticResource color4}"
+                      Click="btnMinimize_Click">
+                  <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+              </StackPanel>
+
+              <!-- Header / Caption -->
+              <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                          Orientation="Horizontal"
+                          VerticalAlignment="Center">
+                  <fa:IconImage Icon="CalendarCheck"
+                              Height="20"
+                              Width="20"
+                              Foreground="{StaticResource titleColor2}"
+                              Margin="35, 0, 10, 0"/>
+                  <TextBlock Text="Contents"
+                           Foreground="{StaticResource titleColor2}"
+                           FontSize="16"
+                           FontFamily="Montserrat"
+                           FontWeight="Medium"
+                           VerticalAlignment="Center"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                          Orientation="Horizontal"
+                          FlowDirection="RightToLeft"
+                          VerticalAlignment="Center"
+                          Margin="0, 0, 10, 0">
+                  <Button Style="{StaticResource iconButton}"
+                        Tag="{StaticResource color1}">
+                    <fa:IconImage Icon="Plus"
+                                Height="12" Width="12"
+                                Style="{StaticResource iconButtonIcon}"/>
+                  </Button>
+
+                  <TextBlock Text="컨텐츠 추가"
+                             Foreground="{StaticResource titleColor3}"
+                             FontFamily="./Fonts/#SEBANG Gothic Bold"
+                             FontSize="12"
+                             VerticalAlignment="Center"/>
+
+                  <Button Style="{StaticResource iconButton}"
+                        Tag="{StaticResource color1}"
+                        Margin="15, 0, 0, 0">
+                    <fa:IconImage Icon="Plus"
+                                Height="12" Width="12"
+                                Style="{StaticResource iconButtonIcon}"/>
+                  </Button>
+
+                  <TextBlock Text="캐릭터 추가"
+                             Foreground="{StaticResource titleColor3}"
+                             FontFamily="./Fonts/#SEBANG Gothic Bold"
+                             FontSize="12"
+                             VerticalAlignment="Center"/>
+
+                </StackPanel>
+              </Grid>
+
+              <!-- Content section / Child views -->
+
+              <ContentControl Content=""
+                            Grid.Row="2"
+                            Margin="25"/>
+
+            </Grid>
+          </Border>
+
+        </Grid>
+      </Border>
+    </Border>
+  </Grid>
 </Window>
