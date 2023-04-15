@@ -29,13 +29,13 @@ namespace Loarang.Views
 
 		public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lPanam);
 
-		private void charAddControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		private void ControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			WindowInteropHelper helper = new WindowInteropHelper(this);
 			SendMessage(helper.Handle, 161, 2, 0);
 		}
 
-		private void charAddControlBar_MouseEnter(object sender, MouseEventArgs e)
+		private void ControlBar_MouseEnter(object sender, MouseEventArgs e)
 		{
 			this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight; // 마우스가 컨트롤바에 갈 때마다 최대높이 갱신
 		}
