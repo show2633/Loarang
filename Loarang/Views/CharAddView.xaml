@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:Loarang.Views"
         mc:Ignorable="d"
-        Height="250" Width="600"
+        Height="180" Width="340"
         Background="Transparent"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -31,13 +31,12 @@
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="25"/>
-        <RowDefinition Height="35"/>
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <Grid>
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="300"/>
-          <ColumnDefinition Width="300"/>
+          <ColumnDefinition Width="170"/>
+          <ColumnDefinition Width="170"/>
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="titleBar"
                     Grid.Column="0"
@@ -66,7 +65,7 @@
           <Button x:Name="btnClose"
                 Style="{StaticResource controlButton}"
                 Tag="{StaticResource color4}"
-                Margin="10, 0, 0, 0"
+                Margin="5, 0, 0, 0"
             Click="btnClose_Click">
             <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
           </Button>
@@ -82,13 +81,12 @@
       <Grid Grid.Row="2">
         <Grid.RowDefinitions>
           <RowDefinition Height="60"/>
-          <RowDefinition Height="60"/>
+          <RowDefinition Height="20"/>
           <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="200"/>
-          <ColumnDefinition Width="200"/>
-          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="150"/>
+          <ColumnDefinition Width="190"/>
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="iconPnl"
                     Grid.Column="0"
@@ -99,7 +97,7 @@
           <fa:IconImage Icon="User"
                               Height="15" Width="15"
                               Foreground="{StaticResource color10}"
-                              Margin="40, 0, 10, 0"/>
+                              Margin="20, 0, 10, 0"/>
           <TextBlock Text="캐릭터 아이콘"
                            Foreground="{StaticResource titleColor2}"
                            FontSize="12"
@@ -114,10 +112,10 @@
                     FlowDirection="LeftToRight"
                     Background="Transparent"
                     Margin="0, 5, 0, 0">
-          <fa:IconImage Icon="Calendar"
+          <fa:IconImage Icon="Pencil"
                               Height="15" Width="15"
                               Foreground="{StaticResource color10}"
-                              Margin="25, 0, 10, 0"/>
+                              Margin="15, 0, 10, 0"/>
           <TextBlock Text="캐릭터 명"
                            Foreground="{StaticResource titleColor2}"
                            FontSize="12"
@@ -129,25 +127,33 @@
         <ComboBox Grid.Row="1"
                   Grid.Column="0" 
                   Style="{StaticResource comboBox}"
-                  Height="20" Width="40">
+                  Height="20" Width="40"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Left"
+                  Margin="20, 0, 0, 0">
           
         </ComboBox>
 
         <TextBox Grid.Row="1"
                  Grid.Column="1"
                  Style="{StaticResource textBox}"
-                 Height="20" Width="150">
+                 Height="20" Width="160"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left"
+                 Margin="15, 0, 0, 0">
           
         </TextBox>
 
         <Button x:Name="addBtn"
                 Grid.Row="2"
-                Grid.Column="2"
+                Grid.Column="1"
                 Style="{StaticResource controlButton}"
                 Tag="{StaticResource color10}"
                 Height="50"
-                Width="150"
-                Click="addBtn_Click">
+                Width="50"
+                Click="addBtn_Click"
+                HorizontalAlignment="Right"
+                Margin="0, 0, 10, 0">
           <fa:IconImage Icon="SquareCheck" Style="{StaticResource controlButtonIcon}" Height="50" Width="50"/>
         </Button>
       </Grid>
