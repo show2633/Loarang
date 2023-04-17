@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:Loarang.Views"
         mc:Ignorable="d"
-        Height="160" Width="340"
+        Height="185" Width="340"
         Background="Transparent"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -30,6 +30,7 @@
 
     <Grid>
       <Grid.RowDefinitions>
+        <RowDefinition Height="25"/>
         <RowDefinition Height="25"/>
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
@@ -78,6 +79,7 @@
           </Button>
         </StackPanel>
       </Grid>
+      <Separator Grid.Row="1" Background="{StaticResource color10}"/>
       <Grid Grid.Row="2">
         <Grid.RowDefinitions>
           <RowDefinition Height="60"/>
@@ -131,7 +133,7 @@
                   VerticalAlignment="Top"
                   HorizontalAlignment="Left"
                   Margin="20, 0, 0, 0">
-          
+
         </ComboBox>
 
         <TextBox Grid.Row="1"
@@ -141,7 +143,7 @@
                  VerticalAlignment="Top"
                  HorizontalAlignment="Left"
                  Margin="15, 0, 0, 0">
-          
+
         </TextBox>
 
         <Button x:Name="addBtn"
