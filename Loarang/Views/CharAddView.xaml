@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:Loarang.Views"
         mc:Ignorable="d"
-        Height="185" Width="340"
+        Height="180" Width="340"
         Background="Transparent"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -31,8 +31,10 @@
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="25"/>
-        <RowDefinition Height="25"/>
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="10"/>
+        <RowDefinition Height="100"/>
+        <RowDefinition Height="10"/>
+        <RowDefinition Height="40"/>
       </Grid.RowDefinitions>
       <Grid>
         <Grid.ColumnDefinitions>
@@ -145,9 +147,11 @@
                  Margin="15, 0, 0, 0">
 
         </TextBox>
+      </Grid>
+      <Separator Grid.Row="3" Background="{StaticResource color10}"/>
 
-        <Button x:Name="addBtn"
-                Grid.Row="2"
+      <Button x:Name="addBtn"
+                Grid.Row="4"
                 Grid.Column="1"
                 Style="{StaticResource controlButton}"
                 Tag="{StaticResource color10}"
@@ -155,11 +159,10 @@
                 Width="30"
                 Click="addBtn_Click"
                 HorizontalAlignment="Right"
-                Margin="0, 15, 10, 0"
+                Margin="0, 0, 10, 0"
                 VerticalAlignment="Top">
-          <fa:IconImage Icon="SquareCheck" Style="{StaticResource controlButtonIcon}" Height="30" Width="30"/>
-        </Button>
-      </Grid>
+        <fa:IconImage Icon="SquareCheck" Style="{StaticResource controlButtonIcon}" Height="30" Width="30"/>
+      </Button>
     </Grid>
   </Border>
 </Window>
