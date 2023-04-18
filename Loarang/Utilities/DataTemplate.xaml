@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:Loarang.ViewModels"
+                    xmlns:view="clr-namespace:Loarang.Views">
+  
+  <DataTemplate DataType="{x:Type vm:ContentsVM}">
+    <view:ContentsView/>
+  </DataTemplate>
+  
+</ResourceDictionary>
