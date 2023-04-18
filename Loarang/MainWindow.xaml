@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
-        Width="1250" Height="900">
+        Background="Transparent"
+        Width="1250" Height="1000">
     <Grid>
     <Border CornerRadius="12">
       <Border.Background>
@@ -165,43 +166,10 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Column="1"
-                          Orientation="Horizontal"
-                          FlowDirection="RightToLeft"
-                          VerticalAlignment="Center"
-                          Margin="0, 0, 10, 0">
-                  <Button Style="{StaticResource iconButton}"
-                        Tag="{StaticResource color1}">
-                    <fa:IconImage Icon="Plus"
-                                Height="12" Width="12"
-                                Style="{StaticResource iconButtonIcon}"/>
-                  </Button>
-
-                  <TextBlock Text="컨텐츠 추가"
-                             Foreground="{StaticResource titleColor3}"
-                             FontFamily="./Fonts/#SEBANG Gothic Bold"
-                             FontSize="12"
-                             VerticalAlignment="Center"/>
-
-                  <Button Style="{StaticResource iconButton}"
-                        Tag="{StaticResource color1}"
-                        Margin="15, 0, 0, 0">
-                    <fa:IconImage Icon="Plus"
-                                Height="12" Width="12"
-                                Style="{StaticResource iconButtonIcon}"/>
-                  </Button>
-
-                  <TextBlock Text="캐릭터 추가"
-                             Foreground="{StaticResource titleColor3}"
-                             FontFamily="./Fonts/#SEBANG Gothic Bold"
-                             FontSize="12"
-                             VerticalAlignment="Center"/>
-
-                </StackPanel>
               </Grid>
+             
 
               <!-- Content section / Child views -->
-
               <ContentControl Content=""
                             Grid.Row="2"
                             Margin="25"/>

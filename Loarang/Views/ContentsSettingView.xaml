@@ -1,16 +1,13 @@
-﻿<Window x:Class="Loarang.Views.ContentsSettingView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        xmlns:local="clr-namespace:Loarang.Views"
-        mc:Ignorable="d"
-        Height="1000" Width="340"
-        Background="Transparent"
-        WindowStyle="None"
-        ResizeMode="NoResize"
-        AllowsTransparency="True">
+﻿<UserControl x:Class="Loarang.Views.ContentsSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:Loarang.Views"
+             mc:Ignorable="d" 
+             Width="950" Height="850"
+             Background="Transparent">
   <Border CornerRadius="12"
           BorderThickness="1"
           Opacity="0.95">
@@ -30,181 +27,163 @@
 
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition Height="25"/>
-        <RowDefinition Height="10"/>
-        <RowDefinition Height="180"/>
-        <RowDefinition Height="145"/>
-        <RowDefinition Height="145"/>
-        <RowDefinition Height="70"/>
-        <RowDefinition Height="100"/>
-        <RowDefinition Height="70"/>
         <RowDefinition Height="195"/>
-        <RowDefinition Height="10"/>
-        <RowDefinition Height="50"/>
+        <RowDefinition Height="195"/>
+        <RowDefinition Height="195"/>
+        <RowDefinition Height="195"/>
+        <RowDefinition Height="25"/>
+        <RowDefinition Height="45"/>
       </Grid.RowDefinitions>
       <Grid>
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="170"/>
-          <ColumnDefinition Width="170"/>
+          <ColumnDefinition Width="475"/>
+          <ColumnDefinition Width="475"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel x:Name="titleBar"
-                    Grid.Column="0"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center">
-          <fa:IconImage Icon="CalendarCheck"
-                        Height="20"
-                        Width="20"
-                        Foreground="{StaticResource titleColor2}"
-                        Margin="20, 0, 10, 0"/>
-          <TextBlock Text="컨텐츠 설정"
-                     Foreground="{StaticResource titleColor2}"
-                     FontSize="12"
-                     FontFamily="../Fonts/#SEBANG Gothic Bold"
-                     FontWeight="Medium"
-                     VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel x:Name="charAddControlBar"
-                  Grid.Column="1"
-                  Orientation="Horizontal"
-                  FlowDirection="RightToLeft"
-                  Background="Transparent"
-                  Margin="0, 0, 0, 0"
-                  MouseLeftButtonDown="ControlBar_MouseLeftButtonDown"
-                  MouseEnter="ControlBar_MouseEnter">
-          <Button x:Name="btnClose"
-                  Style="{StaticResource controlButton}"
-                  Tag="{StaticResource color4}"
-                  Margin="5, 0, 0, 0"
-                  Click="btnClose_Click">
-            <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
-          </Button>
-
-          <Button x:Name="btnMinimize"
-                Style="{StaticResource controlButton}"
-                Tag="{StaticResource color4}"
-                Click="btnMinimize_Click">
-            <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
-          </Button>
-        </StackPanel>
       </Grid>
 
-      <Separator Grid.Row="1" Background="{StaticResource color10}"/>
+      <!--<Separator Grid.Row="1" Background="{StaticResource color10}"/>-->
+      <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="475"/>
+          <ColumnDefinition Width="475"/>
+        </Grid.ColumnDefinitions>
 
-      <DataGrid x:Name="dayContentsDataGrid"
-                Grid.Row="2"
-                Style="{StaticResource dataGrid}"
-                CellStyle="{StaticResource dataGridCellStyle}"
-                RowStyle="{StaticResource dataGridRowStyle}">
-        <DataGrid.Columns>
-          <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+        <DataGrid x:Name="dayContentsDataGrid"
+                  Grid.Column="0"
+                  Style="{StaticResource dataGrid}"
+                  CellStyle="{StaticResource dataGridCellStyle}"
+                  RowStyle="{StaticResource dataGridRowStyle}">
+          <DataGrid.Columns>
+            <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="일일 컨텐츠"
                               Binding="{Binding ContentName}"
                               IsReadOnly="True"/>
-          <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+            <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                                   Header=""
                                   Binding="{Binding ContentFlag}"/>
-        </DataGrid.Columns>
-      </DataGrid>
+          </DataGrid.Columns>
+        </DataGrid>
 
-      <DataGrid x:Name="CommanderRaidContentsDataGrid"
-                Grid.Row="3"
-                Style="{StaticResource dataGrid}"
-                CellStyle="{StaticResource dataGridCellStyle}"
-                RowStyle="{StaticResource dataGridRowStyle}">
-        <DataGrid.Columns>
-          <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+        <DataGrid x:Name="CommanderRaidContentsDataGrid"
+                  Grid.Column="1"
+                  Style="{StaticResource dataGrid}"
+                  CellStyle="{StaticResource dataGridCellStyle}"
+                  RowStyle="{StaticResource dataGridRowStyle}">
+          <DataGrid.Columns>
+            <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="군단장"
                               Binding="{Binding ContentName}"
                               IsReadOnly="True"/>
-          <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+            <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                                   Header="" 
                                   Binding="{Binding ContentFlag}"/>
-        </DataGrid.Columns>
-      </DataGrid>
+          </DataGrid.Columns>
+        </DataGrid>
+      </Grid>
 
-      <DataGrid x:Name="abyssContentsSettingDataGrid"
-                Grid.Row="4"
+      <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="475"/>
+          <ColumnDefinition Width="475"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="abyssContentsSettingDataGrid"
+                  Grid.Column="0"
+                  Style="{StaticResource dataGrid}"
+                  CellStyle="{StaticResource dataGridCellStyle}"
+                  RowStyle="{StaticResource dataGridRowStyle}">
+          <DataGrid.Columns>
+            <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+                                Header="어비스 던전"
+                                Binding="{Binding ContentName}"
+                                IsReadOnly="True"/>
+            <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+                                    Header="" 
+                                    Binding="{Binding ContentFlag}"/>
+          </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="abyssRaidContentsDataGrid"
+                  Grid.Column="1"
+                  Style="{StaticResource dataGrid}"
+                  CellStyle="{StaticResource dataGridCellStyle}"
+                  RowStyle="{StaticResource dataGridRowStyle}">
+          <DataGrid.Columns>
+            <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+                                Header="어비스 레이드"
+                                Binding="{Binding ContentName}"
+                                IsReadOnly="True"/>
+            <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+                                    Header="" 
+                                    Binding="{Binding ContentFlag}"/>
+          </DataGrid.Columns>
+        </DataGrid>
+      </Grid>
+
+      <Grid Grid.Row="2">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="475"/>
+          <ColumnDefinition Width="475"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="guildIslandContentsDataGrid"
+                Grid.Column="0"
                 Style="{StaticResource dataGrid}"
                 CellStyle="{StaticResource dataGridCellStyle}"
                 RowStyle="{StaticResource dataGridRowStyle}">
-        <DataGrid.Columns>
-          <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
-                              Header="어비스 던전"
-                              Binding="{Binding ContentName}"
-                              IsReadOnly="True"/>
-          <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
-                                  Header="" 
-                                  Binding="{Binding ContentFlag}"/>
-        </DataGrid.Columns>
-      </DataGrid>
-
-      <DataGrid x:Name="abyssRaidContentsDataGrid"
-                Grid.Row="5"
-                Style="{StaticResource dataGrid}"
-                CellStyle="{StaticResource dataGridCellStyle}"
-                RowStyle="{StaticResource dataGridRowStyle}">
-        <DataGrid.Columns>
-          <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
-                              Header="어비스 레이드"
-                              Binding="{Binding ContentName}"
-                              IsReadOnly="True"/>
-          <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
-                                  Header="" 
-                                  Binding="{Binding ContentFlag}"/>
-        </DataGrid.Columns>
-      </DataGrid>
-
-      <DataGrid x:Name="guildIslandContentsDataGrid"
-                Grid.Row="6"
-                Style="{StaticResource dataGrid}"
-                CellStyle="{StaticResource dataGridCellStyle}"
-                RowStyle="{StaticResource dataGridRowStyle}">
-        <DataGrid.Columns>
-          <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+          <DataGrid.Columns>
+            <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="점령 섬"
                               Binding="{Binding ContentName}"
                               IsReadOnly="True"/>
-          <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+            <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                                   Header="" 
                                   Binding="{Binding ContentFlag}"/>
-        </DataGrid.Columns>
-      </DataGrid>
+          </DataGrid.Columns>
+        </DataGrid>
 
-      <DataGrid x:Name="weeklyContentsDataGrid"
-                Grid.Row="7"
+        <DataGrid x:Name="weeklyContentsDataGrid"
+                Grid.Column="1"
                 Style="{StaticResource dataGrid}"
                 CellStyle="{StaticResource dataGridCellStyle}"
                 RowStyle="{StaticResource dataGridRowStyle}">
-        <DataGrid.Columns>
-          <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+          <DataGrid.Columns>
+            <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="주간 컨텐츠"
                               Binding="{Binding ContentName}"
                               IsReadOnly="True"/>
-          <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+            <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                                   Header="" 
                                   Binding="{Binding ContentFlag}"/>
-        </DataGrid.Columns>
-      </DataGrid>
+          </DataGrid.Columns>
+        </DataGrid>
+      </Grid>
 
-      <DataGrid x:Name="weeklyEtcContentsDataGrid"
-                Grid.Row="8"
+      <Grid Grid.Row="3">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="475"/>
+          <ColumnDefinition Width="475"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="weeklyEtcContentsDataGrid"
+                Grid.Column="0"
                 Style="{StaticResource dataGrid}"
                 CellStyle="{StaticResource dataGridCellStyle}"
                 RowStyle="{StaticResource dataGridRowStyle}">
-        <DataGrid.Columns>
-          <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+          <DataGrid.Columns>
+            <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="주간 기타"
                               Binding="{Binding ContentName}"
                               IsReadOnly="True"/>
-          <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
+            <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                                   Header="" 
                                   Binding="{Binding ContentFlag}"/>
-        </DataGrid.Columns>
-      </DataGrid>
-      <Separator Grid.Row="9" Background="{StaticResource color10}"/>
+          </DataGrid.Columns>
+        </DataGrid>
+      </Grid>
+      <Separator Grid.Row="4" Background="{StaticResource color10}"/>
       <Button x:Name="settingBtn"
-                Grid.Row="10"
+                Grid.Row="5"
                 Style="{StaticResource controlButton}"
                 Tag="{StaticResource color10}"
                 Height="30"
@@ -219,4 +198,4 @@
 
 
   </Border>
-</Window>
+</UserControl>

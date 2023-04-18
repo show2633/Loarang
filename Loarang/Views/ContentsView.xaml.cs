@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace Loarang.Views
 {
 	/// <summary>
-	/// CharAddView.xaml에 대한 상호 작용 논리
+	/// ContentsView.xaml에 대한 상호 작용 논리
 	/// </summary>
-	public partial class CharAddView : UserControl
+	public partial class ContentsView : UserControl
 	{
-		public CharAddView()
+		public ContentsView()
 		{
 			InitializeComponent();
-		}
-		private void addBtn_Click(object sender, RoutedEventArgs e)
-		{
-
 		}
 	}
 }

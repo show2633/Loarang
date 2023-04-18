@@ -11,59 +11,20 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Navigation;
 
 namespace Loarang.Views
 {
 	/// <summary>
-	/// ContentsSettingView.xaml에 대한 상호 작용 논리
+	/// ContentsView.xaml에 대한 상호 작용 논리
 	/// </summary>
-	public partial class ContentsSettingView : Window
+	public partial class ContentsSettingView : UserControl
 	{
 		public ContentsSettingView()
 		{
 			InitializeComponent();
-			testSetting();
-		}
-
-		[DllImport("user32.dll")]
-
-		public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lPanam);
-
-		private void ControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			WindowInteropHelper helper = new WindowInteropHelper(this);
-			SendMessage(helper.Handle, 161, 2, 0);
-		}
-
-		private void ControlBar_MouseEnter(object sender, MouseEventArgs e)
-		{
-			this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight; // 마우스가 컨트롤바에 갈 때마다 최대높이 갱신
-		}
-
-		private void btnClose_Click(object sender, RoutedEventArgs e)
-		{
-			this.Close();
-		}
-
-		private void btnMaximize_Click(object sender, RoutedEventArgs e)
-		{
-			if (this.WindowState == WindowState.Normal)
-				this.WindowState = WindowState.Maximized;
-			else this.WindowState = WindowState.Normal;
-		}
-
-		private void btnMinimize_Click(object sender, RoutedEventArgs e)
-		{
-			this.WindowState = WindowState.Minimized;
-		}
-
-		private void settingBtn_Click(object sender, RoutedEventArgs e)
-		{
-
 		}
 		private void testSetting()
 		{
@@ -85,12 +46,12 @@ namespace Loarang.Views
 			commanderRaidContents.Add(new Content("일리아칸", true));
 			this.CommanderRaidContentsDataGrid.ItemsSource = commanderRaidContents;
 
-			ObservableCollection<Content>  abyssContents = new ObservableCollection<Content>();
+			ObservableCollection<Content> abyssContents = new ObservableCollection<Content>();
 			abyssContents.Add(new Content("기본 6종", true));
 			abyssContents.Add(new Content("낙원 3종", true));
 			abyssContents.Add(new Content("오레하", true));
 			abyssContents.Add(new Content("카양겔", true));
-			abyssContents.Add(new Content("상아탑", true));			
+			abyssContents.Add(new Content("상아탑", true));
 			this.abyssContentsSettingDataGrid.ItemsSource = abyssContents;
 
 			ObservableCollection<Content> abyssRaidContents = new ObservableCollection<Content>();
@@ -120,7 +81,12 @@ namespace Loarang.Views
 			//collection.Add(new Content("[기타]"));
 			//collection.Add(new Content("큐브")); // 추후 수정
 
-			
+
+		}
+
+		private void settingBtn_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

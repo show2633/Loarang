@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Style x:Key="dataGrid" TargetType="DataGrid">
     <Setter Property="Background" Value="{StaticResource panelColor}"/>
-    <Setter Property="BorderBrush" Value="{StaticResource panelColor}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource color10}"/>
     <Setter Property="Foreground" Value="{StaticResource plainTextColor1}"/>
     <Setter Property="RowBackground" Value="{StaticResource panelColor}"/>
-    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="BorderThickness" Value="1"/>
     <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
     <Setter Property="Margin" Value="15"/>
     <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
