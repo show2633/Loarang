@@ -23,7 +23,7 @@ namespace Loarang.Command
 		public event EventHandler CanExcuteChanged
 		{
 			add { CommandManager.RequerySuggested += value; }
-			remove { CommandManager.RequerySuggested += value; }
+			remove { CommandManager.RequerySuggested -= value; }
 		}
 	}
 }

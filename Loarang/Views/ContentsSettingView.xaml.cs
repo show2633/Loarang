@@ -26,12 +26,6 @@ namespace Loarang.Views
 		{
 			InitializeComponent();
 		}
-		private void testSetting()
-		{
-			
-
-
-		}
 
 		private void settingBtn_Click(object sender, RoutedEventArgs e)
 		{

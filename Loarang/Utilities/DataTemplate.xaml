@@ -6,5 +6,13 @@
   <DataTemplate DataType="{x:Type vm:ContentsVM}">
     <view:ContentsView/>
   </DataTemplate>
+
+  <DataTemplate DataType="{x:Type vm:ContentsSettingVM}">
+    <view:ContentsSettingView/>
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type vm:CharAddVM}">
+    <view:CharAddView/>
+  </DataTemplate>
   
 </ResourceDictionary>

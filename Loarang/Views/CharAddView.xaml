@@ -6,7 +6,7 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:Loarang.Views"
              mc:Ignorable="d" 
-             Width="950" Height="865" 
+             Width="920" Height="865" 
              Background="Transparent">
   <Border CornerRadius="12"
           BorderThickness="1"
@@ -17,13 +17,6 @@
         <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
       </LinearGradientBrush>
     </Border.Background>
-    <Border.BorderBrush>
-      <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
-        <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.5"/>
-        <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
-      </LinearGradientBrush>
-    </Border.BorderBrush>
 
     <Grid>
       <Grid.RowDefinitions>
@@ -38,16 +31,15 @@
           <ColumnDefinition Width="170"/>
         </Grid.ColumnDefinitions>
       </Grid>
-      <Separator Grid.Row="1" Background="{StaticResource color10}"/>
       <Grid Grid.Row="1">
         <Grid.RowDefinitions>
-          <RowDefinition Height="60"/>
+          <RowDefinition Height="40"/>
           <RowDefinition Height="20"/>
           <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="150"/>
-          <ColumnDefinition Width="190"/>
+          <ColumnDefinition Width="180"/>
+          <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="iconPnl"
                     Grid.Column="0"
@@ -60,8 +52,8 @@
                               Foreground="{StaticResource color10}"
                               Margin="20, 0, 10, 0"/>
           <TextBlock Text="캐릭터 아이콘"
-                           Foreground="{StaticResource titleColor2}"
-                           FontSize="12"
+                           Foreground="{StaticResource color10}"
+                           FontSize="20"
                            FontFamily="../Fonts/#SEBANG Gothic Bold"
                            FontWeight="Medium"
                            VerticalAlignment="Center"/>
@@ -78,8 +70,8 @@
                               Foreground="{StaticResource color10}"
                               Margin="15, 0, 10, 0"/>
           <TextBlock Text="캐릭터 명"
-                           Foreground="{StaticResource titleColor2}"
-                           FontSize="12"
+                           Foreground="{StaticResource color10}"
+                           FontSize="20"
                            FontFamily="../Fonts/#SEBANG Gothic Bold"
                            FontWeight="Medium"
                            VerticalAlignment="Center"/>
@@ -88,7 +80,6 @@
         <ComboBox Grid.Row="1"
                   Grid.Column="0" 
                   Style="{StaticResource comboBox}"
-                  Height="20" Width="40"
                   VerticalAlignment="Top"
                   HorizontalAlignment="Left"
                   Margin="20, 0, 0, 0">
@@ -105,7 +96,6 @@
 
         </TextBox>
       </Grid>
-      <Separator Grid.Row="2" Background="{StaticResource color10}"/>
 
       <Button x:Name="addBtn"
                 Grid.Row="3"

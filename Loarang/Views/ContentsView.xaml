@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:Loarang.Views"
+             xmlns:vm="clr-namespace:Loarang.ViewModels"
              mc:Ignorable="d" 
-             Width="950" Height="885" 
+             Width="930" Height="900" 
              Background="Transparent">
+  <UserControl.DataContext>
+    <vm:SubNavigationVM/>
+  </UserControl.DataContext>
   <Border CornerRadius="12"
           BorderThickness="1"
           Opacity="0.95">
@@ -27,9 +31,9 @@
 
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition Height="25"/>
+        <RowDefinition Height="30"/>
         <RowDefinition Height="10"/>
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="860"/>
       </Grid.RowDefinitions>
       <Grid>
         <Grid.ColumnDefinitions>
@@ -38,26 +42,31 @@
         </Grid.ColumnDefinitions>
 
         <!-- Tab button -->
-        <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Top">
+        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
           <Button Style="{StaticResource tabButton}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="컨텐츠">
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Content="컨텐츠">
           </Button>
 
           <Button Style="{StaticResource tabButton}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="컨텐츠 설정">
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Content="컨텐츠 설정"
+                  Command="{Binding ContentsSettingCommand}">
           </Button>
 
           <Button Style="{StaticResource tabButton}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="캐릭터 등록">
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Content="캐릭터 등록"
+                  Command="{Binding CharAddCommand}">
           </Button>
         </StackPanel>
       </Grid>
+
+      <ContentControl Grid.Row="2"
+                      Content="{Binding CurrentView}"/>
     </Grid>
   </Border>
 </UserControl>

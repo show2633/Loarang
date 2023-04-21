@@ -4,13 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        xmlns:local="clr-namespace:Loarang"        
+        xmlns:local="clr-namespace:Loarang" 
+        xmlns:vm="clr-namespace:Loarang.ViewModels" 
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Width="1250" Height="1000">
-    <Grid>
+        Width="1250" Height="1020">
+  <Window.DataContext>
+    <vm:NavigationVM/>
+  </Window.DataContext>
+  <Grid>
     <Border CornerRadius="12">
       <Border.Background>
         <ImageBrush></ImageBrush>
@@ -49,21 +53,22 @@
             <StackPanel>
               <!-- Logo -->
               <StackPanel Orientation="Horizontal"
-                        Height="35"
-                        Margin="15, 25, 0, 40">
+                          Height="35"
+                          Margin="15, 25, 0, 40">
                 <Image Height="30"/>
                 <TextBlock Text="LoaRang"
-                         Foreground="{StaticResource titleColor2}"
-                         FontSize="20"
-                         FontFamily="./Fonts/#SEBANG Gothic Bold"
-                         FontWeight="Medium"
-                         VerticalAlignment="Center"
-                         Margin="10, 0, 0, 0"/>
+                           Foreground="{StaticResource titleColor2}"
+                           FontSize="20"
+                           FontFamily="./Fonts/#SEBANG Gothic Bold"
+                           FontWeight="Medium"
+                           VerticalAlignment="Center"
+                           Margin="10, 0, 0, 0"/>
               </StackPanel>
 
               <!-- Menu Buttons -->
               <RadioButton Style="{StaticResource menuButton}"
-                       Tag="{StaticResource color1}">
+                           Tag="{StaticResource color1}"
+                           Command="{Binding ContentsCommand}">
                 <StackPanel Orientation="Horizontal">
                   <fa:IconImage Icon="CalendarCheck" Style="{StaticResource menuButtonIcon}"/>
                   <TextBlock Text="컨텐츠" Style="{StaticResource menuButtonText}"/>
@@ -71,7 +76,7 @@
               </RadioButton>
 
               <RadioButton Style="{StaticResource menuButton}"
-                       Tag="{StaticResource color7}">
+                           Tag="{StaticResource color7}">
                 <StackPanel Orientation="Horizontal">
                   <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                   <TextBlock Text="캐릭터" Style="{StaticResource menuButtonText}"/>
@@ -107,7 +112,7 @@
                 <!-- Header / Caption -->
                 <RowDefinition Height="35"/>
                 <!-- Content section / Child views -->
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="960"/>
               </Grid.RowDefinitions>
 
               <!-- Control bar -->
@@ -163,17 +168,13 @@
                            FontFamily="Montserrat"
                            FontWeight="Medium"
                            VerticalAlignment="Center"/>
-
                 </StackPanel>
-
               </Grid>
-             
-
+              
               <!-- Content section / Child views -->
-              <ContentControl Content=""
-                            Grid.Row="2"
-                            Margin="25"/>
-
+              <ContentControl Grid.Row="2"
+                              Margin="25"
+                              Content="{Binding CurrentView}"/>
             </Grid>
           </Border>
 
