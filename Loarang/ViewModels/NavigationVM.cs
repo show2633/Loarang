@@ -12,13 +12,19 @@ namespace Loarang.ViewModels
 		public ICommand ShowHomeCommand { get; set; }
 		public ICommand ShowContentsCommand { get; set; }
 		public ICommand ShowCharacterCommand { get; set; }
-		private void Content(object obj) => CurrentView = new ContentsVM();		
 		public NavigationVM()
 		{
 			ShowHomeCommand = new RelayCommand(ShowHomeViewCommand);
 			ShowContentsCommand = new RelayCommand(ShowContentsViewCommand);
 			ShowCharacterCommand = new RelayCommand(ShowCharacterViewCommand);
 
+			Init();
+		}
+
+		private void Init()
+		{
+			Caption = "홈";
+			Icon = IconChar.Home;
 			CurrentView = new HomeVM();
 		}
 

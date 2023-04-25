@@ -4,7 +4,7 @@
                     xmlns:view="clr-namespace:Loarang.Views">
   
   <DataTemplate DataType="{x:Type vm:HomeVM}">
-    <view:CharAddView/>
+    <view:HomeView/>
   </DataTemplate>
   
   <DataTemplate DataType="{x:Type vm:ContentsVM}">
@@ -20,7 +20,7 @@
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:CharacterVM}">
-    <view:CharAddView/>
+    <view:CharacterView/>
   </DataTemplate>
   
 </ResourceDictionary>
