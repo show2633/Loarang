@@ -3,6 +3,10 @@
                     xmlns:vm="clr-namespace:Loarang.ViewModels"
                     xmlns:view="clr-namespace:Loarang.Views">
   
+  <DataTemplate DataType="{x:Type vm:HomeVM}">
+    <view:CharAddView/>
+  </DataTemplate>
+  
   <DataTemplate DataType="{x:Type vm:ContentsVM}">
     <view:ContentsView/>
   </DataTemplate>
@@ -12,6 +16,10 @@
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:CharAddVM}">
+    <view:CharAddView/>
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type vm:CharacterVM}">
     <view:CharAddView/>
   </DataTemplate>
   

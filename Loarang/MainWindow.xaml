@@ -67,8 +67,17 @@
 
               <!-- Menu Buttons -->
               <RadioButton Style="{StaticResource menuButton}"
+                           Tag="{StaticResource color8}"
+                           Command="{Binding ShowHomeCommand}">
+                <StackPanel Orientation="Horizontal">
+                  <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                  <TextBlock Text="홈" Style="{StaticResource menuButtonText}"/>
+                </StackPanel>
+              </RadioButton>
+              
+              <RadioButton Style="{StaticResource menuButton}"
                            Tag="{StaticResource color1}"
-                           Command="{Binding ContentsCommand}">
+                           Command="{Binding ShowContentsCommand}">
                 <StackPanel Orientation="Horizontal">
                   <fa:IconImage Icon="CalendarCheck" Style="{StaticResource menuButtonIcon}"/>
                   <TextBlock Text="컨텐츠" Style="{StaticResource menuButtonText}"/>
@@ -76,22 +85,13 @@
               </RadioButton>
 
               <RadioButton Style="{StaticResource menuButton}"
-                           Tag="{StaticResource color7}">
+                           Tag="{StaticResource color7}"
+                           Command="{Binding ShowCharacterCommand}">
                 <StackPanel Orientation="Horizontal">
                   <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                   <TextBlock Text="캐릭터" Style="{StaticResource menuButtonText}"/>
                 </StackPanel>
-              </RadioButton>
-
-              <RadioButton Style="{StaticResource menuButton}"
-                       Tag="{StaticResource color8}">
-                <StackPanel Orientation="Horizontal">
-                  <fa:IconImage Icon="Heart" Style="{StaticResource menuButtonIcon}"/>
-                  <TextBlock Text="내실" Style="{StaticResource menuButtonText}"/>
-                </StackPanel>
-              </RadioButton>
-
-
+              </RadioButton>          
             </StackPanel>
           </Border>
 
@@ -157,15 +157,15 @@
                 <StackPanel Grid.Column="0"
                           Orientation="Horizontal"
                           VerticalAlignment="Center">
-                  <fa:IconImage Icon="CalendarCheck"
+                  <fa:IconImage Icon="{Binding Icon}"
                               Height="20"
                               Width="20"
                               Foreground="{StaticResource titleColor2}"
                               Margin="35, 0, 10, 0"/>
-                  <TextBlock Text="Contents"
+                  <TextBlock Text="{Binding Caption}"
                            Foreground="{StaticResource titleColor2}"
                            FontSize="16"
-                           FontFamily="Montserrat"
+                           FontFamily="./Fonts/#SEBANG Gothic Bold"
                            FontWeight="Medium"
                            VerticalAlignment="Center"/>
                 </StackPanel>
