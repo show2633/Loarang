@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Loarang.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              Width="930" Height="900" 
              Background="Transparent">
@@ -24,9 +25,10 @@
       </LinearGradientBrush>
     </Border.BorderBrush>
 
+    <!-- Main Grid -->
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition Height="30"/>
+        <RowDefinition Height="20"/>
         <RowDefinition Height="10"/>
         <RowDefinition Height="860"/>
       </Grid.RowDefinitions>
@@ -35,6 +37,141 @@
           <ColumnDefinition Width="475"/>
           <ColumnDefinition Width="475"/>
         </Grid.ColumnDefinitions>
+      </Grid>
+
+      <!-- Contents Grid -->
+      <Grid Grid.Row="2">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="420"/>
+            <RowDefinition Height="420"/>
+          </Grid.RowDefinitions>
+
+          <!-- Notice & Event Grid -->
+          <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="465"/>
+              <ColumnDefinition Width="465"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Notice Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="0">
+              <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="70"/>
+                  <RowDefinition Height="70"/>
+                  <RowDefinition Height="70"/>
+                  <RowDefinition Height="70"/>
+                  <RowDefinition Height="70"/>
+                  <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource homeTextBlock}"
+                           Text="공지 사항"/>
+              </Grid>
+            </Border>
+
+            <!-- Event Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="1">
+              <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="70"/>
+                  <RowDefinition Height="115"/>
+                  <RowDefinition Height="115"/>
+                  <RowDefinition Height="115"/>
+                  <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="232"/>
+                  <ColumnDefinition Width="1"/>
+                  <ColumnDefinition Width="232"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Style="{StaticResource homeTextBlock}"
+                           Text="이벤트"/>
+              </Grid>
+            </Border>
+          </Grid>
+
+          <!-- Challenge Abyss & Guardian, Adventure Island Grid -->
+          <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="310"/>
+              <ColumnDefinition Width="310"/>
+              <ColumnDefinition Width="310"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Adventure Island Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="0">
+              <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{StaticResource homeTextBlock}"
+                           Text="모험 섬"/>
+              </Grid>
+            </Border>
+
+            <!-- Challenge Abyss Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="1">
+              <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{StaticResource homeTextBlock}"
+                           Text="도전 어비스 던전"/>
+              </Grid>
+            </Border>
+
+            <!-- Challenge Guardian Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="2">
+              <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="105"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{StaticResource homeTextBlock}"
+                           Text="도전 가디언 토벌"/>
+              </Grid>
+            </Border>
+          </Grid>
+        </Grid>
       </Grid>
 
       <ContentControl Grid.Row="2"
