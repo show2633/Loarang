@@ -54,14 +54,14 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   Content="스킬"
-                  Command="{Binding ContentsSettingCommand}">
+                  Command="{Binding ShowSkillCommand}">
         </Button>
 
         <Button Style="{StaticResource tabButton}"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   Content="수집형 포인트"
-                  Command="{Binding CharAddCommand}">
+                  Command="">
         </Button>
       </StackPanel>
 

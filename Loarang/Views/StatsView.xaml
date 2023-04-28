@@ -16,6 +16,7 @@
         <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
       </LinearGradientBrush>
     </Border.Background>
+    
     <!-- Main Grid -->
     <Grid>
       <Grid.RowDefinitions>

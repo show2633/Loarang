@@ -27,4 +27,7 @@
     <view:StatsView/>
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type vm:SkillVM}">
+    <view:SkillView/>
+  </DataTemplate>
 </ResourceDictionary>
