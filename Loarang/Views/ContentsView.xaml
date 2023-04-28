@@ -10,7 +10,7 @@
              Width="930" Height="900" 
              Background="Transparent">
   <UserControl.DataContext>
-    <vm:SubNavigationVM/>
+    <vm:ContentsSubNavigationVM/>
   </UserControl.DataContext>
   <Border CornerRadius="12"
           BorderThickness="1"

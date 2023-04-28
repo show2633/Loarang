@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Loarang.ViewModels
 {
-	public class BattleInfoVM
+	public class StatsVM
 	{
-		public BattleInfoVM()
-		{
-
-		}
 	}
 }

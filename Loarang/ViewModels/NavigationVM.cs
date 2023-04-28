@@ -11,12 +11,12 @@ namespace Loarang.ViewModels
 
 		public ICommand ShowHomeCommand { get; set; }
 		public ICommand ShowContentsCommand { get; set; }
-		public ICommand ShowCharacterCommand { get; set; }
+		public ICommand ShowBattleInfoCommand { get; set; }
 		public NavigationVM()
 		{
 			ShowHomeCommand = new RelayCommand(ShowHomeViewCommand);
 			ShowContentsCommand = new RelayCommand(ShowContentsViewCommand);
-			ShowCharacterCommand = new RelayCommand(ShowCharacterViewCommand);
+			ShowBattleInfoCommand = new RelayCommand(ShowBattleInfoViewCommand);
 
 			Init();
 		}
@@ -53,11 +53,11 @@ namespace Loarang.ViewModels
 			Icon = IconChar.CalendarCheck;
 			CurrentView = new ContentsVM();
 		}
-		private void ShowCharacterViewCommand(object obj)
+		private void ShowBattleInfoViewCommand(object obj)
 		{
-			Caption = "캐릭터";
+			Caption = "전투정보실";
 			Icon = IconChar.User;
-			CurrentView = new CharacterVM();
+			CurrentView = new BattleInfoVM();
 		}
 	}
 }

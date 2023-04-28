@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Loarang.Views
 {
 	/// <summary>
-	/// CharacterView.xaml에 대한 상호 작용 논리
+	/// StatsView.xaml에 대한 상호 작용 논리
 	/// </summary>
-	public partial class CharacterView : UserControl
+	public partial class StatsView : UserControl
 	{
-		public CharacterView()
+		public StatsView()
 		{
 			InitializeComponent();
 		}

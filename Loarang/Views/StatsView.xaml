@@ -1,0 +1,232 @@
+﻿<UserControl x:Class="Loarang.Views.StatsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Loarang.Views"
+             mc:Ignorable="d" 
+             Width="920" Height="865" 
+             Background="Transparent">
+  <Border CornerRadius="12"
+          BorderThickness="1"
+          Opacity="0.95">
+    <Border.Background>
+      <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+      </LinearGradientBrush>
+    </Border.Background>
+    <!-- Main Grid -->
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="860"/>
+      </Grid.RowDefinitions>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="460"/>
+          <ColumnDefinition Width="460"/>
+        </Grid.ColumnDefinitions>
+      </Grid>
+
+      <!-- Stats Grid -->
+      <Grid Grid.Row="2">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="430"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="330"/>
+          </Grid.RowDefinitions>
+
+          <!-- Stats & Character Image &  Equipment Grid -->
+          <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="230"/>
+              <ColumnDefinition Width="230"/>
+              <ColumnDefinition Width="460"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Stats Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="0">
+              <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="90"/>
+                  <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                  <RowDefinition Height="41"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="서버"/>
+                <TextBlock Grid.Row="1" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="직업"/>
+                <TextBlock Grid.Row="2" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="레벨"/>
+                <TextBlock Grid.Row="3" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="전투 레벨"/>
+                <TextBlock Grid.Row="4" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="아이템 레벨"/>
+                <TextBlock Grid.Row="5" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="원정대 레벨"/>
+                <TextBlock Grid.Row="6" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="칭호"/>
+                <TextBlock Grid.Row="7" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="길드"/>
+                <TextBlock Grid.Row="8" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="PVP"/>
+                <TextBlock Grid.Row="9" 
+                           Style="{StaticResource statsTextBlock}"
+                           Text="영지"/>
+              </Grid>
+            </Border>
+
+            <!-- Image Border -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="1">
+            </Border>
+
+            <!-- Equipment Border -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="2">
+            </Border>
+          </Grid>
+
+          <!-- Jewel Grid -->
+          <Border BorderBrush="{StaticResource color10}"
+                  BorderThickness="2"
+                  CornerRadius="9"
+                  Margin="8"
+                  Grid.Row="1"
+                  Grid.Column="2">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="20"/>
+              </Grid.ColumnDefinitions>
+            </Grid>
+          </Border>
+
+          <!-- Characteristic & Engrave & Cards Grid -->
+          <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="230"/>
+              <ColumnDefinition Width="230"/>
+              <ColumnDefinition Width="460"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Characteristic Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="0">
+              <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{StaticResource homeTextBlock}"
+                           Text="특성"/>
+              </Grid>
+            </Border>
+
+            <!-- Engrave Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="1">
+              <Grid Grid.Row="0" Grid.Column="1">               
+                <TextBlock Style="{StaticResource homeTextBlock}"
+                           Text="각인"/>
+              </Grid>
+            </Border>
+
+            <!-- Cards Grid -->
+            <Border BorderBrush="{StaticResource color10}"
+                    BorderThickness="2"
+                    CornerRadius="9"
+                    Margin="8"
+                    Grid.Row="0"
+                    Grid.Column="2">
+              <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="40"/>
+                  <RowDefinition Height="130"/>
+                  <RowDefinition Height="130"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="5"/>
+                  <ColumnDefinition Width="140"/>
+                  <ColumnDefinition Width="140"/>
+                  <ColumnDefinition Width="140"/>
+                  <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Style="{StaticResource homeTextBlock}"
+                           Text="카드"/>
+                <Image Grid.Row="1"
+                       Grid.Column="1"/>
+                <Image Grid.Row="1"
+                       Grid.Column="2"/>
+                <Image Grid.Row="1"
+                       Grid.Column="3"/>
+                <Image Grid.Row="2"
+                       Grid.Column="1"/>
+                <Image Grid.Row="2"
+                       Grid.Column="2"/>
+                <Image Grid.Row="2"
+                       Grid.Column="3"/>
+              </Grid>
+            </Border>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Border>
+</UserControl>
+
+  

@@ -19,8 +19,12 @@
     <view:CharAddView/>
   </DataTemplate>
 
-  <DataTemplate DataType="{x:Type vm:CharacterVM}">
-    <view:CharacterView/>
+  <DataTemplate DataType="{x:Type vm:BattleInfoVM}">
+    <view:BattleInfoView/>
   </DataTemplate>
-  
+
+  <DataTemplate DataType="{x:Type vm:StatsVM}">
+    <view:StatsView/>
+  </DataTemplate>
+
 </ResourceDictionary>
