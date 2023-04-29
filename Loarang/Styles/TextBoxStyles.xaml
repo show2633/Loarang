@@ -6,4 +6,28 @@
     <Setter Property="BorderThickness" Value="1"/>
     <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
   </Style>
+
+  <Style x:Key="searchTextBox" TargetType="TextBox">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{StaticResource titleColor2}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource color10}"/>
+    <Setter Property="BorderThickness" Value="2"/>
+    <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="Width" Value="200"/>
+    <Setter Property="Height" Value="25"/>
+    <Setter Property="FontSize" Value="15"/>
+    <Setter Property="TextAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="0, 5, 0, 0"/>
+    <Style.Triggers>
+      <Trigger Property="IsKeyboardFocusWithin" Value="True">
+        <Setter Property="CaretBrush" Value="{StaticResource titleColor2}"/>
+      </Trigger>
+    </Style.Triggers>
+    <Style.Resources>
+      <Style TargetType="Border">
+        <Setter Property="CornerRadius" Value="4"/>
+      </Style>
+    </Style.Resources>
+  </Style>
 </ResourceDictionary>

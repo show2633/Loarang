@@ -11,5 +11,10 @@ namespace Loarang.Views
 		{
 			InitializeComponent();
 		}
+
+		private void searchBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+		{
+
+		}
 	}
 }

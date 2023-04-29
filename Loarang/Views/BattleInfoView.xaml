@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Loarang.Views"
-             xmlns:vm="clr-namespace:Loarang.ViewModels"
+             xmlns:vm="clr-namespace:Loarang.ViewModels" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              Width="930" Height="900" 
              Background="Transparent">
@@ -31,7 +31,6 @@
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="30"/>
-        <RowDefinition Height="10"/>
         <RowDefinition Height="860"/>
       </Grid.RowDefinitions>
       <Grid>
@@ -42,27 +41,42 @@
       </Grid>
 
       <!-- Tab button -->
-      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+      <StackPanel Orientation="Horizontal" 
+                  Height="30" 
+                  VerticalAlignment="Top">
         <Button Style="{StaticResource tabButton}"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  Content="능력치"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="능력치"
                 Command="{Binding ShowStatsCommand}">
         </Button>
 
         <Button Style="{StaticResource tabButton}"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  Content="스킬"
-                  Command="{Binding ShowSkillCommand}">
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="스킬"
+                Command="{Binding ShowSkillCommand}">
         </Button>
-
-        <Button Style="{StaticResource tabButton}"
+        
+        <!--<Button Style="{StaticResource tabButton}"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   Content="수집형 포인트"
                   Command="">
+        </Button>-->
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal"
+                  FlowDirection="RightToLeft"
+                  Grid.Row="0" 
+                  Grid.Column="1">
+        <Button x:Name="searchBtn"
+                      Style="{StaticResource searchButton}"
+                      Tag="{StaticResource color4}"
+                      Click="searchBtn_Click">
+          <fa:IconImage Icon="Search" Style="{StaticResource iconButtonIcon}"/>
         </Button>
+        <TextBox Style="{StaticResource searchTextBox}"/>
       </StackPanel>
 
       <ContentControl Grid.Row="2"

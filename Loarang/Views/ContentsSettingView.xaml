@@ -50,7 +50,9 @@
                   Style="{StaticResource dataGrid}"
                   CellStyle="{StaticResource dataGridCellStyle}"
                   RowStyle="{StaticResource dataGridRowStyle}"
-                  ItemsSource="{Binding DailyContents}">
+                  ItemsSource="{Binding DailyContents}"
+                  CurrentCellChanged="DataGrid_CurrentCellChanged"
+                  PreparingCellForEdit="DataGrid_PreparingCellForEdit">
           <DataGrid.Columns>
             <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="일일 컨텐츠"
@@ -62,12 +64,14 @@
           </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="CommanderRaidContentsDataGrid"
+        <DataGrid x:Name="commanderRaidContentsDataGrid"
                   Grid.Column="1"
                   Style="{StaticResource dataGrid}"
                   CellStyle="{StaticResource dataGridCellStyle}"
                   RowStyle="{StaticResource dataGridRowStyle}"
-                  ItemsSource="{Binding CommanderRaidContents}">
+                  ItemsSource="{Binding CommanderRaidContents}"
+                  CurrentCellChanged="DataGrid_CurrentCellChanged"
+                  PreparingCellForEdit="DataGrid_PreparingCellForEdit">
           <DataGrid.Columns>
             <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="군단장"
@@ -91,7 +95,9 @@
                   Style="{StaticResource dataGrid}"
                   CellStyle="{StaticResource dataGridCellStyle}"
                   RowStyle="{StaticResource dataGridRowStyle}"
-                  ItemsSource="{Binding AbyssContents}">
+                  ItemsSource="{Binding AbyssContents}"
+                  CurrentCellChanged="DataGrid_CurrentCellChanged"
+                  PreparingCellForEdit="DataGrid_PreparingCellForEdit">
           <DataGrid.Columns>
             <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                                 Header="어비스 던전"
@@ -108,7 +114,9 @@
                   Style="{StaticResource dataGrid}"
                   CellStyle="{StaticResource dataGridCellStyle}"
                   RowStyle="{StaticResource dataGridRowStyle}"
-                  ItemsSource="{Binding AbyssRaidContents}">
+                  ItemsSource="{Binding AbyssRaidContents}"
+                  CurrentCellChanged="DataGrid_CurrentCellChanged"
+                  PreparingCellForEdit="DataGrid_PreparingCellForEdit">
           <DataGrid.Columns>
             <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                                 Header="어비스 레이드"
@@ -132,7 +140,9 @@
                   Style="{StaticResource dataGrid}"
                   CellStyle="{StaticResource dataGridCellStyle}"
                   RowStyle="{StaticResource dataGridRowStyle}"
-                  ItemsSource="{Binding GuildIslandContents}">
+                  ItemsSource="{Binding GuildIslandContents}"
+                  CurrentCellChanged="DataGrid_CurrentCellChanged"
+                  PreparingCellForEdit="DataGrid_PreparingCellForEdit">
           <DataGrid.Columns>
             <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="점령 섬"
@@ -145,11 +155,13 @@
         </DataGrid>
 
         <DataGrid x:Name="weeklyContentsDataGrid"
-                Grid.Column="1"
-                Style="{StaticResource dataGrid}"
-                CellStyle="{StaticResource dataGridCellStyle}"
-                RowStyle="{StaticResource dataGridRowStyle}"
-                  ItemsSource="{Binding WeeklyContents}">
+                  Grid.Column="1"
+                  Style="{StaticResource dataGrid}"
+                  CellStyle="{StaticResource dataGridCellStyle}"
+                  RowStyle="{StaticResource dataGridRowStyle}"
+                  ItemsSource="{Binding WeeklyContents}"
+                  CurrentCellChanged="DataGrid_CurrentCellChanged"
+                  PreparingCellForEdit="DataGrid_PreparingCellForEdit">
           <DataGrid.Columns>
             <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
                               Header="주간 컨텐츠"
@@ -173,28 +185,30 @@
                   Style="{StaticResource dataGrid}"
                   CellStyle="{StaticResource dataGridCellStyle}"
                   RowStyle="{StaticResource dataGridRowStyle}"
-                  ItemsSource="{Binding WeeklyEtcContents}">
+                  ItemsSource="{Binding WeeklyEtcContents}"
+                  CurrentCellChanged="DataGrid_CurrentCellChanged"
+                  PreparingCellForEdit="DataGrid_PreparingCellForEdit">
           <DataGrid.Columns>
             <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
-                              Header="주간 기타"
-                              Binding="{Binding ContentName}"
-                              IsReadOnly="True"/>
+                                Header="주간 기타"
+                                Binding="{Binding ContentName}"
+                                IsReadOnly="True"/>
             <DataGridCheckBoxColumn HeaderStyle="{StaticResource dataGridColumnHeader}"
-                                  Header="" 
-                                  Binding="{Binding ContentFlag}"/>
+                                    Header="" 
+                                    Binding="{Binding ContentFlag}"/>
           </DataGrid.Columns>
         </DataGrid>
       </Grid>
       <Button x:Name="settingBtn"
-                Grid.Row="5"
-                Style="{StaticResource controlButton}"
-                Tag="{StaticResource color10}"
-                Height="30"
-                Width="30"
-                Click="settingBtn_Click"
-                HorizontalAlignment="Right"
-                Margin="0, 5, 15, 0"
-                VerticalAlignment="Top">
+              Grid.Row="5"
+              Style="{StaticResource controlButton}"
+              Tag="{StaticResource color10}"
+              Height="30"
+              Width="30"
+              Click="settingBtn_Click"
+              HorizontalAlignment="Right"
+              Margin="0, 5, 15, 0"
+              VerticalAlignment="Top">
         <fa:IconImage Icon="SquareCheck" Style="{StaticResource controlButtonIcon}" Height="30" Width="30"/>
       </Button>
     </Grid>

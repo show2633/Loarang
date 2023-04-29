@@ -31,5 +31,15 @@ namespace Loarang.Views
 		{
 
 		}
+
+		private void DataGrid_CurrentCellChanged(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void DataGrid_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
+		{
+			
+		}
 	}
 }
