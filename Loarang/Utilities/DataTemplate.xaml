@@ -30,4 +30,7 @@
   <DataTemplate DataType="{x:Type vm:SkillVM}">
     <view:SkillView/>
   </DataTemplate>
+  <DataTemplate DataType="{x:Type vm:EquipmentVM}">
+    <view:EquipmentView/>
+  </DataTemplate>
 </ResourceDictionary>

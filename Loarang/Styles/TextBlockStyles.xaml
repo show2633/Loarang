@@ -13,4 +13,12 @@
     <Setter Property="Padding" Value="14"/>
     <Setter Property="FontSize" Value="13"/>
   </Style>
+
+  <Style x:Key="equipmentTextBlock" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource color10}"/>
+    <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
+    <Setter Property="Padding" Value="7"/>
+    <Setter Property="FontSize" Value="10"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
 </ResourceDictionary>

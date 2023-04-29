@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <None Remove="Fonts\SEBANG Gothic Bold.ttf" />
+    <None Remove="test\DM_Item_164.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,10 @@
     <Content Include="Fonts\SEBANG Gothic Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="test\DM_Item_164.png" />
   </ItemGroup>
 
 </Project>
