@@ -34,12 +34,36 @@ namespace Loarang.Views
 
 		private void DataGrid_CurrentCellChanged(object sender, EventArgs e)
 		{
-			
+			if (dayContentsDataGrid.CurrentColumn is DataGridCheckBoxColumn)
+				dayContentsDataGrid.BeginEdit();
+			else if (commanderRaidContentsDataGrid.CurrentColumn is DataGridCheckBoxColumn)
+				commanderRaidContentsDataGrid.BeginEdit();
+			else if (abyssContentsSettingDataGrid.CurrentColumn is DataGridCheckBoxColumn)
+				abyssContentsSettingDataGrid.BeginEdit();
+			else if (abyssRaidContentsDataGrid.CurrentColumn is DataGridCheckBoxColumn)
+				abyssRaidContentsDataGrid.BeginEdit();
+			else if (guildIslandContentsDataGrid.CurrentColumn is DataGridCheckBoxColumn)
+				guildIslandContentsDataGrid.BeginEdit();
+			else if (weeklyContentsDataGrid.CurrentColumn is DataGridCheckBoxColumn)
+				weeklyContentsDataGrid.BeginEdit();
+			else if (weeklyEtcContentsDataGrid.CurrentColumn is DataGridCheckBoxColumn)
+				weeklyEtcContentsDataGrid.BeginEdit();
 		}
 
 		private void DataGrid_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
 		{
-			
+			try
+			{
+				var checkBox = e.EditingElement as CheckBox;
+
+				if (checkBox != null)
+					checkBox.IsChecked = !checkBox.IsChecked;
+			}
+
+			catch(Exception ex)
+			{
+
+			}
 		}
 	}
 }
