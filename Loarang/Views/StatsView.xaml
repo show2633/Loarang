@@ -156,6 +156,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -163,6 +165,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -170,6 +174,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -177,6 +183,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -184,6 +192,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -191,6 +201,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -198,6 +210,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -205,6 +219,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -212,6 +228,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -219,6 +237,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
 
               <Border Style="{StaticResource jewelBorder}"
@@ -226,6 +246,8 @@
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                 </Border.Background>
+                <TextBlock Style="{StaticResource jewelTextBlock}"
+                           Text="10"/>
               </Border>
             </Grid>
           </Border>
@@ -374,11 +396,11 @@
                       <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                     </Border.Background>
                   </Border>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="1"
                              Grid.Column="1"                             
                              Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="1"
                              Grid.Column="2"                             
                              Text="아드레날린"/>
@@ -390,11 +412,11 @@
                       <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                     </Border.Background>
                   </Border>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="2"
                              Grid.Column="1"                             
                              Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="2"
                              Grid.Column="2"                             
                              Text="바리케이트"/>
@@ -406,11 +428,11 @@
                       <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                     </Border.Background>
                   </Border>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="3"
                              Grid.Column="1"                             
                              Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="3"
                              Grid.Column="2"                             
                              Text="원한"/>
@@ -422,11 +444,11 @@
                       <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                     </Border.Background>
                   </Border>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="4"
                              Grid.Column="1"                             
                              Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="4"
                              Grid.Column="2"                             
                              Text="속전속결"/>
@@ -438,11 +460,11 @@
                       <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                     </Border.Background>
                   </Border>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="5"
                              Grid.Column="1"                             
                              Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="5"
                              Grid.Column="2"                             
                              Text="저주받은 인형"/>
@@ -454,11 +476,11 @@
                       <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                     </Border.Background>
                   </Border>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="6"
                              Grid.Column="1"                             
                              Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="6"
                              Grid.Column="2"                             
                              Text="아르데타인의 기술"/>
@@ -470,11 +492,11 @@
                       <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                     </Border.Background>
                   </Border>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="7"
                              Grid.Column="1"                             
                              Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="7"
                              Grid.Column="2"                             
                              Text="이동속도 감소"/>
@@ -485,11 +507,11 @@
                       <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
                     </Border.Background>
                   </Border>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="8"
                              Grid.Column="1"                             
                              Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource jewelTextBlock}"
+                  <TextBlock Style="{StaticResource engraveTextBlock}"
                              Grid.Row="8"
                              Grid.Column="2"                             
                              Text="공격속도 감소"/>
@@ -540,7 +562,7 @@
                           Grid.Column="3">
                   <Border.Background>
                     <ImageBrush Stretch="Fill" ImageSource="/test/test.png"/>
-                  </Border.Background>
+                  </Border.Background>                  
                 </Border>
                 <Border Style="{StaticResource cardBorder}"
                           Grid.Row="2"
@@ -569,20 +591,19 @@
                   <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="15"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="20"/>
                   </Grid.RowDefinitions>
 
                   <TextBlock Style="{StaticResource cardTextBlock}"
@@ -639,7 +660,6 @@
                              Foreground="{StaticResource color11}"
                              Text="생명력이 10% 이하인 모험가에게 공격 적중 시, 대상에게  &#10; 번개 피해를 발생시킨다. (발동 재사용 대기시간 60초)">
                   </TextBlock>
-
                 </Grid>
               </Grid>
             </Border>

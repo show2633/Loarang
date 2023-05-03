@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Loarang.ViewModels
 {
-	class SkillVM
+	class SkillTreeVM
 	{
 	}
 }

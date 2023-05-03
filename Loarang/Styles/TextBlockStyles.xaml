@@ -26,7 +26,17 @@
     <Setter Property="Foreground" Value="{StaticResource color10}"/>
     <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
     <Setter Property="FontSize" Value="13"/>
+    <Setter Property="VerticalAlignment" Value="Bottom"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+    <Setter Property="Margin" Value="0 0 5 0"/>
+  </Style>
+
+  <Style x:Key="engraveTextBlock" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource color10}"/>
+    <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
+    <Setter Property="FontSize" Value="13"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="5 0 0 0"/>
   </Style>
 
   <Style x:Key="cardTextBlock" TargetType="TextBlock">
@@ -35,5 +45,12 @@
     <Setter Property="FontSize" Value="8"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="Margin" Value="5 0 0 0"/>
+  </Style>
+
+  <Style x:Key="skillTextBlock" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource color10}"/>
+    <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
+    <Setter Property="FontSize" Value="12"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
   </Style>
 </ResourceDictionary>
