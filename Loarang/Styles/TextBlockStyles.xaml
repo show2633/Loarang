@@ -21,4 +21,19 @@
     <Setter Property="FontSize" Value="10"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
   </Style>
+
+  <Style x:Key="jewelTextBlock" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource color10}"/>
+    <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
+    <Setter Property="FontSize" Value="13"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+
+  <Style x:Key="cardTextBlock" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource color10}"/>
+    <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
+    <Setter Property="FontSize" Value="8"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="5 0 0 0"/>
+  </Style>
 </ResourceDictionary>

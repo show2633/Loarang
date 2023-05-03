@@ -18,6 +18,8 @@
   <ItemGroup>
     <None Remove="Fonts\SEBANG Gothic Bold.ttf" />
     <None Remove="test\DM_Item_164.png" />
+    <None Remove="test\test.png" />
+    <None Remove="test\Use_9_55.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +34,8 @@
 
   <ItemGroup>
     <Resource Include="test\DM_Item_164.png" />
+    <Resource Include="test\test.png" />
+    <Resource Include="test\Use_9_55.png" />
   </ItemGroup>
 
 </Project>
