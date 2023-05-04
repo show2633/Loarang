@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Loarang.Views.SkillView"
+﻿<UserControl x:Class="Loarang.Views.SkillTreeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -37,6 +37,10 @@
                   Margin="8"
                   Grid.Row="0">
         <Grid>
+          <TextBlock>
+          <Hyperlink NavigateUri="https://www.naver.com"
+                     RequestNavigate="Link_RequestNavigate">tetttttttttttttttttst</Hyperlink>
+          </TextBlock>
         </Grid>
       </Border>
       <Border BorderBrush="{StaticResource color10}"

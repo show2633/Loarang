@@ -28,7 +28,7 @@
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:SkillTreeVM}">
-    <view:SkillView/>
+    <view:SkillTreeView/>
   </DataTemplate>
   <DataTemplate DataType="{x:Type vm:EquipmentVM}">
     <view:EquipmentView/>
