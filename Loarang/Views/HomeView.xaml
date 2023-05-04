@@ -42,8 +42,8 @@
     <!-- Main Grid -->
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition Height="20"/>
-        <RowDefinition Height="10"/>
+        <RowDefinition Height="0"/>
+        <RowDefinition Height="0"/>
         <RowDefinition Height="0"/> <!-- hyperlink 버그로 인한 RowDefinition -->
         <RowDefinition Height="860"/>
       </Grid.RowDefinitions>
@@ -65,7 +65,7 @@
           <!-- Notice & Event Grid -->
           <Grid Grid.Row="0">
             <Grid.RowDefinitions>
-              <RowDefinition Height="70"/>
+              <RowDefinition Height="40"/>
               <RowDefinition Height="350"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -77,7 +77,8 @@
             <TextBlock Style="{StaticResource homeTextBlock}"
                        Grid.Row="0"
                        Text="공지 사항"
-                       VerticalAlignment="Bottom">
+                       VerticalAlignment="Bottom"
+                       Margin="0 0 0 -17">
             </TextBlock>
 
             <Border BorderBrush="{StaticResource color10}"
@@ -116,82 +117,190 @@
                     </GridViewColumn>
                   </GridView>
                 </ListView.View>                
-              </ListView>
-              <!--<Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="70"/>                  
-                  <RowDefinition Height="70"/>
-                  <RowDefinition Height="70"/>
-                  <RowDefinition Height="70"/>
-                  <RowDefinition Height="70"/>
-                  <RowDefinition Height="70"/>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource homeTextBlock}"
-                           Grid.Row="0"
-                           Text="공지 사항"/>
-                <TextBlock Style="{StaticResource noticeTextBlock}"
-                           Grid.Row="1"
-                           Text="test"> 
-                  <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
-                             NavigateUri=""/>
-                </TextBlock>
-
-                <TextBlock Style="{StaticResource noticeTextBlock}"
-                           Grid.Row="2"
-                           Text="test"> 
-                  <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
-                             NavigateUri=""/>
-                </TextBlock>
-
-                <TextBlock Style="{StaticResource noticeTextBlock}"
-                           Grid.Row="3"
-                           Text="test"> 
-                  <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
-                             NavigateUri=""/>
-                </TextBlock>
-
-                <TextBlock Style="{StaticResource noticeTextBlock}"
-                           Grid.Row="4"
-                           Text="test"> 
-                  <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
-                             NavigateUri=""/>
-                </TextBlock>
-
-                <TextBlock Style="{StaticResource noticeTextBlock}"
-                           Grid.Row="5"
-                           Text="test"> 
-                  <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
-                             NavigateUri=""/>
-                </TextBlock>
-
-              </Grid>-->
+              </ListView>              
             </Border>
 
             <!-- Event Grid -->
+            <TextBlock Style="{StaticResource homeTextBlock}"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Text="이벤트"
+                       VerticalAlignment="Bottom"
+                       Margin="0 0 0 -17">
+            </TextBlock>
+
             <Border BorderBrush="{StaticResource color10}"
                     BorderThickness="2"
                     CornerRadius="9"
                     Margin="8"
                     Grid.Row="1"
                     Grid.Column="1">
-              <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="70"/>
-                  <RowDefinition Height="115"/>
-                  <RowDefinition Height="115"/>
-                  <RowDefinition Height="115"/>
-                  <RowDefinition Height="5"/>
-                </Grid.RowDefinitions>
+              <WrapPanel Name="container"
+                         Orientation="Horizontal" 
+                         HorizontalAlignment="Left">
+                <ItemsControl ItemsSource="{Binding HomeEvents}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <TextBlock>                                       
+                        <Hyperlink NavigateUri="{Binding Url}"
+                                   RequestNavigate="Link_RequestNavigate"
+                                   TextDecorations="None">
+                          <Image Source="{Binding EventImage}"
+                                 Height="107"
+                                 Width="216"
+                                 Margin="4 2 0 0"/>
+                          <!--<Rectangle RadiusX="10"
+                                     RadiusY="10"
+                                     Height="107"
+                                     Width="216"
+                                     Margin="4 2 0 0">
+                            <Rectangle.Fill>
+                              <ImageBrush ImageSource="{Binding EventImage}"/>
+                            </Rectangle.Fill>
+                          </Rectangle>-->
+                        </Hyperlink>                      
+                      </TextBlock>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </WrapPanel>
+              <!--<ItemsControl ItemsSource="{Binding HomeEvents}" 
+                            Foreground="White" 
+                            Background="Transparent">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <WrapPanel Orientation="Horizontal"
+                               Height="110"
+                               Width="220">
+                      <TextBlock Height="110"
+                               Width="220">
+                      <Hyperlink NavigateUri="{Binding Url}">
+                        <Image Source="{Binding EventImage}"
+                               Height="110"
+                               Width="220"/>
+                      </Hyperlink>
+                      </TextBlock>
+                    </WrapPanel>                    
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>-->
 
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="232"/>
-                  <ColumnDefinition Width="1"/>
-                  <ColumnDefinition Width="232"/>
-                </Grid.ColumnDefinitions>
+              <!--<ItemsControl ItemsSource="{Binding HomeEvents}" 
+                            Foreground="White" 
+                            Background="Transparent">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"
+                               Height="110"
+                               Width="220">
+                      <TextBlock Height="110"
+                               Width="220">
+                      <Hyperlink NavigateUri="{Binding Url}">
+                        <Image Source="{Binding EventImage}"
+                               Height="110"
+                               Width="220"/>
+                      </Hyperlink>
+                      </TextBlock>
+                    </WrapPanel>
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+              </ItemsControl>-->
 
-                <TextBlock Style="{StaticResource homeTextBlock}"
-                           Text="이벤트"/>
-              </Grid>
+              <!--<ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal">
+                      <TextBlock Height="110"
+                               Width="220">
+                      <Hyperlink NavigateUri="{Binding Url}">
+                        <Image Source="{Binding EventImage}"
+                               Height="110"
+                               Width="220"/>
+                      </Hyperlink>
+                      </TextBlock>
+                    </WrapPanel>
+                  </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+              </ListBox>-->
+              
+              <!--<ListBox ItemsSource="{Binding HomeEvents}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate DataType="String">
+                    <Image></Image>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>-->
+              
+                <!--<ItemsControl ItemsSource="{Binding HomeEvents}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <ItemContainerTemplate>
+                    <Border Height="110"
+                            Width="220"
+                            CornerRadius="10">
+                      <Border.Background>
+                        <ImageBrush Stretch="Uniform"  ImageSource="{Binding EventImage}"/>
+                      </Border.Background>
+                    </Border>
+                  </ItemContainerTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>-->
+              
+              <!--<ListView Style="{StaticResource NoticeListView}"
+                        ItemsSource="{Binding HomeEvents}"
+                        BorderThickness="0">
+                <ListView.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal">
+                      <Hyperlink NavigateUri="{Binding Url}">
+                        <Image Source="{Binding EventImage}"
+                               Height="110"
+                               Width="220"/>
+                      </Hyperlink>
+                    </WrapPanel>
+                  </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+              </ListView>-->
+              <!--<Grid Grid.Column="1">
+                <Grid.Resources>
+                  <DataTemplate x:Key="EventDataTemplate">
+                    <Grid Height="110" Width="220">
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="5"/>
+                      </Grid.RowDefinitions>
+
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="220"/>
+                      </Grid.ColumnDefinitions>
+
+                      <Hyperlink >
+                      <Image Source="{Binding EventImage}"
+                             Grid.Row="0"
+                             Grid.Column="0"
+                             Height="110"
+                             Width="220"/>
+                      </Hyperlink>
+                    </Grid>
+                  </DataTemplate>
+                </Grid.Resources>
+                <ListBox ItemsSource="{Binding HomeEvents}" 
+                         ItemTemplate="{StaticResource EventDataTemplate}"
+                         Background="Transparent"/>
+              </Grid>-->
             </Border>
           </Grid>
 

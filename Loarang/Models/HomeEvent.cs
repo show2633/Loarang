@@ -10,5 +10,6 @@ namespace Loarang.Models
 	{
 		public string EventText { get; set; }
 		public string Url { get; set; }
+		public string EventImage { get; set; }
 	}
 }
