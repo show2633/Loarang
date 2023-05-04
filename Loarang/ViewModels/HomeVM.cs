@@ -45,7 +45,7 @@ namespace Loarang.ViewModels
 
 					JToken jToken = JToken.Parse(res);
 
-					for(int i = 0; i < 4; i ++)
+					for(int i = 0; i < 8; i ++)
 					{
 						HomeNotice homeNotice = new HomeNotice();
 						homeNotice.NoticeText = jToken[i]["Title"].ToString();
