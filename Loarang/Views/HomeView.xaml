@@ -44,7 +44,8 @@
       <Grid.RowDefinitions>
         <RowDefinition Height="0"/>
         <RowDefinition Height="0"/>
-        <RowDefinition Height="0"/> <!-- hyperlink 버그로 인한 RowDefinition -->
+        <RowDefinition Height="0"/>
+        <!-- hyperlink 버그로 인한 RowDefinition -->
         <RowDefinition Height="860"/>
       </Grid.RowDefinitions>
       <Grid Grid.Row="1">
@@ -53,7 +54,7 @@
           <ColumnDefinition Width="475"/>
         </Grid.ColumnDefinitions>
       </Grid>
-      
+
       <!-- Contents Grid -->
       <Grid Grid.Row="3">
         <Grid>
@@ -61,7 +62,7 @@
             <RowDefinition Height="420"/>
             <RowDefinition Height="420"/>
           </Grid.RowDefinitions>
-          
+
           <!-- Notice & Event Grid -->
           <Grid Grid.Row="0">
             <Grid.RowDefinitions>
@@ -116,8 +117,8 @@
                       </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                   </GridView>
-                </ListView.View>                
-              </ListView>              
+                </ListView.View>
+              </ListView>
             </Border>
 
             <!-- Event Grid -->
@@ -174,6 +175,10 @@
 
           <!-- Challenge Abyss & Guardian, Adventure Island Grid -->
           <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="40"/>
+              <RowDefinition Height="380"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="310"/>
               <ColumnDefinition Width="310"/>
@@ -181,62 +186,120 @@
             </Grid.ColumnDefinitions>
 
             <!-- Adventure Island Grid -->
+            <TextBlock Style="{StaticResource homeTextBlock}"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Text="모험 섬"
+                       VerticalAlignment="Bottom"
+                       Margin="0 0 0 -17">
+            </TextBlock>
             <Border BorderBrush="{StaticResource color10}"
                     BorderThickness="2"
                     CornerRadius="9"
                     Margin="8"
-                    Grid.Row="0"
+                    Grid.Row="1"
                     Grid.Column="0">
-              <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
-                </Grid.RowDefinitions>
+              <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="155"/>
+                  <ColumnDefinition Width="155"/>
+                </Grid.ColumnDefinitions>
+                <ItemsControl ItemsSource="{Binding HomeAdventureIslands}"
+                            Grid.Column="0">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Border Style="{StaticResource AdventureIslandBorder}">
+                        <Border.Background>
+                          <ImageBrush Stretch="Fill" 
+                                    ImageSource="{Binding ContentsImage}"/>
+                        </Border.Background>
+                      </Border>
+                      <!--<Image Source="{Binding ContentsImage}"
+                                 Height="100"
+                                 Width="100"
+                                 Margin="4 2 0 0"/>-->
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-                <TextBlock Style="{StaticResource homeTextBlock}"
-                           Text="모험 섬"/>
+                <ItemsControl ItemsSource="{Binding HomeAdventureIslands}"
+                              Grid.Column="1">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <TextBlock>
+                        <WrapPanel Orientation="Vertical">
+                          <TextBlock Style="{StaticResource homeContentsTextBlock}"
+                                      Text="{Binding ContentsName}"
+                                      Foreground="{StaticResource color11}"
+                                      FontSize="14"
+                                      Margin="0 10 0 10">
+                          
+                          </TextBlock>
+                          <Border Style="{StaticResource AdventureIslandRewardBorder}">
+                            <Image Source="{Binding RewardItems}"/>                           
+                          </Border>                       
+                        <TextBlock Style="{StaticResource homeContentsTextBlock}"
+                                   Text="기대 보상">
+                          
+                        </TextBlock>
+                        </WrapPanel>                        
+                      </TextBlock>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
               </Grid>
             </Border>
 
             <!-- Challenge Abyss Grid -->
+            <TextBlock Style="{StaticResource homeTextBlock}"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Text="도전 어비스 던전"
+                       VerticalAlignment="Bottom"
+                       Margin="0 0 0 -17">
+            </TextBlock>
+
             <Border BorderBrush="{StaticResource color10}"
                     BorderThickness="2"
                     CornerRadius="9"
                     Margin="8"
-                    Grid.Row="0"
+                    Grid.Row="1"
                     Grid.Column="1">
               <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="120"/>
+                  <RowDefinition Height="120"/>
+                  <RowDefinition Height="120"/>
                 </Grid.RowDefinitions>
-
-                <TextBlock Style="{StaticResource homeTextBlock}"
-                           Text="도전 어비스 던전"/>
               </Grid>
             </Border>
 
             <!-- Challenge Guardian Grid -->
+            <TextBlock Style="{StaticResource homeTextBlock}"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       Text="도전 가디언 토벌"
+                       VerticalAlignment="Bottom"
+                       Margin="0 0 0 -17">
+            </TextBlock>
+
             <Border BorderBrush="{StaticResource color10}"
                     BorderThickness="2"
                     CornerRadius="9"
                     Margin="8"
-                    Grid.Row="0"
+                    Grid.Row="1"
                     Grid.Column="2">
               <Grid Grid.Row="0" Grid.Column="2">
                 <Grid.RowDefinitions>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
-                  <RowDefinition Height="105"/>
+                  <RowDefinition Height="120"/>
+                  <RowDefinition Height="120"/>
+                  <RowDefinition Height="120"/>
                 </Grid.RowDefinitions>
-
-                <TextBlock Style="{StaticResource homeTextBlock}"
-                           Text="도전 가디언 토벌"/>
               </Grid>
             </Border>
           </Grid>

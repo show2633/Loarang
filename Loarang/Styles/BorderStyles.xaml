@@ -54,4 +54,26 @@
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="HorizontalAlignment" Value="Right"/>
   </Style>
+  
+  <Style x:Key="AdventureIslandBorder" TargetType="Border">
+    <Setter Property="Width" Value="100"/>
+    <Setter Property="Height" Value="100"/>
+    <Setter Property="Margin" Value="8"/>
+    <Setter Property="CornerRadius" Value="10"/>
+    <Setter Property="BorderThickness" Value="0.5"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+  </Style>
+
+  <Style x:Key="AdventureIslandRewardBorder" TargetType="Border">
+    <Setter Property="Width" Value="50"/>
+    <Setter Property="Height" Value="50"/>
+    <Setter Property="Margin" Value="8"/>
+    <Setter Property="CornerRadius" Value="10"/>
+    <Setter Property="BorderBrush" Value="{StaticResource color10}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+  </Style>
+
 </ResourceDictionary>

@@ -61,4 +61,11 @@
     <Setter Property="VerticalAlignment" Value="Center"/>
   </Style>
 
+  <Style x:Key="homeContentsTextBlock" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource color10}"/>
+    <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
+    <Setter Property="FontSize" Value="10"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+
 </ResourceDictionary>
