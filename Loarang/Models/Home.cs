@@ -12,12 +12,14 @@ namespace Loarang.Models
 		public ObservableCollection<HomeNotice> HomeNoticeList { get; set; }
 		public ObservableCollection<HomeEvent> HomeEventList { get; set; }
 		public ObservableCollection<HomeAdventureIsland> HomeAdventureIslandList { get; set; }
+		public ObservableCollection<HomeChallengeAbyss> HomeChallengeAbyssList { get; set; }
 
 		public Home()
 		{
 			HomeNoticeList = new ObservableCollection<HomeNotice>();
 			HomeEventList = new ObservableCollection<HomeEvent>();
 			HomeAdventureIslandList = new ObservableCollection<HomeAdventureIsland>();
+			HomeChallengeAbyssList = new ObservableCollection<HomeChallengeAbyss>();
 		}
 	}
 }

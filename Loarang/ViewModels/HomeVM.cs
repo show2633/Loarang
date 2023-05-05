@@ -19,6 +19,7 @@ namespace Loarang.ViewModels
 		private const string NOTICE_API_URL = "https://developer-lostark.game.onstove.com/news/notices?type=%EA%B3%B5%EC%A7%80";
 		private const string EVENT_API_URL = "https://developer-lostark.game.onstove.com/news/events";
 		private const string CALENDAR_API_URL = "https://developer-lostark.game.onstove.com/gamecontents/calendar";
+		private const string CHALLENGE_ABYSS_DUNGEONS_API_URL = "https://developer-lostark.game.onstove.com/gamecontents/challenge-abyss-dungeons";
 
 		private Home _home;
 
@@ -178,7 +179,29 @@ namespace Loarang.ViewModels
 									_home.HomeAdventureIslandList.Add(homeAdventureIsland);
 								}
 							}
-						}						
+						}
+					}
+				}
+
+
+				using (var request = new HttpRequestMessage(new HttpMethod("GET"), CHALLENGE_ABYSS_DUNGEONS_API_URL))
+				{
+					request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+					request.Content = new StringContent("");
+					request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+					var response = await httpClient.SendAsync(request);
+					string res = await response.Content.ReadAsStringAsync();
+
+					JToken jToken = JToken.Parse(res);
+
+					foreach (JToken jt in jToken)
+					{
+						HomeChallengeAbyss homeChallengeAbyss = new HomeChallengeAbyss();
+						homeChallengeAbyss.ContentsName = jt["Name"].ToString();
+						homeChallengeAbyss.ContentsImage = jt["Image"].ToString();
+
+						_home.HomeChallengeAbyssList.Add(homeChallengeAbyss);
 					}
 				}
 			}
@@ -212,5 +235,16 @@ namespace Loarang.ViewModels
 				OnPropertyChanged(nameof(HomeAdventureIslands));
 			}
 		}
+
+		public ObservableCollection<HomeChallengeAbyss> HomeChallengeAbysses
+		{
+			get => _home.HomeChallengeAbyssList;
+			set
+			{
+				_home.HomeChallengeAbyssList = value;
+				OnPropertyChanged(nameof(HomeChallengeAbysses));
+			}
+		}
+
 	}
 }

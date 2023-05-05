@@ -213,7 +213,7 @@
                   </ItemsControl.ItemsPanel>
                   <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                      <Border Style="{StaticResource AdventureIslandBorder}">
+                      <Border Style="{StaticResource adventureIslandBorder}">
                         <Border.Background>
                           <ImageBrush Stretch="Fill" 
                                     ImageSource="{Binding ContentsImage}"/>
@@ -240,7 +240,7 @@
                                       Margin="0 10 0 10">
                           
                           </TextBlock>
-                          <Border Style="{StaticResource AdventureIslandRewardBorder}">
+                          <Border Style="{StaticResource adventureIslandRewardBorder}">
                             <Image Source="{Binding RewardItems}"/>                           
                           </Border>                       
                         <TextBlock Style="{StaticResource homeContentsTextBlock}"
@@ -270,13 +270,28 @@
                     Margin="8"
                     Grid.Row="1"
                     Grid.Column="1">
-              <Grid Grid.Row="0" Grid.Column="1">
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="120"/>
-                  <RowDefinition Height="120"/>
-                  <RowDefinition Height="120"/>
-                </Grid.RowDefinitions>
-              </Grid>
+              <ItemsControl ItemsSource="{Binding HomeChallengeAbysses}"
+                              Grid.Column="1">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <TextBlock>
+                        <WrapPanel Orientation="Vertical">
+                          <TextBlock Style="{StaticResource homeContentsTextBlock}"
+                                      Text="{Binding ContentsName}"
+                                      Foreground="{StaticResource color11}"
+                                      FontSize="14"
+                                      Margin="10 20 0 0">                          
+                          </TextBlock>
+                          <Border Style="{StaticResource challengeAbyssBorder}">
+                            <Border.Background>
+                              <ImageBrush ImageSource="{Binding ContentsImage}"/>
+                            </Border.Background>
+                          </Border>              
+                        </WrapPanel>                        
+                      </TextBlock>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
             </Border>
 
             <!-- Challenge Guardian Grid -->
