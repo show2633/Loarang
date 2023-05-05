@@ -19,7 +19,8 @@ namespace Loarang.ViewModels
 		private const string NOTICE_API_URL = "https://developer-lostark.game.onstove.com/news/notices?type=%EA%B3%B5%EC%A7%80";
 		private const string EVENT_API_URL = "https://developer-lostark.game.onstove.com/news/events";
 		private const string CALENDAR_API_URL = "https://developer-lostark.game.onstove.com/gamecontents/calendar";
-		private const string CHALLENGE_ABYSS_DUNGEONS_API_URL = "https://developer-lostark.game.onstove.com/gamecontents/challenge-abyss-dungeons";
+		private const string CHALLENGE_ABYSS_API_URL = "https://developer-lostark.game.onstove.com/gamecontents/challenge-abyss-dungeons";
+		private const string CHALLENGE_GUARDIAN_API_URL = "https://developer-lostark.game.onstove.com/gamecontents/challenge-guardian-raids";
 
 		private Home _home;
 
@@ -184,7 +185,7 @@ namespace Loarang.ViewModels
 				}
 
 
-				using (var request = new HttpRequestMessage(new HttpMethod("GET"), CHALLENGE_ABYSS_DUNGEONS_API_URL))
+				using (var request = new HttpRequestMessage(new HttpMethod("GET"), CHALLENGE_ABYSS_API_URL))
 				{
 					request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
 					request.Content = new StringContent("");
@@ -202,6 +203,27 @@ namespace Loarang.ViewModels
 						homeChallengeAbyss.ContentsImage = jt["Image"].ToString();
 
 						_home.HomeChallengeAbyssList.Add(homeChallengeAbyss);
+					}
+				}
+
+				using (var request = new HttpRequestMessage(new HttpMethod("GET"), CHALLENGE_GUARDIAN_API_URL))
+				{
+					request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+					request.Content = new StringContent("");
+					request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+					var response = await httpClient.SendAsync(request);
+					string res = await response.Content.ReadAsStringAsync();
+
+					JToken jToken = JToken.Parse(res);
+
+					foreach (JToken jt in jToken["Raids"])
+					{
+						HomeChallengeGuardian homeChallengeGuardian = new HomeChallengeGuardian();
+						homeChallengeGuardian.GuardianName = jt["Name"].ToString();
+						homeChallengeGuardian.GuardianImage = jt["Image"].ToString();
+
+						_home.homeChallengeGuardianList.Add(homeChallengeGuardian);
 					}
 				}
 			}
@@ -243,6 +265,16 @@ namespace Loarang.ViewModels
 			{
 				_home.HomeChallengeAbyssList = value;
 				OnPropertyChanged(nameof(HomeChallengeAbysses));
+			}
+		}
+
+		public ObservableCollection<HomeChallengeGuardian> HomeChallengeGuardians
+		{
+			get => _home.homeChallengeGuardianList;
+			set
+			{
+				_home.homeChallengeGuardianList = value;
+				OnPropertyChanged(nameof(HomeChallengeGuardians));
 			}
 		}
 
