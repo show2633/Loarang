@@ -10,8 +10,9 @@
              Width="930" Height="900" 
              Background="Transparent">
   <UserControl.DataContext>
-    <vm:BattleInfoSubNavigation/>
+    <vm:BattleInfoNavigation/>
   </UserControl.DataContext>
+  
   <Border CornerRadius="12"
           BorderThickness="1"
           Opacity="0.95">
@@ -34,17 +35,16 @@
         <RowDefinition Height="30"/>
         <RowDefinition Height="860"/>
       </Grid.RowDefinitions>
-      <Grid>
+      <Grid Grid.ColumnSpan="2">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="475"/>
           <ColumnDefinition Width="475"/>
         </Grid.ColumnDefinitions>
       </Grid>
-
       <!-- Tab button -->
       <StackPanel Orientation="Horizontal" 
                   Height="30" 
-                  VerticalAlignment="Top">
+                  VerticalAlignment="Center" Grid.ColumnSpan="2">
         <Button Style="{StaticResource tabButton}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
@@ -58,7 +58,7 @@
                 Content="스킬"
                 Command="{Binding ShowSkillTreeCommand}">
         </Button>
-        
+
         <!--<Button Style="{StaticResource tabButton}"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
@@ -69,19 +69,23 @@
 
       <StackPanel Orientation="Horizontal"
                   FlowDirection="RightToLeft"
-                  Grid.Row="0" 
-                  Grid.Column="1">
+                  Grid.Row="0" Grid.ColumnSpan="2">
         <Button x:Name="searchBtn"
-                      Style="{StaticResource searchButton}"
-                      Tag="{StaticResource color4}"
-                      Click="searchBtn_Click">
+                Style="{StaticResource searchButton}"
+                Tag="{StaticResource color4}"
+                Command="{Binding SearchBattleInfoCommand}"
+                CommandParameter="{Binding SearchCharName}">
           <fa:IconImage Icon="Search" Style="{StaticResource iconButtonIcon}"/>
         </Button>
-        <TextBox Style="{StaticResource searchTextBox}"/>
+        <TextBox Style="{StaticResource searchTextBox}"
+                 Text="{Binding SearchCharName}"/>
       </StackPanel>
 
-      <ContentControl Grid.Row="2"
-                      Content="{Binding CurrentView}"/>
+      <Grid Grid.Row="1">
+        <ContentControl Grid.Row="2"
+                        Content="{Binding CurrentView}" 
+                        Grid.ColumnSpan="2"/>
+      </Grid>      
     </Grid>
   </Border>
 </UserControl>

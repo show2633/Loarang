@@ -57,7 +57,7 @@ namespace Loarang.ViewModels
 		{
 			Caption = "전투정보실";
 			Icon = IconChar.User;
-			CurrentView = new BattleInfoVM();
+			CurrentView = new BattleInfoNavigation();
 		}
 	}
 }

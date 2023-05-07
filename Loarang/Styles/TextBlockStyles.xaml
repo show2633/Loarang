@@ -14,8 +14,15 @@
     <Setter Property="FontSize" Value="17"/>
   </Style>
 
-  <Style x:Key="statsTextBlock" TargetType="TextBlock">
+  <Style x:Key="statsTextBlock1" TargetType="TextBlock">
     <Setter Property="Foreground" Value="{StaticResource color10}"/>
+    <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
+    <Setter Property="Padding" Value="14"/>
+    <Setter Property="FontSize" Value="13"/>
+  </Style>
+
+  <Style x:Key="statsTextBlock2" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource color11}"/>
     <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
     <Setter Property="Padding" Value="14"/>
     <Setter Property="FontSize" Value="13"/>

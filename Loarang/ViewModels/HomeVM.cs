@@ -68,12 +68,12 @@ namespace Loarang.ViewModels
 
 					JToken jToken = JToken.Parse(res);
 
-					for (int i = 0; i < 6; i++)
+					foreach (JToken jt in jToken)
 					{
 						HomeEvent homeEvent = new HomeEvent();
-						homeEvent.EventText = jToken[i]["Title"].ToString();
-						homeEvent.Url = jToken[i]["Link"].ToString();
-						homeEvent.EventImage = jToken[i]["Thumbnail"].ToString();
+						homeEvent.EventText = jt["Title"].ToString();
+						homeEvent.Url = jt["Link"].ToString();
+						homeEvent.EventImage = jt["Thumbnail"].ToString();
 						_home.HomeEventList.Add(homeEvent);
 					}
 				}

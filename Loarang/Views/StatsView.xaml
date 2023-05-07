@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Loarang.Views"
-             xmlns:vm="clr-namespace:Loarang.ViewModels" 
+             xmlns:vm="clr-namespace:Loarang.ViewModels"
              mc:Ignorable="d" 
              Width="920" Height="865" 
              Background="Transparent">
   <UserControl.DataContext>
     <vm:StatsSubNavigation/>
   </UserControl.DataContext>
+  
   <Border CornerRadius="12"
           BorderThickness="1"
           Opacity="0.95">
@@ -75,35 +76,75 @@
                   <RowDefinition Height="41"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" 
-                           Style="{StaticResource statsTextBlock}"
+                           Style="{StaticResource statsTextBlock1}"
                            Text="서버"/>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding Server, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="1" 
-                           Style="{StaticResource statsTextBlock}"
-                           Text="직업"/>
+                           Style="{StaticResource statsTextBlock1}"
+                           Text="닉네임"/>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="2" 
-                           Style="{StaticResource statsTextBlock}"
-                           Text="레벨"/>
+                           Style="{StaticResource statsTextBlock1}"
+                           Text="직업"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding ClassName, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="3" 
-                           Style="{StaticResource statsTextBlock}"
-                           Text="전투 레벨"/>
+                           Style="{StaticResource statsTextBlock1}"
+                           Text="레벨"/>
+                <TextBlock Grid.Row="3"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding CharacterLevel, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="4" 
-                           Style="{StaticResource statsTextBlock}"
+                           Style="{StaticResource statsTextBlock1}"
                            Text="아이템 레벨"/>
+                <TextBlock Grid.Row="4"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding ItemMaxLevel, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="5" 
-                           Style="{StaticResource statsTextBlock}"
+                           Style="{StaticResource statsTextBlock1}"
                            Text="원정대 레벨"/>
+                <TextBlock Grid.Row="5"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding ExpeditionLevel, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="6" 
-                           Style="{StaticResource statsTextBlock}"
+                           Style="{StaticResource statsTextBlock1}"
                            Text="칭호"/>
+                <TextBlock Grid.Row="6"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="7" 
-                           Style="{StaticResource statsTextBlock}"
+                           Style="{StaticResource statsTextBlock1}"
                            Text="길드"/>
+                <TextBlock Grid.Row="7"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding GuildName, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="8" 
-                           Style="{StaticResource statsTextBlock}"
+                           Style="{StaticResource statsTextBlock1}"
                            Text="PVP"/>
+                <TextBlock Grid.Row="8"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding PvpGradeName, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="9" 
-                           Style="{StaticResource statsTextBlock}"
+                           Style="{StaticResource statsTextBlock1}"
                            Text="영지"/>
+                <TextBlock Grid.Row="9"
+                           Grid.Column="1"
+                           Style="{StaticResource statsTextBlock2}"
+                           Text="{Binding TownName, UpdateSourceTrigger=PropertyChanged}"/>
               </Grid>
             </Border>
 
@@ -114,6 +155,11 @@
                     Margin="8"
                     Grid.Row="0"
                     Grid.Column="1">
+              <Image Source="{Binding CharacterImage, UpdateSourceTrigger=PropertyChanged}"
+                     Height="400"
+                     Width="320"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"/>
             </Border>
 
             <!-- Equipment Border -->
@@ -134,122 +180,29 @@
                   Margin="8"
                   Grid.Row="1"
                   Grid.Column="2">
-            <Grid>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="20"/>
-              </Grid.ColumnDefinitions>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="1">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="2">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="3">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="4">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="5">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="6">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="7">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="8">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="9">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="10">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-
-              <Border Style="{StaticResource jewelBorder}"
-                      Grid.Column="11">
-                <Border.Background>
-                  <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                </Border.Background>
-                <TextBlock Style="{StaticResource jewelTextBlock}"
-                           Text="10"/>
-              </Border>
-            </Grid>
+            <ItemsControl ItemsSource="{Binding BIJewels}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock>
+                    <Border Style="{StaticResource jewelBorder}"
+                            Margin="12 5 0 0">
+                      <Border.Background>
+                        <ImageBrush Stretch="Fill" 
+                                    ImageSource="{Binding JewelImage}"/>
+                      </Border.Background>
+                        <TextBlock Style="{StaticResource jewelTextBlock}"
+                                   Text="{Binding JewelLevel}"/>
+                    </Border>
+                
+                  </TextBlock>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>            
           </Border>
 
           <!-- Characteristic & Engrave & Cards Grid -->
@@ -287,76 +240,76 @@
                     <ColumnDefinition Width="53"/>
                   </Grid.ColumnDefinitions>
 
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="1"
                              Grid.Column="0"
                              Text="치명"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="1"
                              Grid.Column="1"
-                             Text="1555"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                             Text="{Binding Crit}"/>
+                  <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="1"
                              Grid.Column="2"
                              Text="특화"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="1"
                              Grid.Column="3"
-                             Text="1555"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                             Text="{Binding Specialization}"/>
+                  <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="2"
                              Grid.Column="0"
                              Text="신속"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="2"
                              Grid.Column="1"
-                             Text="1555"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                             Text="{Binding Swiftness}"/>
+                  <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="2"
                              Grid.Column="2"
                              Text="제압"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="2"
                              Grid.Column="3"
-                             Text="1555"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                             Text="{Binding Domination}"/>
+                  <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="3"
                              Grid.Column="0"
                              Text="인내"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="3"
                              Grid.Column="1"
-                             Text="1555"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                             Text="{Binding Endurance}"/>
+                  <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="3"
                              Grid.Column="2"
                              Text="숙련"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="3"
                              Grid.Column="3"
-                             Text="1555"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                             Text="{Binding Expertise}"/>
+                  <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="4"
                              Grid.Column="0"
                              Grid.ColumnSpan="2"
                              Text="공격력"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="4"
                              Grid.Column="2"
                              Grid.ColumnSpan="2"
                              HorizontalAlignment="Right"
-                             Text="35432"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                             Text="{Binding AtkPower}"/>
+                  <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="5"
                              Grid.Column="0"
                              Grid.ColumnSpan="2"
                              Text="최대 생명력"/>
-                  <TextBlock Style="{StaticResource statsTextBlock}"
+                  <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="5"
                              Grid.Column="2"
                              Grid.ColumnSpan="2"
                              HorizontalAlignment="Right"
-                             Text="354323"/>
+                             Text="{Binding MaxHP}"/>
                 </Grid>
               </Grid>
             </Border>
