@@ -21,6 +21,7 @@ namespace Loarang.ViewModels
 		BIProfiles bIProfiles;
 		ObservableCollection<BIJewels> bIJewels;
 		BICharacteristic bICharacteristic;
+		ObservableCollection<BIEngrave> bIEngraves;
 		private void ShowEquipment(object obj) => CurrentView = new EquipmentVM();
 
 		public StatsSubNavigation()
@@ -28,6 +29,7 @@ namespace Loarang.ViewModels
 			bIProfiles = new BIProfiles();
 			bIJewels = new ObservableCollection<BIJewels>();
 			bICharacteristic = new BICharacteristic();
+			bIEngraves = new ObservableCollection<BIEngrave>();
 
 			ShowEquipmentCommand = new RelayCommand(ShowEquipment);
 
@@ -61,8 +63,11 @@ namespace Loarang.ViewModels
 			AtkPower = BattleInfoShareStore.BICharacteristic.AtkPower;
 			MaxHP = BattleInfoShareStore.BICharacteristic.MaxHP;
 
-			//Jewel
+			// Jewel
 			BIJewels = BattleInfoShareStore.BIJewels;
+
+			// Engrave
+			BIEngraves = BattleInfoShareStore.BIEngraves;
 		}
 		
 		#region Profiles
@@ -179,7 +184,15 @@ namespace Loarang.ViewModels
 		{
 			get => bICharacteristic.AtkPower;
 			set { bICharacteristic.AtkPower = value; OnPropertyChanged(nameof(AtkPower)); }
-		}		
+		}
+		#endregion
+
+		#region Engraves
+		public ObservableCollection<BIEngrave> BIEngraves
+		{
+			get => bIEngraves;
+			set { bIEngraves = value; OnPropertyChanged(nameof(BIEngraves)); }
+		}
 		#endregion
 	}
 }

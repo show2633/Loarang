@@ -322,153 +322,39 @@
                     Grid.Row="0"
                     Grid.Column="1">
               <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="50"/>
+                  <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
                 <TextBlock Style="{StaticResource homeTextBlock}"
+                           Grid.Row="0"
                            Text="각인"/>
-                <Grid>
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                  </Grid.RowDefinitions>
-
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="130"/>
-                  </Grid.ColumnDefinitions>
-                  <Border Style="{StaticResource engraveBorder}"
-                          Grid.Row="1"
-                          Grid.Column="0">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                    </Border.Background>
-                  </Border>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="1"
-                             Grid.Column="1"                             
-                             Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="1"
-                             Grid.Column="2"                             
-                             Text="아드레날린"/>
-
-                  <Border Style="{StaticResource engraveBorder}"
-                          Grid.Row="2"
-                          Grid.Column="0">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                    </Border.Background>
-                  </Border>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="2"
-                             Grid.Column="1"                             
-                             Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="2"
-                             Grid.Column="2"                             
-                             Text="바리케이트"/>
-
-                  <Border Style="{StaticResource engraveBorder}"
-                          Grid.Row="3"
-                          Grid.Column="0">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                    </Border.Background>
-                  </Border>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="3"
-                             Grid.Column="1"                             
-                             Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="3"
-                             Grid.Column="2"                             
-                             Text="원한"/>
-
-                  <Border Style="{StaticResource engraveBorder}"
-                          Grid.Row="4"
-                          Grid.Column="0">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                    </Border.Background>
-                  </Border>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="4"
-                             Grid.Column="1"                             
-                             Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="4"
-                             Grid.Column="2"                             
-                             Text="속전속결"/>
-
-                  <Border Style="{StaticResource engraveBorder}"
-                          Grid.Row="5"
-                          Grid.Column="0">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                    </Border.Background>
-                  </Border>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="5"
-                             Grid.Column="1"                             
-                             Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="5"
-                             Grid.Column="2"                             
-                             Text="저주받은 인형"/>
-
-                  <Border Style="{StaticResource engraveBorder}"
-                          Grid.Row="6"
-                          Grid.Column="0">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                    </Border.Background>
-                  </Border>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="6"
-                             Grid.Column="1"                             
-                             Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="6"
-                             Grid.Column="2"                             
-                             Text="아르데타인의 기술"/>
-
-                  <Border Style="{StaticResource engraveBorder}"
-                          Grid.Row="7"
-                          Grid.Column="0">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                    </Border.Background>
-                  </Border>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="7"
-                             Grid.Column="1"                             
-                             Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="7"
-                             Grid.Column="2"                             
-                             Text="이동속도 감소"/>
-                  <Border Style="{StaticResource engraveBorder}"
-                          Grid.Row="8"
-                          Grid.Column="0">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
-                    </Border.Background>
-                  </Border>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="8"
-                             Grid.Column="1"                             
-                             Text="Lv.3"/>
-                  <TextBlock Style="{StaticResource engraveTextBlock}"
-                             Grid.Row="8"
-                             Grid.Column="2"                             
-                             Text="공격속도 감소"/>
-                </Grid>                
+                <ItemsControl ItemsSource="{Binding BIEngraves}"
+                              Grid.Row="1">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <TextBlock>
+                        <Border Style="{StaticResource engraveBorder}"
+                                Margin="12 1 0 0">
+                          <Border.Background>
+                            <ImageBrush Stretch="Fill" 
+                                        ImageSource="{Binding EngraveImage}"/>
+                           </Border.Background>                          
+                         </Border>
+                        <TextBlock Style="{StaticResource engraveTextBlock}"
+                                     Text="{Binding EngraveLevel}"/>
+                        <TextBlock Style="{StaticResource engraveTextBlock}"
+                                     Text="{Binding EngraveName}"/>
+                       </TextBlock>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
               </Grid>
             </Border>
 

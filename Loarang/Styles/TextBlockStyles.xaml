@@ -50,7 +50,7 @@
     <Setter Property="FontFamily" Value="../Fonts/#SEBANG Gothic Bold"/>
     <Setter Property="FontSize" Value="13"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
-    <Setter Property="Margin" Value="5 0 0 0"/>
+    <Setter Property="Margin" Value="5 -7 0 0"/>
   </Style>
 
   <Style x:Key="cardTextBlock" TargetType="TextBlock">

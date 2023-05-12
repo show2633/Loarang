@@ -12,5 +12,6 @@ namespace Loarang.Models
 		public static BIProfiles BIProfiles { get; set; }
 		public static ObservableCollection<BIJewels> BIJewels { get; set; }
 		public static BICharacteristic BICharacteristic { get; set; }
+		public static ObservableCollection<BIEngrave> BIEngraves { get; set; }
 	}
 }

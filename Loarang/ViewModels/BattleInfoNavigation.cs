@@ -29,6 +29,7 @@ namespace Loarang.ViewModels
 		BIProfiles bIProfiles;
 		BIJewels bIJewels;
 		BICharacteristic bICharacteristic;
+		BIEngrave bIEngrave;
 
 		private string searchCharName;
 
@@ -117,13 +118,13 @@ namespace Loarang.ViewModels
 						ObservableCollection<BIJewels> tempBIJewels = new ObservableCollection<BIJewels>();
 						BattleInfoShareStore.BIJewels = tempBIJewels;
 
-						for (int i = 0; i < MAX_JEWEL_CNT; i++)
-						{
+						foreach(JToken jt in jToken)
+						{ 
 							bIJewels = new BIJewels();
 
-							JewelName = jToken[i]["Name"].ToString();
-							JewelImage = jToken[i]["Icon"].ToString();
-							JewelLevel = Int32.Parse(jToken[i]["Level"].ToString());
+							JewelName = jt["Name"].ToString();
+							JewelImage = jt["Icon"].ToString();
+							JewelLevel = Int32.Parse(jt["Level"].ToString());
 
 							if (JewelName.Contains("멸"))
 								Priority = 0.5 + JewelLevel;
@@ -133,6 +134,39 @@ namespace Loarang.ViewModels
 							BattleInfoShareStore.BIJewels.Add(bIJewels);
 							BattleInfoShareStore.BIJewels
 								= new ObservableCollection<BIJewels>(BattleInfoShareStore.BIJewels.OrderByDescending(x => x.Priority));
+						}
+					}
+
+					using (var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://developer-lostark.game.onstove.com/armories/characters/{obj}/engravings"))
+					{
+						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+
+						request.Content = new StringContent("");
+						request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+						var response = await httpClient.SendAsync(request);
+						string res = await response.Content.ReadAsStringAsync();
+
+						JToken jToken = JToken.Parse(res);
+
+						JToken effectsJToken = jToken["Effects"];
+
+						ObservableCollection<BIEngrave> tempBIEngraves 
+							= new ObservableCollection<BIEngrave>();
+						BattleInfoShareStore.BIEngraves = tempBIEngraves;
+
+						foreach (JToken jt in effectsJToken)
+						{
+							bIEngrave = new BIEngrave();
+							EngraveName = jt["Name"].ToString().Substring(0, jt["Name"].ToString().Length - 6);
+							EngraveLevel = jt["Name"].ToString().Substring(jt["Name"].ToString().Length - 6);
+
+							string skillImageName = EngraveName.Replace(" ", string.Empty);
+							skillImageName = skillImageName.Replace(":", string.Empty);
+
+							EngraveImage = $"..\\Resources\\{skillImageName}.png";
+
+							BattleInfoShareStore.BIEngraves.Add(bIEngrave);
 						}
 					}
 					SearchAlert?.Invoke(this, new EventArgs());
@@ -280,7 +314,25 @@ namespace Loarang.ViewModels
 		{
 			get => bICharacteristic.AtkPower;
 			set { bICharacteristic.AtkPower = value; OnPropertyChanged(nameof(AtkPower)); }
-		}		
+		}
+		#endregion
+
+		#region Engraves
+		public string EngraveName
+		{
+			get => bIEngrave.EngraveName;
+			set { bIEngrave.EngraveName = value; OnPropertyChanged(nameof(EngraveName)); }
+		}
+		public string EngraveImage
+		{
+			get => bIEngrave.EngraveImage;
+			set { bIEngrave.EngraveImage = value; OnPropertyChanged(nameof(EngraveImage)); }
+		}
+		public string EngraveLevel
+		{
+			get => bIEngrave.EngraveLevel;
+			set { bIEngrave.EngraveLevel = value; OnPropertyChanged(nameof(EngraveLevel)); }
+		}
 		#endregion
 	}
 }

@@ -5,7 +5,7 @@ namespace Loarang.ViewModels
 {
 	class BattleInfoSubNavigation : ViewModelBase
 	{
-		private object _currentView;	
+		private object _currentView;
 		public ICommand ShowStatsCommand { get; set; }
 		public ICommand ShowSkillTreeCommand { get; set; }
 		private void ShowStats(object obj) => CurrentView = new StatsVM();
