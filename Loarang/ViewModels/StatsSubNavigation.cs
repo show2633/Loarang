@@ -19,17 +19,21 @@ namespace Loarang.ViewModels
 		public ICommand ShowEquipmentCommand { get; set; }
 
 		BIProfiles bIProfiles;
-		ObservableCollection<BIJewels> bIJewels;
+		ObservableCollection<BIJewel> bIJewels;
 		BICharacteristic bICharacteristic;
 		ObservableCollection<BIEngrave> bIEngraves;
+		ObservableCollection<BICardImage> bICardImages;
+		ObservableCollection<BICardDescription> bICardDescriptions;
 		private void ShowEquipment(object obj) => CurrentView = new EquipmentVM();
 
 		public StatsSubNavigation()
 		{
 			bIProfiles = new BIProfiles();
-			bIJewels = new ObservableCollection<BIJewels>();
+			bIJewels = new ObservableCollection<BIJewel>();
 			bICharacteristic = new BICharacteristic();
 			bIEngraves = new ObservableCollection<BIEngrave>();
+			bICardImages = new ObservableCollection<BICardImage>();
+			bICardDescriptions = new ObservableCollection<BICardDescription>();
 
 			ShowEquipmentCommand = new RelayCommand(ShowEquipment);
 
@@ -68,6 +72,13 @@ namespace Loarang.ViewModels
 
 			// Engrave
 			BIEngraves = BattleInfoShareStore.BIEngraves;
+
+			// Card
+			BICardImages = BattleInfoShareStore.BICardImages;
+			BICardDescriptions = BattleInfoShareStore.BICardDescriptions;
+			//CardImage = BattleInfoShareStore.BICard.CardImages;
+			//CardSetName = BattleInfoShareStore.BICard.CardSetNames;
+			//CardSetOption = BattleInfoShareStore.BICard.CardSetOptions;
 		}
 		
 		#region Profiles
@@ -129,7 +140,7 @@ namespace Loarang.ViewModels
 		#endregion
 
 		#region Jewel
-		public ObservableCollection<BIJewels> BIJewels
+		public ObservableCollection<BIJewel> BIJewels
 		{
 			get => bIJewels;
 			set { bIJewels = value; OnPropertyChanged(nameof(BIJewels)); }
@@ -192,6 +203,34 @@ namespace Loarang.ViewModels
 		{
 			get => bIEngraves;
 			set { bIEngraves = value; OnPropertyChanged(nameof(BIEngraves)); }
+		}
+		#endregion
+
+		#region Cards
+		//public string CardImage
+		//{
+		//	get => bICardImage.CardImage;
+		//	set { bICardImage.CardImage = value; OnPropertyChanged(nameof(CardImage)); }
+		//}
+		//public string CardSetName
+		//{
+		//	get => bICardDescription.CardSetName;
+		//	set { bICardDescription.CardSetName = value; OnPropertyChanged(nameof(CardSetName)); }
+		//}
+		//public string CardSetOption
+		//{
+		//	get => bICardDescription.CardSetOption;
+		//	set { bICardDescription.CardSetOption = value; OnPropertyChanged(nameof(CardSetOption)); }
+		//}
+		public ObservableCollection<BICardImage> BICardImages
+		{
+			get => bICardImages;
+			set { bICardImages = value; OnPropertyChanged(nameof(BICardImages)); }
+		}
+		public ObservableCollection<BICardDescription> BICardDescriptions
+		{
+			get => bICardDescriptions;
+			set { bICardDescriptions = value; OnPropertyChanged(nameof(BICardDescriptions)); }
 		}
 		#endregion
 	}

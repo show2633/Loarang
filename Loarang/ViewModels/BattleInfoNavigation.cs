@@ -27,14 +27,16 @@ namespace Loarang.ViewModels
 		public ICommand ShowSkillTreeCommand { get; set; }
 
 		BIProfiles bIProfiles;
-		BIJewels bIJewels;
+		BIJewel bIJewel;
 		BICharacteristic bICharacteristic;
 		BIEngrave bIEngrave;
+		BICardImage bICardImage;
+		BICardDescription bICardDescription;
 
 		private string searchCharName;
 
 		private object _currentView;
-	
+
 		private void ShowStats(object obj) => CurrentView = new StatsVM();
 		private void ShowSkillTree(object obj) => CurrentView = new SkillTreeVM();
 
@@ -44,6 +46,8 @@ namespace Loarang.ViewModels
 		{
 			bIProfiles = new BIProfiles();
 			bICharacteristic = new BICharacteristic();
+			bICardImage = new BICardImage();
+			bICardDescription = new BICardDescription();
 
 			searchCharName = string.Empty;
 
@@ -87,7 +91,7 @@ namespace Loarang.ViewModels
 
 						jToken = jToken["Stats"];
 
-						
+
 						Crit = Int32.Parse(jToken[0]["Value"].ToString());
 						Specialization = Int32.Parse(jToken[1]["Value"].ToString());
 						Domination = int.Parse(jToken[2]["Value"].ToString());
@@ -115,12 +119,12 @@ namespace Loarang.ViewModels
 
 						jToken = jToken["Gems"];
 
-						ObservableCollection<BIJewels> tempBIJewels = new ObservableCollection<BIJewels>();
+						ObservableCollection<BIJewel> tempBIJewels = new ObservableCollection<BIJewel>();
 						BattleInfoShareStore.BIJewels = tempBIJewels;
 
-						foreach(JToken jt in jToken)
-						{ 
-							bIJewels = new BIJewels();
+						foreach (JToken jt in jToken)
+						{
+							bIJewel = new BIJewel();
 
 							JewelName = jt["Name"].ToString();
 							JewelImage = jt["Icon"].ToString();
@@ -131,9 +135,9 @@ namespace Loarang.ViewModels
 							else
 								Priority = JewelLevel;
 
-							BattleInfoShareStore.BIJewels.Add(bIJewels);
+							BattleInfoShareStore.BIJewels.Add(bIJewel);
 							BattleInfoShareStore.BIJewels
-								= new ObservableCollection<BIJewels>(BattleInfoShareStore.BIJewels.OrderByDescending(x => x.Priority));
+								= new ObservableCollection<BIJewel>(BattleInfoShareStore.BIJewels.OrderByDescending(x => x.Priority));
 						}
 					}
 
@@ -151,7 +155,7 @@ namespace Loarang.ViewModels
 
 						JToken effectsJToken = jToken["Effects"];
 
-						ObservableCollection<BIEngrave> tempBIEngraves 
+						ObservableCollection<BIEngrave> tempBIEngraves
 							= new ObservableCollection<BIEngrave>();
 						BattleInfoShareStore.BIEngraves = tempBIEngraves;
 
@@ -169,10 +173,61 @@ namespace Loarang.ViewModels
 							BattleInfoShareStore.BIEngraves.Add(bIEngrave);
 						}
 					}
+
+					using (var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://developer-lostark.game.onstove.com/armories/characters/{obj}/cards"))
+					{
+						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+
+						request.Content = new StringContent("");
+						request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+						var response = await httpClient.SendAsync(request);
+						string res = await response.Content.ReadAsStringAsync();
+
+						JToken jToken = JToken.Parse(res);
+
+						JToken cardsToken = jToken["Cards"];
+						JToken effectsToken = jToken["Effects"];
+
+						BattleInfoShareStore.BICardImages = new ObservableCollection<BICardImage>();
+						BattleInfoShareStore.BICardDescriptions = new ObservableCollection<BICardDescription>();
+
+						foreach (JToken jt in cardsToken)
+						{
+							bICardImage = new BICardImage();
+
+							CardImage = jt["Icon"].ToString();
+
+							BattleInfoShareStore.BICardImages.Add(bICardImage);
+						}
+
+						foreach (JToken jt in effectsToken)
+						{
+							foreach (JToken itemsJt in jt["Items"])
+							{
+								bICardDescription = new BICardDescription();
+
+								CardSetName = itemsJt["Name"].ToString();
+
+								for (int i = 0; i < itemsJt["Description"].ToString().Length; i++)
+								{
+									if (i % 27 == 0)
+									{
+										CardSetOption += "\n";
+									}
+
+									CardSetOption += itemsJt["Description"].ToString()[i];
+								}
+
+								BattleInfoShareStore.BICardDescriptions.Add(bICardDescription);
+							}
+							
+						}
+					}
 					SearchAlert?.Invoke(this, new EventArgs());
 				}
-			}			
-			catch(Exception e)
+			}
+			catch (Exception e)
 			{
 				// todo exception
 			}
@@ -245,24 +300,24 @@ namespace Loarang.ViewModels
 		#region Jewels
 		public string JewelName
 		{
-			get => bIJewels.JewelName;
-			set { bIJewels.JewelName = value; OnPropertyChanged(nameof(JewelName)); }
+			get => bIJewel.JewelName;
+			set { bIJewel.JewelName = value; OnPropertyChanged(nameof(JewelName)); }
 		}
 		public string JewelImage
 		{
-			get => bIJewels.JewelImage;
-			set { bIJewels.JewelImage = value; OnPropertyChanged(nameof(JewelImage)); }
+			get => bIJewel.JewelImage;
+			set { bIJewel.JewelImage = value; OnPropertyChanged(nameof(JewelImage)); }
 		}
 		public int JewelLevel
 		{
-			get => bIJewels.JewelLevel;
-			set { bIJewels.JewelLevel = value; OnPropertyChanged(nameof(JewelLevel)); }
+			get => bIJewel.JewelLevel;
+			set { bIJewel.JewelLevel = value; OnPropertyChanged(nameof(JewelLevel)); }
 		}
 
 		public double Priority
 		{
-			get => bIJewels.Priority;
-			set { bIJewels.Priority = value; OnPropertyChanged(nameof(Priority)); }
+			get => bIJewel.Priority;
+			set { bIJewel.Priority = value; OnPropertyChanged(nameof(Priority)); }
 		}
 		#endregion
 
@@ -332,6 +387,24 @@ namespace Loarang.ViewModels
 		{
 			get => bIEngrave.EngraveLevel;
 			set { bIEngrave.EngraveLevel = value; OnPropertyChanged(nameof(EngraveLevel)); }
+		}
+		#endregion
+
+		#region Cards
+		public string CardImage
+		{
+			get => bICardImage.CardImage;
+			set { bICardImage.CardImage = value; OnPropertyChanged(nameof(CardImage)); }
+		}
+		public string CardSetName
+		{
+			get => bICardDescription.CardSetName;
+			set { bICardDescription.CardSetName = value; OnPropertyChanged(nameof(CardSetName)); }
+		}
+		public string CardSetOption
+		{
+			get => bICardDescription.CardSetOption;
+			set { bICardDescription.CardSetOption = value; OnPropertyChanged(nameof(CardSetOption)); }
 		}
 		#endregion
 	}

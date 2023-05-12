@@ -60,7 +60,7 @@
                     Grid.Column="0">
               <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="90"/>
+                  <ColumnDefinition Width="80"/>
                   <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -341,16 +341,17 @@
                     <DataTemplate>
                       <TextBlock>
                         <Border Style="{StaticResource engraveBorder}"
-                                Margin="12 1 0 0">
+                                Margin="12 3 0 0">
                           <Border.Background>
                             <ImageBrush Stretch="Fill" 
                                         ImageSource="{Binding EngraveImage}"/>
                            </Border.Background>                          
                          </Border>
                         <TextBlock Style="{StaticResource engraveTextBlock}"
-                                     Text="{Binding EngraveLevel}"/>
+                                   Text="{Binding EngraveLevel}"/>
                         <TextBlock Style="{StaticResource engraveTextBlock}"
-                                     Text="{Binding EngraveName}"/>
+                                   Text="{Binding EngraveName}"
+                                   Foreground="{StaticResource color11}"/>
                        </TextBlock>
                     </DataTemplate>
                   </ItemsControl.ItemTemplate>
@@ -368,138 +369,73 @@
               <Grid Grid.Row="0" Grid.Column="2">
                 <Grid.RowDefinitions>
                   <RowDefinition Height="40"/>
-                  <RowDefinition Height="130"/>
-                  <RowDefinition Height="130"/>
+                  <RowDefinition Height="260"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="5"/>
-                  <ColumnDefinition Width="80"/>
-                  <ColumnDefinition Width="80"/>
-                  <ColumnDefinition Width="80"/>
-                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="240"/>
+                  <ColumnDefinition Width="210"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0"
                            Grid.Column="1"
                            Style="{StaticResource homeTextBlock}"
                            Text="카드"/>
-                <Border Style="{StaticResource cardBorder}"
-                          Grid.Row="1"
-                          Grid.Column="1">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="/test/test.png"/>
-                  </Border.Background>
-                </Border>
-                <Border Style="{StaticResource cardBorder}"
-                          Grid.Row="1"
-                          Grid.Column="2">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="/test/test.png"/>
-                  </Border.Background>
-                </Border>
-                <Border Style="{StaticResource cardBorder}"
-                          Grid.Row="1"
-                          Grid.Column="3">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="/test/test.png"/>
-                  </Border.Background>                  
-                </Border>
-                <Border Style="{StaticResource cardBorder}"
-                          Grid.Row="2"
-                          Grid.Column="1">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="/test/test.png"/>
-                  </Border.Background>
-                </Border>
-                <Border Style="{StaticResource cardBorder}"
-                          Grid.Row="2"
-                          Grid.Column="2">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="/test/test.png"/>
-                  </Border.Background>
-                </Border>
-                <Border Style="{StaticResource cardBorder}"
-                          Grid.Row="2"
-                          Grid.Column="3">
-                    <Border.Background>
-                      <ImageBrush Stretch="Fill" ImageSource="/test/test.png"/>
-                    </Border.Background>             
-                </Border>
+                <ItemsControl ItemsSource="{Binding BICardImages}"
+                              Grid.Row="1"
+                              Grid.Column="1">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <TextBlock>
+                        <Border Style="{StaticResource cardBorder}"
+                                Margin="10 20 0 0">
+                          <Border.Background>
+                            <ImageBrush Stretch="Fill" 
+                                        ImageSource="{Binding CardImage}"/>
+                           </Border.Background>                          
+                         </Border>
+                       </TextBlock>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>              
+                
                 <Grid Grid.Row="0"
-                      Grid.Column="4"
-                      Grid.RowSpan="3">
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="30"/>
-                  </Grid.RowDefinitions>
-
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="1"
-                             Text="세상을 구하는 빛 2세트">                    
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="2"
-                             Foreground="{StaticResource color11}"
-                             Text="암속성 피해 감소 +10.00%">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="3"
-                             Text="세상을 구하는 빛 4세트">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="4"
-                             Foreground="{StaticResource color11}"
-                             Text="암속성 피해 감소 +10.00%">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="5"
-                             Text="세상을 구하는 빛 6세트">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="6"
-                             Foreground="{StaticResource color11}"
-                             Text="암속성 피해 감소 +10.00%">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="7"
-                             Text="세상을 구하는 빛 6세트(12각성합계)">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="8"
-                             Foreground="{StaticResource color11}"
-                             Text="공격 속성을 성속성으로 변환">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="9"
-                             Text="세상을 구하는 빛 6세트(18각성합계)">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="10"
-                             Foreground="{StaticResource color11}"
-                             Text="성속성 피해 +7.00%">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="11"
-                             Text="세상을 구하는 빛 6세트(30각성합계)">
-                  </TextBlock>
-                  <TextBlock Style="{StaticResource cardTextBlock}"
-                             Grid.Row="12"
-                             Foreground="{StaticResource color11}"
-                             Text="생명력이 10% 이하인 모험가에게 공격 적중 시, 대상에게  &#10; 번개 피해를 발생시킨다. (발동 재사용 대기시간 60초)">
-                  </TextBlock>
-                </Grid>
+                      Grid.Column="2"
+                      Grid.RowSpan="2">
+                  <ItemsControl ItemsSource="{Binding BICardDescriptions}"
+                                VerticalAlignment="Center"
+                              Grid.Row="1">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical"/>
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <TextBlock VerticalAlignment="Center">
+                          <Grid>
+                            <Grid.RowDefinitions>
+                               <RowDefinition Height="15"/>
+                               <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Style="{StaticResource cardTextBlock}"
+                                       Text="{Binding CardSetName}"
+                                       Grid.Row="0"/>
+                            <TextBlock Style="{StaticResource cardTextBlock}"
+                                       Foreground="{StaticResource color11}"
+                                       Text="{Binding CardSetOption}"
+                                       Grid.Row="1"
+                                       Margin="15 -15 0 0"/>
+                          </Grid>                          
+                       </TextBlock>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </Grid>               
               </Grid>
             </Border>
           </Grid>

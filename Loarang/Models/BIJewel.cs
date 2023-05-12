@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Loarang.Models
 {
-	public class BIJewels
+	public class BIJewel
 	{
 		public string JewelName { get; set; }
 		public string JewelImage { get; set; }
