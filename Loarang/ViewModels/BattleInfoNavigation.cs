@@ -22,7 +22,7 @@ namespace Loarang.ViewModels
 		//private string GEMS_API_URL = $"https://developer-lostark.game.onstove.com/armories/characters/%EC%82%AC%EB%9E%91%EC%9D%98%EA%B2%B0%EC%A0%95%EC%B2%B4/gems";
 		private const int MAX_JEWEL_CNT = 11;
 
-		public ICommand SearchBattleInfoCommand { get; }
+		public ICommand SearchBattleInfoCommand { get; }	
 		public ICommand ShowStatsCommand { get; set; }
 		public ICommand ShowSkillTreeCommand { get; set; }
 
@@ -32,6 +32,8 @@ namespace Loarang.ViewModels
 		BIEngrave bIEngrave;
 		BICardImage bICardImage;
 		BICardDescription bICardDescription;
+		Equipment equipment;
+		EtcEquipment etcEquipment;
 
 		private string searchCharName;
 
@@ -218,12 +220,40 @@ namespace Loarang.ViewModels
 
 									CardSetOption += itemsJt["Description"].ToString()[i];
 								}
-
 								BattleInfoShareStore.BICardDescriptions.Add(bICardDescription);
-							}
-							
+							}							
 						}
 					}
+
+					using (var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://developer-lostark.game.onstove.com/armories/characters/{obj}/equipment"))
+					{
+						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+
+						request.Content = new StringContent("");
+						request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+						var response = await httpClient.SendAsync(request);
+						string res = await response.Content.ReadAsStringAsync();
+
+						JToken jToken = JToken.Parse(res);
+
+						BattleInfoShareStore.Equipments = new ObservableCollection<Equipment>();
+
+						foreach (JToken jt in jToken)
+						{
+							int qualityStartIndex = jt["Tooltip"].ToString().IndexOf("qualityValue") + 16;
+
+							equipment = new Equipment();
+							EquipmentName = jt["Name"].ToString();
+							EquipmentType = jt["Type"].ToString();
+							EquipmentImage = jt["Icon"].ToString();
+							EquipmentTooltip = jt["Tooltip"].ToString();
+							EquipmentQualityValue = Int32.Parse(jt["Tooltip"].ToString().Substring(qualityStartIndex, 2).Replace(",", ""));
+
+							BattleInfoShareStore.Equipments.Add(equipment);
+						}
+					}
+
 					SearchAlert?.Invoke(this, new EventArgs());
 				}
 			}
@@ -405,6 +435,39 @@ namespace Loarang.ViewModels
 		{
 			get => bICardDescription.CardSetOption;
 			set { bICardDescription.CardSetOption = value; OnPropertyChanged(nameof(CardSetOption)); }
+		}
+		#endregion
+
+		#region Equipment
+		public string EquipmentName
+		{
+			get => equipment.EquipmentName;
+			set { equipment.EquipmentName = value; OnPropertyChanged(nameof(EquipmentName)); }
+		}
+		public string EquipmentType
+		{
+			get => equipment.EquipmentType;
+			set { equipment.EquipmentType = value; OnPropertyChanged(nameof(EquipmentType)); }
+		}
+		public string EquipmentImage
+		{
+			get => equipment.EquipmentImage;
+			set { equipment.EquipmentImage = value; OnPropertyChanged(nameof(EquipmentImage)); }
+		}
+		public string EquipmentTooltip
+		{
+			get => equipment.EquipmentName;
+			set { equipment.EquipmentTooltip = value; OnPropertyChanged(nameof(EquipmentTooltip)); }
+		}
+		public int EquipmentQualityValue
+		{
+			get => equipment.EquipmentQualityValue;
+			set { equipment.EquipmentQualityValue = value; OnPropertyChanged(nameof(EquipmentQualityValue)); }
+		}
+		public string EquipmentOption
+		{
+			get => etcEquipment.EquipmentOption;
+			set { etcEquipment.EquipmentOption = value; OnPropertyChanged(nameof(EquipmentOption)); }
 		}
 		#endregion
 	}

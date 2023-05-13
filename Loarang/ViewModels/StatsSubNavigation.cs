@@ -207,21 +207,6 @@ namespace Loarang.ViewModels
 		#endregion
 
 		#region Cards
-		//public string CardImage
-		//{
-		//	get => bICardImage.CardImage;
-		//	set { bICardImage.CardImage = value; OnPropertyChanged(nameof(CardImage)); }
-		//}
-		//public string CardSetName
-		//{
-		//	get => bICardDescription.CardSetName;
-		//	set { bICardDescription.CardSetName = value; OnPropertyChanged(nameof(CardSetName)); }
-		//}
-		//public string CardSetOption
-		//{
-		//	get => bICardDescription.CardSetOption;
-		//	set { bICardDescription.CardSetOption = value; OnPropertyChanged(nameof(CardSetOption)); }
-		//}
 		public ObservableCollection<BICardImage> BICardImages
 		{
 			get => bICardImages;
