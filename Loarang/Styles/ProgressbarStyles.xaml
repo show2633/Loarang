@@ -6,6 +6,7 @@
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="BorderBrush" Value="{StaticResource color10}"/>
     <Setter Property="BorderThickness" Value="2"/>
+    <Setter Property="Margin" Value="10 0 0 0"/>
     <!--<Style.Resources>
       <Style TargetType="Border">
         <Setter Property="CornerRadius" Value="2"/>

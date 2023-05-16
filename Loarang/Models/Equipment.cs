@@ -9,5 +9,6 @@ namespace Loarang.Models
 	public class Equipment : EquipmentBase
 	{
 		public int EquipmentQualityValue { get; set; }
+		public string EquipmentLevel { get; set; }
 	}
 }

@@ -6,8 +6,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Web;
+using System.IO;
+using HtmlAgilityPack;
 
 namespace Loarang.ViewModels
 {
@@ -20,7 +24,13 @@ namespace Loarang.ViewModels
 		//private string ENGRAVINGS_API_URL = $"https://developer-lostark.game.onstove.com/armories/characters/%EC%82%AC%EB%9E%91%EC%9D%98%EA%B2%B0%EC%A0%95%EC%B2%B4/engravings";
 		//private string CARDS_API_URL = $"https://developer-lostark.game.onstove.com/armories/characters/%EC%82%AC%EB%9E%91%EC%9D%98%EA%B2%B0%EC%A0%95%EC%B2%B4/cards";
 		//private string GEMS_API_URL = $"https://developer-lostark.game.onstove.com/armories/characters/%EC%82%AC%EB%9E%91%EC%9D%98%EA%B2%B0%EC%A0%95%EC%B2%B4/gems";
-		private const int MAX_JEWEL_CNT = 11;
+		private const int START_EQUIPMENT_CNT = 0;
+		private const int END_EQUIPMENT_CNT = 6;
+		private const int START_ACCESORY_CNT = 6;
+		private const int END_ACCESORY_CNT = 11;
+		private const int START_ETC_EQUIPMENT_CNT = 11;
+		private const int END_ETC_EQUIPMENT_CNT = 13;
+
 
 		public ICommand SearchBattleInfoCommand { get; }	
 		public ICommand ShowStatsCommand { get; set; }
@@ -156,10 +166,13 @@ namespace Loarang.ViewModels
 						JToken jToken = JToken.Parse(res);
 
 						JToken effectsJToken = jToken["Effects"];
+						JToken engravingsToken = jToken["Engravings"];
 
 						ObservableCollection<BIEngrave> tempBIEngraves
 							= new ObservableCollection<BIEngrave>();
+
 						BattleInfoShareStore.BIEngraves = tempBIEngraves;
+						BattleInfoShareStore.MountingEngraves = new ObservableCollection<BIEngrave>();
 
 						foreach (JToken jt in effectsJToken)
 						{
@@ -173,6 +186,25 @@ namespace Loarang.ViewModels
 							EngraveImage = $"..\\Resources\\{skillImageName}.png";
 
 							BattleInfoShareStore.BIEngraves.Add(bIEngrave);
+						}
+
+						foreach (JToken jt in engravingsToken)
+						{
+							bIEngrave = new BIEngrave();
+							EngraveName = jt["Name"].ToString();
+							EngraveImage = jt["Icon"].ToString();
+							
+							JToken tooltipJt = JToken.Parse(jt["Tooltip"].ToString());
+
+							HtmlDocument htmlDoc = new HtmlDocument();
+							htmlDoc.LoadHtml(tooltipJt["Element_001"]["value"]["leftText"].ToString());
+							HtmlNode imageNode = htmlDoc.DocumentNode.SelectSingleNode("font");
+
+							EngraveLevel = imageNode.InnerText.Replace("각인 활성 포인트", "");
+
+							EngraveName += "\n" + EngraveLevel;
+
+							BattleInfoShareStore.MountingEngraves.Add(bIEngrave);
 						}
 					}
 
@@ -238,19 +270,114 @@ namespace Loarang.ViewModels
 						JToken jToken = JToken.Parse(res);
 
 						BattleInfoShareStore.Equipments = new ObservableCollection<Equipment>();
+						BattleInfoShareStore.Accessories = new ObservableCollection<Equipment>();
+						BattleInfoShareStore.EtcEquipments = new ObservableCollection<EtcEquipment>();
 
-						foreach (JToken jt in jToken)
+						for (int i = START_EQUIPMENT_CNT; i < END_EQUIPMENT_CNT; i ++)
 						{
-							int qualityStartIndex = jt["Tooltip"].ToString().IndexOf("qualityValue") + 16;
-
 							equipment = new Equipment();
-							EquipmentName = jt["Name"].ToString();
-							EquipmentType = jt["Type"].ToString();
-							EquipmentImage = jt["Icon"].ToString();
-							EquipmentTooltip = jt["Tooltip"].ToString();
-							EquipmentQualityValue = Int32.Parse(jt["Tooltip"].ToString().Substring(qualityStartIndex, 2).Replace(",", ""));
+							EquipmentName = jToken[i]["Name"].ToString();
+							EquipmentType = jToken[i]["Type"].ToString();
+							EquipmentImage = jToken[i]["Icon"].ToString();							
+							EquipmentTooltip = jToken[i]["Tooltip"].ToString();
+
+							JToken tooltipJt = JToken.Parse(jToken[i]["Tooltip"].ToString());
+
+
+							EquipmentQualityValue = Int32.Parse(tooltipJt["Element_001"]["value"]["qualityValue"].ToString());
 
 							BattleInfoShareStore.Equipments.Add(equipment);
+						}
+
+						for (int i = START_ACCESORY_CNT; i < END_ACCESORY_CNT; i ++)
+						{
+							equipment = new Equipment();
+							EquipmentName = jToken[i]["Name"].ToString();
+							EquipmentType = jToken[i]["Type"].ToString();
+							EquipmentImage = jToken[i]["Icon"].ToString();
+							EquipmentTooltip = jToken[i]["Tooltip"].ToString();
+
+							JToken tooltipJt = JToken.Parse(jToken[i]["Tooltip"].ToString());
+
+
+							EquipmentQualityValue = Int32.Parse(tooltipJt["Element_001"]["value"]["qualityValue"].ToString());
+
+							BattleInfoShareStore.Accessories.Add(equipment);
+						}
+
+						for (int i = START_ETC_EQUIPMENT_CNT; i < END_ETC_EQUIPMENT_CNT; i ++)
+						{
+							etcEquipment = new EtcEquipment();
+							EtcEquipmentName = jToken[i]["Name"].ToString();
+							EtcEquipmentType = jToken[i]["Type"].ToString();
+							EtcEquipmentImage = jToken[i]["Icon"].ToString();
+							EtcEquipmentTooltip = jToken[i]["Tooltip"].ToString();
+
+							JToken tooltipJt = JToken.Parse(jToken[i]["Tooltip"].ToString());
+
+							if (EtcEquipmentName.Contains("팔찌"))
+							{
+								HtmlDocument htmlDoc = new HtmlDocument();
+								htmlDoc.LoadHtml(tooltipJt["Element_004"]["value"]["Element_001"].ToString());
+								HtmlNodeCollection imageNodes = htmlDoc.DocumentNode.SelectNodes("img");
+
+								string tempOption = string.Empty;
+
+								for (int j = 0; j < imageNodes.Count; j ++)
+								{			
+									string imageNodeText = imageNodes[j].NextSibling.InnerText;
+																		
+									if(imageNodeText.Contains("["))
+									{
+										string nextNodeText = imageNodes[j].NextSibling.NextSibling.InnerText;
+										tempOption += nextNodeText;
+									}
+
+									else
+									{
+										imageNodeText = Regex.Replace(imageNodeText, @"[^가-힣]", "");
+										tempOption += imageNodeText;
+									}
+
+									if(j != imageNodes.Count - 1)
+									{
+										tempOption += "-";
+									}
+								}
+
+								EtcEquipmentOption = tempOption;
+
+								BattleInfoShareStore.EtcEquipments.Add(etcEquipment);
+							}
+
+							else if (EtcEquipmentName.Contains("돌"))
+							{
+								string tempOption = string.Empty;
+								string firstOption = tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
+									["Element_000"]["contentStr"].ToString().Substring(23);
+
+								firstOption = Regex.Replace(firstOption, @"[^0-9가-힣 ]","");
+								firstOption = firstOption.Replace("활성도 ", "");
+								tempOption += firstOption + "\n";
+
+								string secondOption = tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
+									["Element_001"]["contentStr"].ToString().Substring(23);
+
+								secondOption = Regex.Replace(secondOption, @"[^0-9가-힣 ]", "");
+								secondOption = secondOption.Replace("활성도 ", "");
+								tempOption += secondOption + "\n";
+
+								string thirdOption = tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
+									["Element_002"]["contentStr"].ToString().Substring(23);
+
+								thirdOption = Regex.Replace(thirdOption, @"[^0-9가-힣 ]", "");
+								thirdOption = thirdOption.Replace("활성도 ", "");
+								tempOption += thirdOption;
+
+								EtcEquipmentOption = tempOption;
+
+								BattleInfoShareStore.EtcEquipments.Add(etcEquipment);
+							}
 						}
 					}
 
@@ -456,7 +583,7 @@ namespace Loarang.ViewModels
 		}
 		public string EquipmentTooltip
 		{
-			get => equipment.EquipmentName;
+			get => equipment.EquipmentTooltip;
 			set { equipment.EquipmentTooltip = value; OnPropertyChanged(nameof(EquipmentTooltip)); }
 		}
 		public int EquipmentQualityValue
@@ -464,10 +591,35 @@ namespace Loarang.ViewModels
 			get => equipment.EquipmentQualityValue;
 			set { equipment.EquipmentQualityValue = value; OnPropertyChanged(nameof(EquipmentQualityValue)); }
 		}
-		public string EquipmentOption
+		public string EquipmentLevel
 		{
-			get => etcEquipment.EquipmentOption;
-			set { etcEquipment.EquipmentOption = value; OnPropertyChanged(nameof(EquipmentOption)); }
+			get => equipment.EquipmentLevel;
+			set { equipment.EquipmentLevel = value; OnPropertyChanged(nameof(equipment.EquipmentLevel)); }
+		}
+		public string EtcEquipmentName
+		{
+			get => etcEquipment.EquipmentName;
+			set { etcEquipment.EquipmentName = value; OnPropertyChanged(nameof(EtcEquipmentName)); }
+		}
+		public string EtcEquipmentType
+		{
+			get => etcEquipment.EquipmentType;
+			set { etcEquipment.EquipmentType = value; OnPropertyChanged(nameof(EtcEquipmentType)); }
+		}
+		public string EtcEquipmentImage
+		{
+			get => etcEquipment.EquipmentImage;
+			set { etcEquipment.EquipmentImage = value; OnPropertyChanged(nameof(EtcEquipmentImage)); }
+		}
+		public string EtcEquipmentTooltip
+		{
+			get => etcEquipment.EquipmentTooltip;
+			set { etcEquipment.EquipmentTooltip = value; OnPropertyChanged(nameof(EtcEquipmentTooltip)); }
+		}
+		public string EtcEquipmentOption
+		{
+			get => etcEquipment.EtcEquipmentOption;
+			set { etcEquipment.EtcEquipmentOption = value; OnPropertyChanged(nameof(EtcEquipmentOption)); }
 		}
 		#endregion
 	}

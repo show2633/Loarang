@@ -8,6 +8,6 @@ namespace Loarang.Models
 {
 	public class EtcEquipment : EquipmentBase
 	{
-		public string EquipmentOption { get; set; }
+		public string EtcEquipmentOption { get; set; }
 	}
 }

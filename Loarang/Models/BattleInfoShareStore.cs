@@ -16,5 +16,8 @@ namespace Loarang.Models
 		public static ObservableCollection<BICardImage> BICardImages { get; set; }
 		public static ObservableCollection<BICardDescription> BICardDescriptions { get; set; }
 		public static ObservableCollection<Equipment> Equipments { get; set; }
+		public static ObservableCollection<BIEngrave> MountingEngraves { get; set; }
+		public static ObservableCollection<Equipment> Accessories { get; set; }
+		public static ObservableCollection<EtcEquipment> EtcEquipments { get; set; }
 	}
 }
