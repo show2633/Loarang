@@ -4,10 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:vm="clr-namespace:Loarang.ViewModels"
              xmlns:local="clr-namespace:Loarang.Views"
              mc:Ignorable="d" 
              Width="920" Height="85" 
              Background="Transparent">
+  <UserControl.DataContext>
+    <vm:SkillVM/>
+  </UserControl.DataContext>
   <Border BorderBrush="{StaticResource color10}"
                   BorderThickness="2"
                   CornerRadius="9"
@@ -32,81 +36,68 @@
       <Border Style="{StaticResource skillBorder}"
               Grid.Column="0">
         <Border.Background>
-          <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
+          <ImageBrush Stretch="Fill" ImageSource="{Binding SkillImage}"/>
         </Border.Background>
       </Border>
       <TextBlock Style="{StaticResource skillTextBlock}"
                  Grid.Column="1"
-                 Text="명령: 파이널 익스플로전"/>
+                 Text="{Binding SkillName}"/>
       <TextBlock Style="{StaticResource skillTextBlock}"
                  Grid.Column="2"
-                 Text="12레벨"
+                 Text="{Binding SkillLevel}"
                  HorizontalAlignment="Center"/>
-      <StackPanel Grid.Column="3"
-                  Orientation="Horizontal">
-        <fa:IconImage Icon="_3"
-                      Width="20"
-                      Height="20"
-                      Foreground="{StaticResource color10}"
-                      Margin="10 0 0 0"/>
-        <fa:IconImage Icon="_2"
-                      Width="20"
-                      Height="20"
-                      Foreground="{StaticResource color10}"
-                      Margin="10 0 0 0"/>
-        <fa:IconImage Icon="_1"
-                      Width="20"
-                      Height="20"
-                      Foreground="{StaticResource color10}"
-                      Margin="10 0 0 0"/>
-      </StackPanel>
+      
+      <TextBlock Style="{StaticResource skillTextBlock}"
+                 Grid.Column="3"
+                 Text="{Binding SelectedTripods}"
+                 HorizontalAlignment="Center"/>
 
       <Border Style="{StaticResource tripodBorder}"
               Grid.Column="4">
         <Border.Background>
-          <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
+          <ImageBrush Stretch="Fill" ImageSource="{Binding FirstTripodImage}"/>
         </Border.Background>
       </Border>
 
       <TextBlock Style="{StaticResource skillTextBlock}"
                  Grid.Column="5"
-                 Text="헤어날 수 없는 늪"
+                 Text="{Binding FirstTripodName}"
                  HorizontalAlignment="Center"/>
 
       <Border Style="{StaticResource tripodBorder}"
               Grid.Column="6">
         <Border.Background>
-          <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
+          <ImageBrush Stretch="Fill" ImageSource="{Binding SecondTripodImage}"/>
         </Border.Background>
       </Border>
 
       <TextBlock Style="{StaticResource skillTextBlock}"
                  Grid.Column="7"
-                 Text="헤어날 수 없는 늪"
+                 Text="{Binding SecondTripodName}"
                  HorizontalAlignment="Center"/>
 
       <Border Style="{StaticResource tripodBorder}"
               Grid.Column="8">
         <Border.Background>
-          <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
+          <ImageBrush Stretch="Fill" ImageSource="{Binding ThirdTripodImage}"/>
         </Border.Background>
       </Border>
 
       <TextBlock Style="{StaticResource skillTextBlock}"
                  Grid.Column="9"
-                 Text="헤어날 수 없는 늪"
+                 Text="{Binding ThirdTripodName}"
                  HorizontalAlignment="Center"/>
 
       <Border Style="{StaticResource runeBorder}"
               Grid.Column="10">
         <Border.Background>
-          <ImageBrush Stretch="Fill" ImageSource="/test/Use_9_55.png"/>
+          <ImageBrush Stretch="Fill" ImageSource="{Binding RuneImage}"/>
         </Border.Background>
       </Border>
 
       <TextBlock Style="{StaticResource skillTextBlock}"
                  Grid.Column="11"
-                 Text="압도"
+                 Text="{Binding RuneName}"
                  HorizontalAlignment="Center"/>
     </Grid>
   </Border>

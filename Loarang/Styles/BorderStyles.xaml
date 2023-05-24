@@ -40,6 +40,9 @@
     <Setter Property="Height" Value="50"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="0 15 0 0"/>
+    <Setter Property="BorderThickness" Value="3"/>
+    <Setter Property="BorderBrush" Value="{StaticResource color10}"/>
   </Style>
   
   <Style x:Key="tripodBorder" TargetType="Border">

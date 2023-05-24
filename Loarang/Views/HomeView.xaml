@@ -89,7 +89,7 @@
                     Grid.Row="1"
                     Grid.Column="0">
               <ListView Style="{StaticResource NoticeListView}"
-                        ItemsSource="{Binding HomeNotices}"
+                        ItemsSource="{Binding HomeNotices, UpdateSourceTrigger=PropertyChanged}"
                         BorderThickness="0">
                 <ListView.View>
                   <GridView>
@@ -106,7 +106,7 @@
                                        RequestNavigate="Link_RequestNavigate"
                                        TextDecorations="None"
                                        Background="Transparent">
-                              <TextBlock Text="{Binding NoticeText}"
+                              <TextBlock Text="{Binding NoticeText, UpdateSourceTrigger=PropertyChanged}"
                                          FontFamily="../Fonts/#SEBANG Gothic Bold"
                                          Foreground="{StaticResource color11}"
                                          Margin="10"
@@ -139,7 +139,7 @@
               <WrapPanel Name="container"
                          Orientation="Horizontal" 
                          HorizontalAlignment="Left">
-                <ItemsControl ItemsSource="{Binding HomeEvents}">
+                <ItemsControl ItemsSource="{Binding HomeEvents, UpdateSourceTrigger=PropertyChanged}">
                   <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                       <WrapPanel Orientation="Horizontal"/>
@@ -148,10 +148,10 @@
                   <ItemsControl.ItemTemplate>
                     <DataTemplate>
                       <TextBlock>                                       
-                        <Hyperlink NavigateUri="{Binding Url}"
+                        <Hyperlink NavigateUri="{Binding Url, UpdateSourceTrigger=PropertyChanged}"
                                    RequestNavigate="Link_RequestNavigate"
                                    TextDecorations="None">
-                          <Image Source="{Binding EventImage}"
+                          <Image Source="{Binding EventImage, UpdateSourceTrigger=PropertyChanged}"
                                  Height="107"
                                  Width="216"
                                  Margin="4 2 0 0"/>
@@ -204,7 +204,7 @@
                   <ColumnDefinition Width="155"/>
                   <ColumnDefinition Width="155"/>
                 </Grid.ColumnDefinitions>
-                <ItemsControl ItemsSource="{Binding HomeAdventureIslands}"
+                <ItemsControl ItemsSource="{Binding HomeAdventureIslands, UpdateSourceTrigger=PropertyChanged}"
                             Grid.Column="0">
                   <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -216,7 +216,7 @@
                       <Border Style="{StaticResource adventureIslandBorder}">
                         <Border.Background>
                           <ImageBrush Stretch="Fill" 
-                                    ImageSource="{Binding ContentsImage}"/>
+                                    ImageSource="{Binding ContentsImage, UpdateSourceTrigger=PropertyChanged}"/>
                         </Border.Background>
                       </Border>
                       <!--<Image Source="{Binding ContentsImage}"
@@ -227,21 +227,21 @@
                   </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <ItemsControl ItemsSource="{Binding HomeAdventureIslands}"
+                <ItemsControl ItemsSource="{Binding HomeAdventureIslands, UpdateSourceTrigger=PropertyChanged}"
                               Grid.Column="1">
                   <ItemsControl.ItemTemplate>
                     <DataTemplate>
                       <TextBlock>
                         <WrapPanel Orientation="Vertical">
                           <TextBlock Style="{StaticResource homeContentsTextBlock}"
-                                      Text="{Binding ContentsName}"
+                                      Text="{Binding ContentsName, UpdateSourceTrigger=PropertyChanged}"
                                       Foreground="{StaticResource color11}"
                                       FontSize="14"
                                       Margin="0 10 0 10">
                           
                           </TextBlock>
                           <Border Style="{StaticResource adventureIslandRewardBorder}">
-                            <Image Source="{Binding RewardItems}"/>                           
+                            <Image Source="{Binding RewardItems, UpdateSourceTrigger=PropertyChanged}"/>                           
                           </Border>                       
                         <TextBlock Style="{StaticResource homeContentsTextBlock}"
                                    Text="기대 보상">
@@ -270,21 +270,21 @@
                     Margin="8"
                     Grid.Row="1"
                     Grid.Column="1">
-              <ItemsControl ItemsSource="{Binding HomeChallengeAbysses}"
+              <ItemsControl ItemsSource="{Binding HomeChallengeAbysses, UpdateSourceTrigger=PropertyChanged}"
                               Grid.Column="1">
                 <ItemsControl.ItemTemplate>
                   <DataTemplate>
                     <TextBlock>
                         <WrapPanel Orientation="Vertical">
                           <TextBlock Style="{StaticResource homeContentsTextBlock}"
-                                      Text="{Binding ContentsName}"
+                                      Text="{Binding ContentsName, UpdateSourceTrigger=PropertyChanged}"
                                       Foreground="{StaticResource color11}"
                                       FontSize="14"
                                       Margin="10 20 0 0">                          
                           </TextBlock>
                           <Border Style="{StaticResource challengeAbyssBorder}">
                             <Border.Background>
-                              <ImageBrush ImageSource="{Binding ContentsImage}"/>
+                              <ImageBrush ImageSource="{Binding ContentsImage, UpdateSourceTrigger=PropertyChanged}"/>
                             </Border.Background>
                           </Border>              
                         </WrapPanel>                        
@@ -309,21 +309,21 @@
                     Margin="8"
                     Grid.Row="1"
                     Grid.Column="2">
-              <ItemsControl ItemsSource="{Binding HomeChallengeGuardians}"
+              <ItemsControl ItemsSource="{Binding HomeChallengeGuardians, UpdateSourceTrigger=PropertyChanged}"
                               Grid.Column="1">
                 <ItemsControl.ItemTemplate>
                   <DataTemplate>
                     <TextBlock>
                         <WrapPanel Orientation="Vertical">
                           <TextBlock Style="{StaticResource homeContentsTextBlock}"
-                                      Text="{Binding GuardianName}"
+                                      Text="{Binding GuardianName, UpdateSourceTrigger=PropertyChanged}"
                                       Foreground="{StaticResource color11}"
                                       FontSize="14"
                                       Margin="10 5 0 0">                          
                           </TextBlock>
                           <Border Style="{StaticResource challengeGuardianBorder}">
                             <Border.Background>
-                              <ImageBrush ImageSource="{Binding GuardianImage}"/>
+                              <ImageBrush ImageSource="{Binding GuardianImage, UpdateSourceTrigger=PropertyChanged}"/>
                             </Border.Background>
                           </Border>              
                         </WrapPanel>                        

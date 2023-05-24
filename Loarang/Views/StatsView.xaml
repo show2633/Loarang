@@ -9,7 +9,7 @@
              Width="920" Height="865" 
              Background="Transparent">
   <UserControl.DataContext>
-    <vm:StatsSubNavigation/>
+    <vm:StatsVM/>
   </UserControl.DataContext>
   
   <Border CornerRadius="12"
@@ -180,7 +180,7 @@
                   Margin="8"
                   Grid.Row="1"
                   Grid.Column="2">
-            <ItemsControl ItemsSource="{Binding BIJewels}">
+            <ItemsControl ItemsSource="{Binding BIJewels, Mode=Oneway, UpdateSourceTrigger=PropertyChanged}">
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                   <WrapPanel Orientation="Horizontal"/>
@@ -193,12 +193,11 @@
                             Margin="12 5 0 0">
                       <Border.Background>
                         <ImageBrush Stretch="Fill" 
-                                    ImageSource="{Binding JewelImage}"/>
+                                    ImageSource="{Binding JewelImage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                       </Border.Background>
                         <TextBlock Style="{StaticResource jewelTextBlock}"
-                                   Text="{Binding JewelLevel}"/>
-                    </Border>
-                
+                                   Text="{Binding JewelLevel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Border>                
                   </TextBlock>
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
@@ -247,7 +246,7 @@
                   <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="1"
                              Grid.Column="1"
-                             Text="{Binding Crit}"/>
+                             Text="{Binding Crit, UpdateSourceTrigger=PropertyChanged}"/>
                   <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="1"
                              Grid.Column="2"
@@ -255,7 +254,7 @@
                   <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="1"
                              Grid.Column="3"
-                             Text="{Binding Specialization}"/>
+                             Text="{Binding Specialization, UpdateSourceTrigger=PropertyChanged}"/>
                   <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="2"
                              Grid.Column="0"
@@ -263,7 +262,7 @@
                   <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="2"
                              Grid.Column="1"
-                             Text="{Binding Swiftness}"/>
+                             Text="{Binding Swiftness, UpdateSourceTrigger=PropertyChanged}"/>
                   <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="2"
                              Grid.Column="2"
@@ -271,7 +270,7 @@
                   <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="2"
                              Grid.Column="3"
-                             Text="{Binding Domination}"/>
+                             Text="{Binding Domination, UpdateSourceTrigger=PropertyChanged}"/>
                   <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="3"
                              Grid.Column="0"
@@ -279,7 +278,7 @@
                   <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="3"
                              Grid.Column="1"
-                             Text="{Binding Endurance}"/>
+                             Text="{Binding Endurance, UpdateSourceTrigger=PropertyChanged}"/>
                   <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="3"
                              Grid.Column="2"
@@ -287,7 +286,7 @@
                   <TextBlock Style="{StaticResource statsTextBlock2}"
                              Grid.Row="3"
                              Grid.Column="3"
-                             Text="{Binding Expertise}"/>
+                             Text="{Binding Expertise, UpdateSourceTrigger=PropertyChanged}"/>
                   <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="4"
                              Grid.Column="0"
@@ -298,7 +297,7 @@
                              Grid.Column="2"
                              Grid.ColumnSpan="2"
                              HorizontalAlignment="Right"
-                             Text="{Binding AtkPower}"/>
+                             Text="{Binding AtkPower, UpdateSourceTrigger=PropertyChanged}"/>
                   <TextBlock Style="{StaticResource statsTextBlock1}"
                              Grid.Row="5"
                              Grid.Column="0"
@@ -309,7 +308,7 @@
                              Grid.Column="2"
                              Grid.ColumnSpan="2"
                              HorizontalAlignment="Right"
-                             Text="{Binding MaxHP}"/>
+                             Text="{Binding MaxHP, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
               </Grid>
             </Border>
@@ -330,7 +329,7 @@
                 <TextBlock Style="{StaticResource homeTextBlock}"
                            Grid.Row="0"
                            Text="각인"/>
-                <ItemsControl ItemsSource="{Binding BIEngraves}"
+                <ItemsControl ItemsSource="{Binding BIEngraves, UpdateSourceTrigger=PropertyChanged}"
                               Grid.Row="1">
                   <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -344,13 +343,13 @@
                                 Margin="12 3 0 0">
                           <Border.Background>
                             <ImageBrush Stretch="Fill" 
-                                        ImageSource="{Binding EngraveImage}"/>
+                                        ImageSource="{Binding EngraveImage, UpdateSourceTrigger=PropertyChanged}"/>
                            </Border.Background>                          
                          </Border>
                         <TextBlock Style="{StaticResource engraveTextBlock}"
-                                   Text="{Binding EngraveLevel}"/>
+                                   Text="{Binding EngraveLevel, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Style="{StaticResource engraveTextBlock}"
-                                   Text="{Binding EngraveName}"
+                                   Text="{Binding EngraveName, UpdateSourceTrigger=PropertyChanged}"
                                    Foreground="{StaticResource color11}"/>
                        </TextBlock>
                     </DataTemplate>
@@ -380,7 +379,7 @@
                            Grid.Column="1"
                            Style="{StaticResource homeTextBlock}"
                            Text="카드"/>
-                <ItemsControl ItemsSource="{Binding BICardImages}"
+                <ItemsControl ItemsSource="{Binding BICardImages, UpdateSourceTrigger=PropertyChanged}"
                               Grid.Row="1"
                               Grid.Column="1">
                   <ItemsControl.ItemsPanel>
@@ -395,7 +394,7 @@
                                 Margin="10 20 0 0">
                           <Border.Background>
                             <ImageBrush Stretch="Fill" 
-                                        ImageSource="{Binding CardImage}"/>
+                                        ImageSource="{Binding CardImage, UpdateSourceTrigger=PropertyChanged}"/>
                            </Border.Background>                          
                          </Border>
                        </TextBlock>
@@ -406,7 +405,7 @@
                 <Grid Grid.Row="0"
                       Grid.Column="2"
                       Grid.RowSpan="2">
-                  <ItemsControl ItemsSource="{Binding BICardDescriptions}"
+                  <ItemsControl ItemsSource="{Binding BICardDescriptions, UpdateSourceTrigger=PropertyChanged}"
                                 VerticalAlignment="Center"
                               Grid.Row="1">
                     <ItemsControl.ItemsPanel>
@@ -423,11 +422,11 @@
                                <RowDefinition Height="25"/>
                             </Grid.RowDefinitions>
                             <TextBlock Style="{StaticResource cardTextBlock}"
-                                       Text="{Binding CardSetName}"
+                                       Text="{Binding CardSetName, UpdateSourceTrigger=PropertyChanged}"
                                        Grid.Row="0"/>
                             <TextBlock Style="{StaticResource cardTextBlock}"
                                        Foreground="{StaticResource color11}"
-                                       Text="{Binding CardSetOption}"
+                                       Text="{Binding CardSetOption, UpdateSourceTrigger=PropertyChanged}"
                                        Grid.Row="1"
                                        Margin="15 -15 0 0"/>
                           </Grid>                          
