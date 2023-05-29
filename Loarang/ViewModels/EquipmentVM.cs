@@ -34,6 +34,11 @@ namespace Loarang.ViewModels
 		ObservableCollection<BIEngrave> mountingEngraves;
 		public EquipmentVM()
 		{
+			SetEvent();
+		}
+		private void SetEvent()
+		{
+			BattleInfoNavigation.SearchAlert -= SetEquipment;
 			BattleInfoNavigation.SearchAlert += SetEquipment;
 		}
 

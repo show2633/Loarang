@@ -25,24 +25,31 @@ namespace Loarang.ViewModels
 
 		private object _currentView;
 
-		StatsVM statsVM = new StatsVM();
+		StatsVM statsVM;
+		SkillTreeVM skillTreeVM;
 
-		private void ShowStats(object obj) => CurrentView = statsVM;
-		private void ShowSkillTree(object obj) => CurrentView = new SkillTreeVM();
+		private void ShowStats(object obj) => CurrentView = StatsVMState.StatsVM;
+		private void ShowSkillTree(object obj) => CurrentView = SkillTreeVMState.SkillTreeVM;
 
 		public static event EventHandler<CharacterNameArgs> SearchAlert;
 
 		public BattleInfoNavigation()
 		{
+			statsVM = new StatsVM();
+			skillTreeVM = new SkillTreeVM();
+
+			StatsVMState.StatsVM = statsVM;
+			SkillTreeVMState.SkillTreeVM = skillTreeVM;
+
 			searchCharName = string.Empty;
 
 			SearchBattleInfoCommand = new RelayCommand((param) => SearchBattleInfo(param));
 			ShowStatsCommand = new RelayCommand(ShowStats);
 			ShowSkillTreeCommand = new RelayCommand(ShowSkillTree);
 
-			CurrentView = statsVM;
+			CurrentView = StatsVMState.StatsVM;
 		}
-		private async void SearchBattleInfo(object obj)
+		private void SearchBattleInfo(object obj)
 		{
 			try
 			{
@@ -50,6 +57,9 @@ namespace Loarang.ViewModels
 				{
 					Name = obj.ToString()
 				});
+
+				StatsVMState.StatsVM = statsVM;
+				SkillTreeVMState.SkillTreeVM = skillTreeVM;
 			}
 			catch (Exception e)
 			{

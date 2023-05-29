@@ -33,87 +33,134 @@ namespace Loarang.ViewModels
 
 		private async void ShowHomeContents(object obj)
 		{
-			using (var httpClient = new HttpClient())
+			try
 			{
-				httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", API_KEY);
-
-				using (var request = new HttpRequestMessage(new HttpMethod("GET"), NOTICE_API_URL))
+				using (var httpClient = new HttpClient())
 				{
-					request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
-					request.Content = new StringContent("");
-					request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+					httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", API_KEY);
 
-					var response = await httpClient.SendAsync(request);
-					string res = await response.Content.ReadAsStringAsync();
-
-					JToken jToken = JToken.Parse(res);
-
-					for (int i = 0; i < 8; i++)
+					using (var request = new HttpRequestMessage(new HttpMethod("GET"), NOTICE_API_URL))
 					{
-						HomeNotice homeNotice = new HomeNotice();
-						homeNotice.NoticeText = jToken[i]["Title"].ToString();
-						homeNotice.Url = jToken[i]["Link"].ToString();
-						_home.HomeNoticeList.Add(homeNotice);
-					}
-				}
+						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+						request.Content = new StringContent("");
+						request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
-				using (var request = new HttpRequestMessage(new HttpMethod("GET"), EVENT_API_URL))
-				{
-					request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
-					request.Content = new StringContent("");
-					request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+						var response = await httpClient.SendAsync(request);
+						string res = await response.Content.ReadAsStringAsync();
 
-					var response = await httpClient.SendAsync(request);
-					string res = await response.Content.ReadAsStringAsync();
+						JToken jToken = JToken.Parse(res);
 
-					JToken jToken = JToken.Parse(res);
-
-					foreach (JToken jt in jToken)
-					{
-						HomeEvent homeEvent = new HomeEvent();
-						homeEvent.EventText = jt["Title"].ToString();
-						homeEvent.Url = jt["Link"].ToString();
-						homeEvent.EventImage = jt["Thumbnail"].ToString();
-						_home.HomeEventList.Add(homeEvent);
-					}
-				}
-
-				using (var request = new HttpRequestMessage(new HttpMethod("GET"), CALENDAR_API_URL))
-				{
-					request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
-					request.Content = new StringContent("");
-					request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-					var response = await httpClient.SendAsync(request);
-					string res = await response.Content.ReadAsStringAsync();
-
-					JToken jToken = JToken.Parse(res);
-
-					foreach (JToken jt in jToken)
-					{
-						if (jt["CategoryName"].ToString() == "모험 섬")
+						for (int i = 0; i < 8; i++)
 						{
-							if (jt["StartTimes"].ToString().Contains(DateTime.Now.ToString("yyyy-MM-dd")))
+							HomeNotice homeNotice = new HomeNotice();
+							homeNotice.NoticeText = jToken[i]["Title"].ToString();
+							homeNotice.Url = jToken[i]["Link"].ToString();
+							_home.HomeNoticeList.Add(homeNotice);
+						}
+					}
+
+					using (var request = new HttpRequestMessage(new HttpMethod("GET"), EVENT_API_URL))
+					{
+						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+						request.Content = new StringContent("");
+						request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+						var response = await httpClient.SendAsync(request);
+						string res = await response.Content.ReadAsStringAsync();
+
+						JToken jToken = JToken.Parse(res);
+
+						foreach (JToken jt in jToken)
+						{
+							HomeEvent homeEvent = new HomeEvent();
+							homeEvent.EventText = jt["Title"].ToString();
+							homeEvent.Url = jt["Link"].ToString();
+							homeEvent.EventImage = jt["Thumbnail"].ToString();
+							_home.HomeEventList.Add(homeEvent);
+						}
+					}
+
+					using (var request = new HttpRequestMessage(new HttpMethod("GET"), CALENDAR_API_URL))
+					{
+						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+						request.Content = new StringContent("");
+						request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+						var response = await httpClient.SendAsync(request);
+						string res = await response.Content.ReadAsStringAsync();
+
+						JToken jToken = JToken.Parse(res);
+
+						foreach (JToken jt in jToken)
+						{
+							if (jt["CategoryName"].ToString() == "모험 섬")
 							{
-								string[] tempTimes = jt["StartTimes"].ToString().Split(',');
-								string firstTime = string.Empty;
-								string islandTime = string.Empty;
-
-								foreach (string time in tempTimes)
+								if (jt["StartTimes"].ToString().Contains(DateTime.Now.ToString("yyyy-MM-dd")))
 								{
-									if (time.Contains(DateTime.Now.ToString("yyyy-MM-dd")))
+									string[] tempTimes = jt["StartTimes"].ToString().Split(',');
+									string firstTime = string.Empty;
+									string islandTime = string.Empty;
+
+									foreach (string time in tempTimes)
 									{
-										firstTime = time;
+										if (time.Contains(DateTime.Now.ToString("yyyy-MM-dd")))
+										{
+											firstTime = time;
 
-										break;
+											break;
+										}
 									}
-								}
-								HomeAdventureIsland homeAdventureIsland = new HomeAdventureIsland();
+									HomeAdventureIsland homeAdventureIsland = new HomeAdventureIsland();
 
-								if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday ||
-									DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
-								{
-									if(DateTime.Now.Hour <= 13 && firstTime.Contains("09:00:00"))
+									if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday ||
+										DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+									{
+										if (DateTime.Now.Hour <= 13 && firstTime.Contains("09:00:00"))
+										{
+											homeAdventureIsland.ContentsName = jt["ContentsName"].ToString();
+											homeAdventureIsland.ContentsImage = jt["ContentsIcon"].ToString();
+
+											foreach (JToken subJt in jt["RewardItems"])
+											{
+												if (subJt["StartTimes"].ToString().Contains(firstTime))
+												{
+													if (subJt["Name"].ToString() == "실링" ||
+														subJt["Name"].ToString() == "골드" ||
+														subJt["Name"].ToString() == "대양의 주화 상자" ||
+														subJt["Name"].ToString() == "전설 ~ 고급 카드 팩")
+													{
+														homeAdventureIsland.RewardItems = subJt["Icon"].ToString();
+													}
+												}
+											}
+
+											_home.HomeAdventureIslandList.Add(homeAdventureIsland);
+										}
+
+										else if (DateTime.Now.Hour > 13 && firstTime.Contains("19:00:00"))
+										{
+											homeAdventureIsland.ContentsName = jt["ContentsName"].ToString();
+											homeAdventureIsland.ContentsImage = jt["ContentsIcon"].ToString();
+
+											foreach (JToken subJt in jt["RewardItems"])
+											{
+												if (subJt["StartTimes"].ToString().Contains(firstTime))
+												{
+													if (subJt["Name"].ToString() == "실링" ||
+														subJt["Name"].ToString() == "골드" ||
+														subJt["Name"].ToString() == "대양의 주화 상자" ||
+														subJt["Name"].ToString() == "전설 ~ 고급 카드 팩")
+													{
+														homeAdventureIsland.RewardItems = subJt["Icon"].ToString();
+													}
+												}
+											}
+
+											_home.HomeAdventureIslandList.Add(homeAdventureIsland);
+										}
+									}
+
+									else
 									{
 										homeAdventureIsland.ContentsName = jt["ContentsName"].ToString();
 										homeAdventureIsland.ContentsImage = jt["ContentsIcon"].ToString();
@@ -134,98 +181,59 @@ namespace Loarang.ViewModels
 
 										_home.HomeAdventureIslandList.Add(homeAdventureIsland);
 									}
-
-									else if(DateTime.Now.Hour > 13 && firstTime.Contains("19:00:00"))
-									{
-										homeAdventureIsland.ContentsName = jt["ContentsName"].ToString();
-										homeAdventureIsland.ContentsImage = jt["ContentsIcon"].ToString();
-
-										foreach (JToken subJt in jt["RewardItems"])
-										{
-											if (subJt["StartTimes"].ToString().Contains(firstTime))
-											{
-												if (subJt["Name"].ToString() == "실링" ||
-													subJt["Name"].ToString() == "골드" ||
-													subJt["Name"].ToString() == "대양의 주화 상자" ||
-													subJt["Name"].ToString() == "전설 ~ 고급 카드 팩")
-												{
-													homeAdventureIsland.RewardItems = subJt["Icon"].ToString();
-												}
-											}
-										}
-
-										_home.HomeAdventureIslandList.Add(homeAdventureIsland);
-									}
-								}
-
-								else
-								{
-									homeAdventureIsland.ContentsName = jt["ContentsName"].ToString();
-									homeAdventureIsland.ContentsImage = jt["ContentsIcon"].ToString();
-
-									foreach (JToken subJt in jt["RewardItems"])
-									{
-										if (subJt["StartTimes"].ToString().Contains(firstTime))
-										{
-											if (subJt["Name"].ToString() == "실링" ||
-												subJt["Name"].ToString() == "골드" ||
-												subJt["Name"].ToString() == "대양의 주화 상자" ||
-												subJt["Name"].ToString() == "전설 ~ 고급 카드 팩")
-											{
-												homeAdventureIsland.RewardItems = subJt["Icon"].ToString();
-											}
-										}
-									}
-
-									_home.HomeAdventureIslandList.Add(homeAdventureIsland);
 								}
 							}
 						}
 					}
-				}
 
 
-				using (var request = new HttpRequestMessage(new HttpMethod("GET"), CHALLENGE_ABYSS_API_URL))
-				{
-					request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
-					request.Content = new StringContent("");
-					request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-					var response = await httpClient.SendAsync(request);
-					string res = await response.Content.ReadAsStringAsync();
-
-					JToken jToken = JToken.Parse(res);
-
-					foreach (JToken jt in jToken)
+					using (var request = new HttpRequestMessage(new HttpMethod("GET"), CHALLENGE_ABYSS_API_URL))
 					{
-						HomeChallengeAbyss homeChallengeAbyss = new HomeChallengeAbyss();
-						homeChallengeAbyss.ContentsName = jt["Name"].ToString();
-						homeChallengeAbyss.ContentsImage = jt["Image"].ToString();
+						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+						request.Content = new StringContent("");
+						request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
-						_home.HomeChallengeAbyssList.Add(homeChallengeAbyss);
+						var response = await httpClient.SendAsync(request);
+						string res = await response.Content.ReadAsStringAsync();
+
+						JToken jToken = JToken.Parse(res);
+
+						foreach (JToken jt in jToken)
+						{
+							HomeChallengeAbyss homeChallengeAbyss = new HomeChallengeAbyss();
+							homeChallengeAbyss.ContentsName = jt["Name"].ToString();
+							homeChallengeAbyss.ContentsImage = jt["Image"].ToString();
+
+							_home.HomeChallengeAbyssList.Add(homeChallengeAbyss);
+						}
+					}
+
+					using (var request = new HttpRequestMessage(new HttpMethod("GET"), CHALLENGE_GUARDIAN_API_URL))
+					{
+						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
+						request.Content = new StringContent("");
+						request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+						var response = await httpClient.SendAsync(request);
+						string res = await response.Content.ReadAsStringAsync();
+
+						JToken jToken = JToken.Parse(res);
+
+						foreach (JToken jt in jToken["Raids"])
+						{
+							HomeChallengeGuardian homeChallengeGuardian = new HomeChallengeGuardian();
+							homeChallengeGuardian.GuardianName = jt["Name"].ToString();
+							homeChallengeGuardian.GuardianImage = jt["Image"].ToString();
+
+							_home.homeChallengeGuardianList.Add(homeChallengeGuardian);
+						}
 					}
 				}
+			}
 
-				using (var request = new HttpRequestMessage(new HttpMethod("GET"), CHALLENGE_GUARDIAN_API_URL))
-				{
-					request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
-					request.Content = new StringContent("");
-					request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+			catch(Exception e)
+			{
 
-					var response = await httpClient.SendAsync(request);
-					string res = await response.Content.ReadAsStringAsync();
-
-					JToken jToken = JToken.Parse(res);
-
-					foreach (JToken jt in jToken["Raids"])
-					{
-						HomeChallengeGuardian homeChallengeGuardian = new HomeChallengeGuardian();
-						homeChallengeGuardian.GuardianName = jt["Name"].ToString();
-						homeChallengeGuardian.GuardianImage = jt["Image"].ToString();
-
-						_home.homeChallengeGuardianList.Add(homeChallengeGuardian);
-					}
-				}
 			}
 		}
 

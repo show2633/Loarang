@@ -26,7 +26,6 @@ namespace Loarang.ViewModels
 		}
 		public async void SetSkills(object sender, BattleInfoNavigation.CharacterNameArgs e)
 		{
-
 			skills = new ObservableCollection<Skill>();
 
 			try
@@ -93,7 +92,7 @@ namespace Loarang.ViewModels
 					}
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 
 			}

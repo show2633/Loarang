@@ -8,10 +8,6 @@
              mc:Ignorable="d" 
              Width="920" Height="865" 
              Background="Transparent">
-  <UserControl.DataContext>
-    <vm:StatsVM/>
-  </UserControl.DataContext>
-  
   <Border CornerRadius="12"
           BorderThickness="1"
           Opacity="0.95">

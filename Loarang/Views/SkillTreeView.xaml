@@ -8,9 +8,6 @@
              mc:Ignorable="d" 
              Width="920" Height="865" 
              Background="Transparent">
-  <UserControl.DataContext>
-    <vm:SkillTreeVM/>
-  </UserControl.DataContext>
   <Border CornerRadius="12"
           BorderThickness="1"
           Opacity="0.95">
@@ -23,8 +20,8 @@
 
     <!-- Main Grid -->
     <ItemsControl ItemsSource="{Binding Skills}"
-                    Grid.Column="0"
-                    Grid.RowSpan="2">
+                  Grid.Column="0"
+                  Grid.RowSpan="2">
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
           <WrapPanel Orientation="Horizontal"/>
@@ -33,90 +30,93 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <TextBlock>
+            <Border Style="{StaticResource skillInfoBorder}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
               <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="55"/>
-                  <ColumnDefinition Width="130"/>
-                  <ColumnDefinition Width="55"/>
-                  <ColumnDefinition Width="95"/>
-                  <ColumnDefinition Width="55"/>
-                  <ColumnDefinition Width="100"/>
-                  <ColumnDefinition Width="55"/>
-                  <ColumnDefinition Width="100"/>
-                  <ColumnDefinition Width="55"/>
-                  <ColumnDefinition Width="100"/>
-                  <ColumnDefinition Width="55"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="95"/>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Border Style="{StaticResource skillBorder}"
+                      Grid.Column="0">
+                <Border.Background>
+                  <ImageBrush Stretch="Fill" ImageSource="{Binding SkillImage, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border.Background>
+              </Border>
+              <TextBlock Style="{StaticResource skillTextBlock}"
+                         Grid.Column="1"
+                         Text="{Binding SkillName, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="10 0 0 0"/>
+              <TextBlock Style="{StaticResource skillTextBlock}"
+                         Grid.Column="2"
+                         Text="{Binding SkillLevel, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Center"/>
+    
+              <TextBlock Style="{StaticResource skillTextBlock}"
+                         Grid.Column="3"
+                         Text="{Binding SelectedTripods, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Center"/>
 
-                <Border Style="{StaticResource skillBorder}"
-                        Grid.Column="0">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="{Binding SkillImage, UpdateSourceTrigger=PropertyChanged}"/>
-                  </Border.Background>
-                </Border>
-                <TextBlock Style="{StaticResource skillTextBlock}"
-                           Grid.Column="1"
-                           Text="{Binding SkillName, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Style="{StaticResource skillTextBlock}"
-                           Grid.Column="2"
-                           Text="{Binding SkillLevel, UpdateSourceTrigger=PropertyChanged}"
-                           HorizontalAlignment="Center"/>
-      
-                <TextBlock Style="{StaticResource skillTextBlock}"
-                           Grid.Column="3"
-                           Text="{Binding SelectedTripods, UpdateSourceTrigger=PropertyChanged}"
-                           HorizontalAlignment="Center"/>
+              <Border Style="{StaticResource tripodBorder}"
+                      Grid.Column="4">
+                <Border.Background>
+                  <ImageBrush Stretch="Fill" ImageSource="{Binding FirstTripodImage, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border.Background>
+              </Border>
 
-                <Border Style="{StaticResource tripodBorder}"
-                        Grid.Column="4">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="{Binding FirstTripodImage, UpdateSourceTrigger=PropertyChanged}"/>
-                  </Border.Background>
-                </Border>
+              <TextBlock Style="{StaticResource skillTextBlock}"
+                         Grid.Column="5"
+                         Text="{Binding FirstTripodName, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Center"/>
 
-                <TextBlock Style="{StaticResource skillTextBlock}"
-                           Grid.Column="5"
-                           Text="{Binding FirstTripodName, UpdateSourceTrigger=PropertyChanged}"
-                           HorizontalAlignment="Center"/>
+              <Border Style="{StaticResource tripodBorder}"
+                      Grid.Column="6">
+                <Border.Background>
+                  <ImageBrush Stretch="Fill" ImageSource="{Binding SecondTripodImage, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border.Background>
+              </Border>
 
-                <Border Style="{StaticResource tripodBorder}"
-                        Grid.Column="6">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="{Binding SecondTripodImage, UpdateSourceTrigger=PropertyChanged}"/>
-                  </Border.Background>
-                </Border>
+              <TextBlock Style="{StaticResource skillTextBlock}"
+                         Grid.Column="7"
+                         Text="{Binding SecondTripodName, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Center"/>
 
-                <TextBlock Style="{StaticResource skillTextBlock}"
-                           Grid.Column="7"
-                           Text="{Binding SecondTripodName, UpdateSourceTrigger=PropertyChanged}"
-                           HorizontalAlignment="Center"/>
+              <Border Style="{StaticResource tripodBorder}"
+                      Grid.Column="8">
+                <Border.Background>
+                  <ImageBrush Stretch="Fill" ImageSource="{Binding ThirdTripodImage, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border.Background>
+              </Border>
 
-                <Border Style="{StaticResource tripodBorder}"
-                        Grid.Column="8">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="{Binding ThirdTripodImage, UpdateSourceTrigger=PropertyChanged}"/>
-                  </Border.Background>
-                </Border>
+              <TextBlock Style="{StaticResource skillTextBlock}"
+                         Grid.Column="9"
+                         Text="{Binding ThirdTripodName, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Center"/>
+              <Border Style="{StaticResource runeBorder}"
+                      Grid.Column="10">
+                <Border.Background>
+                  <ImageBrush Stretch="Fill" ImageSource="{Binding RuneImage, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border.Background>
+              </Border>
 
-                <TextBlock Style="{StaticResource skillTextBlock}"
-                           Grid.Column="9"
-                           Text="{Binding ThirdTripodName, UpdateSourceTrigger=PropertyChanged}"
-                           HorizontalAlignment="Center"/>
-
-                <Border Style="{StaticResource runeBorder}"
-                        Grid.Column="10">
-                  <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="{Binding RuneImage, UpdateSourceTrigger=PropertyChanged}"/>
-                  </Border.Background>
-                </Border>
-
-                <TextBlock Style="{StaticResource skillTextBlock}"
-                           Grid.Column="11"
-                           Text="{Binding RuneName, UpdateSourceTrigger=PropertyChanged}"
-                           HorizontalAlignment="Center"/>
-              </Grid>
-            </TextBlock>
+              <TextBlock Style="{StaticResource skillTextBlock}"
+                         Grid.Column="11"
+                         Text="{Binding RuneName, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Center"/>
+            </Grid>
+            </Border>            
+          </TextBlock>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
     </ItemsControl>

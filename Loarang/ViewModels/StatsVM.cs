@@ -28,6 +28,9 @@ namespace Loarang.ViewModels
 		BICardDescription bICardDescription;
 
 		private object _currentView;
+
+		EquipmentVM equipmentVM;
+
 		public ICommand ShowEquipmentCommand { get; set; }
 
 		ObservableCollection<BIJewel> bIJewels;
@@ -37,15 +40,24 @@ namespace Loarang.ViewModels
 
 		public StatsVM()
 		{
+			equipmentVM = new EquipmentVM();
+			EquipmentVMState.EquipmentVM = equipmentVM;
+
 			bIProfiles = new BIProfiles();
 			bICharacteristic = new BICharacteristic();
 			
-			CurrentView = new EquipmentVM();
+			CurrentView = EquipmentVMState.EquipmentVM;
 
+			SetEvent();
+		}
+
+		private void SetEvent()
+		{
+			BattleInfoNavigation.SearchAlert -= SetBattleInfo;
 			BattleInfoNavigation.SearchAlert += SetBattleInfo;
 		}
 
-		public async void SetBattleInfo(object sender, BattleInfoNavigation.CharacterNameArgs e)
+		private async void SetBattleInfo(object sender, BattleInfoNavigation.CharacterNameArgs e)
 		{
 			bIJewels = new ObservableCollection<BIJewel>();
 			bIEngraves = new ObservableCollection<BIEngrave>();
@@ -129,7 +141,7 @@ namespace Loarang.ViewModels
 						MaxHP = Int32.Parse(jToken[6]["Value"].ToString());
 						AtkPower = Int32.Parse(jToken[7]["Value"].ToString());
 					}
-				
+
 					using (var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://developer-lostark.game.onstove.com/armories/characters/{e.Name}/engravings"))
 					{
 						request.Headers.TryAddWithoutValidation("x-apikey", API_KEY);
@@ -216,10 +228,12 @@ namespace Loarang.ViewModels
 				}
 			}
 
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 
 			}
+
+			EquipmentVMState.EquipmentVM = equipmentVM;
 		}
 		
 		#region Profiles

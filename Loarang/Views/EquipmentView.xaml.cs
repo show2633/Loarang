@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Loarang.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Loarang.Views
 	{
 		public EquipmentView()
 		{
+			DataContext = EquipmentVMState.EquipmentVM;
 			InitializeComponent();
 		}    
   }

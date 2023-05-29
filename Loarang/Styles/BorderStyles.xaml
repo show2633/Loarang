@@ -40,11 +40,21 @@
     <Setter Property="Height" Value="50"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="10 0 0 0"/>
+    <Setter Property="CornerRadius" Value="15"/>
+  </Style>
+
+  <Style x:Key="skillInfoBorder" TargetType="Border">
+    <Setter Property="Width" Value="920"/>
+    <Setter Property="Height" Value="70"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
     <Setter Property="Margin" Value="0 15 0 0"/>
     <Setter Property="BorderThickness" Value="3"/>
     <Setter Property="BorderBrush" Value="{StaticResource color10}"/>
+    <Setter Property="CornerRadius" Value="8"/>
   </Style>
-  
+
   <Style x:Key="tripodBorder" TargetType="Border">
     <Setter Property="Width" Value="40"/>
     <Setter Property="Height" Value="40"/>

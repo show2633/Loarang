@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Loarang.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Loarang.Views
 	{
 		public SkillTreeView()
 		{
+			DataContext = SkillTreeVMState.SkillTreeVM;
 			InitializeComponent();
 		}
 		private void Link_RequestNavigate(object sender, RequestNavigateEventArgs e)
