@@ -1,22 +1,92 @@
-﻿using Loarang.Models;
+﻿using Loarang.Command;
+using Loarang.Models;
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Loarang.ViewModels
 {
 	public class ContentsSettingVM : ViewModelBase
 	{
+		private const string contentsFileName = "contents.csv";
+
+		ObservableCollection<Content> dailyContents;
+		ObservableCollection<Content> commanderRaidContents;
+		ObservableCollection<Content> abyssContents;
+		ObservableCollection<Content> abyssRaidContents;
+		ObservableCollection<Content> guildIslandContents;
+		ObservableCollection<Content> weeklyContents;
+		ObservableCollection<Content> weeklyEtcContents;
+
 		ContentsSetting _contentSetting;
+
+		public ICommand ContentsSaveCommand { get; }
 
 		public ContentsSettingVM()
 		{
 			_contentSetting = new ContentsSetting();
 
+			ContentsSaveCommand = new RelayCommand(ContentsSave);
+
 			ContentsSetting();
+		}
+
+		private void ContentsSave(object obj)
+		{
+			try
+			{
+				using (StreamWriter sw = new StreamWriter(contentsFileName))
+				{
+					foreach(var dailyContent in dailyContents)
+					{
+						sw.WriteLine("{0},{1},{2}", "dailyContent", dailyContent.ContentName, dailyContent.ContentFlag);
+					}
+
+					foreach (var commanderRaidContent in commanderRaidContents)
+					{
+						sw.WriteLine("{0},{1},{2}", "commanderRaidContent", commanderRaidContent.ContentName, commanderRaidContent.ContentFlag);
+					}
+
+					foreach (var abyssContent in abyssContents)
+					{
+						sw.WriteLine("{0},{1},{2}", "abyssContent", abyssContent.ContentName, abyssContent.ContentFlag);
+					}
+
+					foreach (var abyssRaidContent in abyssRaidContents)
+					{
+						sw.WriteLine("{0},{1},{2}", "abyssRaidContent", abyssRaidContent.ContentName, abyssRaidContent.ContentFlag);
+					}
+
+					foreach (var guildIslendContent in guildIslandContents)
+					{
+						sw.WriteLine("{0},{1},{2}", "guildIslendContent", guildIslendContent.ContentName, guildIslendContent.ContentFlag);
+					}
+
+					foreach (var weeklyContent in weeklyContents)
+					{
+						sw.WriteLine("{0},{1},{2}", "weeklyContent", weeklyContent.ContentName, weeklyContent.ContentFlag);
+					}
+
+					foreach (var weeklyEtcContent in weeklyEtcContents)
+					{
+						sw.WriteLine("{0},{1},{2}", "weeklyEtcContent", weeklyEtcContent.ContentName, weeklyEtcContent.ContentFlag);
+					}
+				}
+			}
+
+			catch(Exception e)
+			{
+
+			}
+
+			MessageBox.Show(dailyContents[5].ContentFlag.ToString());
 		}
 
 		private void ContentsSetting()
 		{
-			ObservableCollection<Content>  dailyContents = new ObservableCollection<Content>();
+			dailyContents = new ObservableCollection<Content>();
 			dailyContents.Add(new Content("일일 에포나", true));
 			dailyContents.Add(new Content("카오스 던전", true));
 			dailyContents.Add(new Content("가디언 토벌", true));
@@ -26,7 +96,7 @@ namespace Loarang.ViewModels
 			dailyContents.Add(new Content("이벤트 섬", true));
 			DailyContents = dailyContents;
 
-			ObservableCollection<Content> commanderRaidContents = new ObservableCollection<Content>();
+			commanderRaidContents = new ObservableCollection<Content>();
 			commanderRaidContents.Add(new Content("발탄", true));
 			commanderRaidContents.Add(new Content("비아키스", true));
 			commanderRaidContents.Add(new Content("쿠크세이튼", true));
@@ -34,7 +104,7 @@ namespace Loarang.ViewModels
 			commanderRaidContents.Add(new Content("일리아칸", true));
 			CommanderRaidContents = commanderRaidContents;
 
-			ObservableCollection<Content> abyssContents = new ObservableCollection<Content>();
+			abyssContents = new ObservableCollection<Content>();
 			abyssContents.Add(new Content("기본 6종", true));
 			abyssContents.Add(new Content("낙원 3종", true));
 			abyssContents.Add(new Content("오레하", true));
@@ -43,20 +113,20 @@ namespace Loarang.ViewModels
 			AbyssContents = abyssContents;
 
 
-			ObservableCollection<Content> abyssRaidContents = new ObservableCollection<Content>();
+			abyssRaidContents = new ObservableCollection<Content>();
 			abyssRaidContents.Add(new Content("아르고스", true));
 			AbyssRaidContents = abyssRaidContents;
 
-			ObservableCollection<Content> guildIslandContents = new ObservableCollection<Content>();
+			guildIslandContents = new ObservableCollection<Content>();
 			guildIslandContents.Add(new Content("슬라임", true));
 			guildIslandContents.Add(new Content("메데이아", true));
 			GuildIslandContents = guildIslandContents;
 
-			ObservableCollection<Content> weeklyContents = new ObservableCollection<Content>();
+			weeklyContents = new ObservableCollection<Content>();
 			weeklyContents.Add(new Content("유령선", true));
 			WeeklyContents = weeklyContents;
 
-			ObservableCollection<Content> weeklyEtcContents = new ObservableCollection<Content>();
+			weeklyEtcContents = new ObservableCollection<Content>();
 			weeklyEtcContents.Add(new Content("엘가시아 보석 교환", true));
 			weeklyEtcContents.Add(new Content("페이토 카드 교환", true));
 			weeklyEtcContents.Add(new Content("페르마타 카드 교환", true));

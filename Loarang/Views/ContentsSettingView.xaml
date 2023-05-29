@@ -200,6 +200,7 @@
         </DataGrid>
       </Grid>
       <Button x:Name="settingBtn"
+              Command="{Binding ContentsSaveCommand}"
               Grid.Row="5"
               Style="{StaticResource controlButton}"
               Tag="{StaticResource color10}"
