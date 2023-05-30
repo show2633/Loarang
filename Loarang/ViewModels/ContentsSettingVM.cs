@@ -80,8 +80,6 @@ namespace Loarang.ViewModels
 			{
 
 			}
-
-			MessageBox.Show(dailyContents[5].ContentFlag.ToString());
 		}
 
 		private void ContentsSetting()
