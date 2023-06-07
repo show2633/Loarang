@@ -28,17 +28,17 @@
         <RowDefinition Height="25"/>
         <RowDefinition Height="45"/>
       </Grid.RowDefinitions>
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="170"/>
-          <ColumnDefinition Width="170"/>
-        </Grid.ColumnDefinitions>
-      </Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="220"/>
+        <ColumnDefinition Width="220"/>
+        <ColumnDefinition Width="220"/>
+      </Grid.ColumnDefinitions>
+
       <Border BorderBrush="{StaticResource color10}"
-                    BorderThickness="2"
-                    Margin="4"
-                    Grid.Row="0"
-                    Grid.Column="0"
+              BorderThickness="2"
+              Margin="4"
+              Grid.Row="0"
+              Grid.Column="0"
               Width="200"
               HorizontalAlignment="Left">
         <Grid Grid.Row="1">
@@ -51,23 +51,6 @@
             <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-          <!--<StackPanel x:Name="iconPnl"
-                    Grid.Column="0"
-                    Orientation="Horizontal"
-                    FlowDirection="LeftToRight"
-                    Background="Transparent"
-                    Margin="0, 5, 0, 0">
-            <fa:IconImage Icon="User"
-                              Height="15" Width="15"
-                              Foreground="{StaticResource color10}"
-                              Margin="20, 0, 10, 0"/>
-            <TextBlock Text="캐릭터 아이콘"
-                           Foreground="{StaticResource color10}"
-                           FontSize="20"
-                           FontFamily="../Fonts/#SEBANG Gothic Bold"
-                           FontWeight="Medium"
-                           VerticalAlignment="Center"/>
-          </StackPanel>-->
 
           <StackPanel x:Name="contentsPnl"
                     Grid.Column="0"
@@ -79,7 +62,7 @@
                           Height="15" Width="15"
                           Foreground="{StaticResource color10}"
                           Margin="15, 0, 10, 0"/>
-            <TextBlock Text="캐릭터 명"
+            <TextBlock Text="등록 캐릭터 명"
                        Foreground="{StaticResource color10}"
                        FontSize="20"
                        FontFamily="../Fonts/#SEBANG Gothic Bold"
@@ -87,19 +70,11 @@
                        VerticalAlignment="Center"/>
           </StackPanel>
 
-          <!--<ComboBox Grid.Row="1"
-                  Grid.Column="0" 
-                  Style="{StaticResource comboBox}"
-                  VerticalAlignment="Top"
-                  HorizontalAlignment="Left"
-                  Margin="20, 0, 0, 0">
-
-          </ComboBox>-->
-
-          <TextBox Grid.Row="1"
+          <TextBox x:Name="addTextBox"
+                   Grid.Row="1"
                    Grid.Column="0"
                    Style="{StaticResource textBox}"
-                   Text="{Binding CharName}"
+                   Text="{Binding AddCharName}"
                    Height="20" Width="160"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
@@ -108,16 +83,81 @@
           </TextBox>
           <Button x:Name="addBtn"
                   Command="{Binding CharAddCommand}"
+                  CommandParameter="{Binding AddCharName}"
                   Grid.Row="2"
                   Grid.Column="0"
                   Style="{StaticResource controlButton}"
                   Tag="{StaticResource color10}"
                   Height="30"
                   Width="30"
-                  Click="addBtn_Click"
                   HorizontalAlignment="Right"
                   Margin="0, 15, 5, 0"
-                  VerticalAlignment="Top">
+                  VerticalAlignment="Top"
+                  Click="addBtn_Click">
+            <fa:IconImage Icon="SquareCheck" Style="{StaticResource controlButtonIcon}" Height="30" Width="30"/>
+          </Button>
+        </Grid>
+      </Border>
+
+      <Border BorderBrush="{StaticResource color10}"
+              BorderThickness="2"
+              Margin="4"
+              Grid.Row="0"
+              Grid.Column="1"
+              Width="200"
+              HorizontalAlignment="Left">
+        <Grid Grid.Row="1">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+
+          <StackPanel Grid.Column="0"
+                    Orientation="Horizontal"
+                    FlowDirection="LeftToRight"
+                    Background="Transparent"
+                    Margin="0, 5, 0, 0">
+            <fa:IconImage Icon="Pencil"
+                          Height="15" Width="15"
+                          Foreground="{StaticResource color10}"
+                          Margin="15, 0, 10, 0"/>
+            <TextBlock Text="삭제 캐릭터 명"
+                       Foreground="{StaticResource color10}"
+                       FontSize="20"
+                       FontFamily="../Fonts/#SEBANG Gothic Bold"
+                       FontWeight="Medium"
+                       VerticalAlignment="Center"/>
+          </StackPanel>
+
+          <TextBox x:Name="delTextBox"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Style="{StaticResource textBox}"
+                   Text="{Binding DelCharName}"
+                   Height="20" Width="160"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Margin="15, 0, 0, 0">
+
+          </TextBox>
+          <Button x:Name="delBtn"
+                  Command="{Binding CharDelCommand}"
+                  CommandParameter="{Binding DelCharName}"
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  Style="{StaticResource controlButton}"
+                  Tag="{StaticResource color10}"
+                  Height="30"
+                  Width="30"
+                  HorizontalAlignment="Right"
+                  Margin="0, 15, 5, 0"
+                  VerticalAlignment="Top"
+                  Click="delBtn_Click">
             <fa:IconImage Icon="SquareCheck" Style="{StaticResource controlButtonIcon}" Height="30" Width="30"/>
           </Button>
         </Grid>

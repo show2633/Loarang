@@ -44,11 +44,31 @@
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <TextBlock>
-              <Border Style="{StaticResource eqpBorder}">
+              <Border x:Name="EqpImage"
+                      Style="{StaticResource eqpBorder}">
                 <Border.Background>
                   <ImageBrush Stretch="Fill" ImageSource="{Binding EquipmentImage}"/>
-                </Border.Background>
+                </Border.Background>              
               </Border>
+              <Popup IsOpen="{Binding ElementName=EqpImage, Path=IsMouseOver, Mode=OneWay}"
+                     AllowsTransparency="True"
+                     PopupAnimation="Fade"
+                     Placement="MousePoint"
+                     Opacity="0.95">
+                <Border Width="220" 
+                        Height="300"
+                        BorderThickness="2"
+                        BorderBrush="{StaticResource color10}"
+                        CornerRadius="8"
+                        Opacity="0.85">
+                  <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                      <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                      <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                  </Border.Background>
+                </Border>
+              </Popup>
               <Grid>
                 <Grid.RowDefinitions>
                   <RowDefinition Height="27.5"/>

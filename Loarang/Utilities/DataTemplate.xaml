@@ -11,6 +11,10 @@
     <view:ContentsView/>
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type vm:SetContentsVM}">
+    <view:SetContentsView/>
+  </DataTemplate>
+
   <DataTemplate DataType="{x:Type vm:ContentsSettingVM}">
     <view:ContentsSettingView/>
   </DataTemplate>

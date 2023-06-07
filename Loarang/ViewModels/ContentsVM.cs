@@ -4,7 +4,7 @@
 	{
 		public ContentsVM()
 		{
-			//SearchCommand = new RelayCommand((param) => ContentsSetting(param));			
+
 		}
 	}
 }

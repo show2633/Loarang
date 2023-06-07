@@ -26,7 +26,12 @@ namespace Loarang.Views
 		}
 		private void addBtn_Click(object sender, RoutedEventArgs e)
 		{
+			addTextBox.Text = string.Empty;
+		}
 
+		private void delBtn_Click(object sender, RoutedEventArgs e)
+		{
+			delTextBox.Text = string.Empty;
 		}
 	}
 }

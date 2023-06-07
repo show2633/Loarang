@@ -46,7 +46,8 @@
           <Button Style="{StaticResource tabButton}"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  Content="컨텐츠">
+                  Content="컨텐츠"
+                  Command="{Binding SetContentsShowCommand}">
           </Button>
 
           <Button Style="{StaticResource tabButton}"

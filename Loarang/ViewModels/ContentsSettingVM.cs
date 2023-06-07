@@ -1,6 +1,7 @@
 ﻿using Loarang.Command;
 using Loarang.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Forms;
@@ -10,7 +11,7 @@ namespace Loarang.ViewModels
 {
 	public class ContentsSettingVM : ViewModelBase
 	{
-		private const string contentsFileName = "contents.csv";
+		private const string CONTENTS_FILE_NAME = "contents.csv";
 
 		ObservableCollection<Content> dailyContents;
 		ObservableCollection<Content> commanderRaidContents;
@@ -37,46 +38,166 @@ namespace Loarang.ViewModels
 		{
 			try
 			{
-				using (StreamWriter sw = new StreamWriter(contentsFileName))
+				if (File.Exists(CONTENTS_FILE_NAME))
 				{
-					foreach(var dailyContent in dailyContents)
+					string[] contents = null;
+
+					List<string[]> contentList = new List<string[]>();
+
+					using(StreamReader sr = new StreamReader(CONTENTS_FILE_NAME))
 					{
-						sw.WriteLine("{0},{1},{2}", "dailyContent", dailyContent.ContentName, dailyContent.ContentFlag);
+						while(!sr.EndOfStream)
+						{
+							string line = sr.ReadLine();
+
+							if (line[line.Length - 1] == ',')
+							{
+								line = line.Substring(0, line.Length - 1);
+							}
+
+							contents = line.Split(',');
+
+							contentList.Add(contents);
+						}
+
+						foreach(string[] conts in contentList)
+						{
+							if(conts[0] == "dailyContent")
+							{
+								foreach(Content dc in dailyContents)
+								{
+									if(dc.ContentName == conts[1])
+									{
+										conts[2] = dc.ContentFlag.ToString();
+									}
+								}
+							}
+
+							else if (conts[0] == "commanderRaidContent")
+							{
+								foreach (Content crc in commanderRaidContents)
+								{
+									if (crc.ContentName == conts[1])
+									{
+										conts[2] = crc.ContentFlag.ToString();
+									}
+								}
+							}
+
+							else if(conts[0] == "abyssContent")
+							{
+								foreach (Content ac in abyssContents)
+								{
+									if (ac.ContentName == conts[1])
+									{
+										conts[2] = ac.ContentFlag.ToString();
+									}
+								}
+							}
+
+							else if(conts[0] == "abyssRaidContent")
+							{
+								foreach (Content arc in abyssRaidContents)
+								{
+									if (arc.ContentName == conts[1])
+									{
+										conts[2] = arc.ContentFlag.ToString();
+									}
+								}
+							}
+
+							else if (conts[0] == "guildIslandContent")
+							{
+								foreach (Content gic in guildIslandContents)
+								{
+									if (gic.ContentName == conts[1])
+									{
+										conts[2] = gic.ContentFlag.ToString();
+									}
+								}
+							}
+
+							else if (conts[0] == "weeklyContent")
+							{
+								foreach (Content wc in weeklyContents)
+								{
+									if (wc.ContentName == conts[1])
+									{
+										conts[2] = wc.ContentFlag.ToString();
+									}
+								}
+							}
+
+							else if (conts[0] == "weeklyEtcContent")
+							{
+								foreach (Content wec in weeklyEtcContents)
+								{
+									if (wec.ContentName == conts[1])
+									{
+										conts[2] = wec.ContentFlag.ToString();
+									}
+								}
+							}
+						}
 					}
 
-					foreach (var commanderRaidContent in commanderRaidContents)
+					using(StreamWriter sw = new StreamWriter(CONTENTS_FILE_NAME))
 					{
-						sw.WriteLine("{0},{1},{2}", "commanderRaidContent", commanderRaidContent.ContentName, commanderRaidContent.ContentFlag);
-					}
+						foreach(string[] conts in contentList)
+						{
+							foreach(string cont in conts)
+							{
+								sw.Write(cont + ",");
+							}
 
-					foreach (var abyssContent in abyssContents)
-					{
-						sw.WriteLine("{0},{1},{2}", "abyssContent", abyssContent.ContentName, abyssContent.ContentFlag);
-					}
-
-					foreach (var abyssRaidContent in abyssRaidContents)
-					{
-						sw.WriteLine("{0},{1},{2}", "abyssRaidContent", abyssRaidContent.ContentName, abyssRaidContent.ContentFlag);
-					}
-
-					foreach (var guildIslendContent in guildIslandContents)
-					{
-						sw.WriteLine("{0},{1},{2}", "guildIslendContent", guildIslendContent.ContentName, guildIslendContent.ContentFlag);
-					}
-
-					foreach (var weeklyContent in weeklyContents)
-					{
-						sw.WriteLine("{0},{1},{2}", "weeklyContent", weeklyContent.ContentName, weeklyContent.ContentFlag);
-					}
-
-					foreach (var weeklyEtcContent in weeklyEtcContents)
-					{
-						sw.WriteLine("{0},{1},{2}", "weeklyEtcContent", weeklyEtcContent.ContentName, weeklyEtcContent.ContentFlag);
+							sw.WriteLine();
+						}
 					}
 				}
+
+				else
+				{
+					using(StreamWriter sw = new StreamWriter(CONTENTS_FILE_NAME))
+					{
+						foreach(var dailyContent in dailyContents)
+						{
+							sw.WriteLine("{0},{1},{2}", "dailyContent", dailyContent.ContentName, dailyContent.ContentFlag);
+						}
+
+						foreach(var commanderRaidContent in commanderRaidContents)
+						{
+							sw.WriteLine("{0},{1},{2}", "commanderRaidContent", commanderRaidContent.ContentName, commanderRaidContent.ContentFlag);
+						}
+
+						foreach(var abyssContent in abyssContents)
+						{
+							sw.WriteLine("{0},{1},{2}", "abyssContent", abyssContent.ContentName, abyssContent.ContentFlag);
+						}
+
+						foreach(var abyssRaidContent in abyssRaidContents)
+						{
+							sw.WriteLine("{0},{1},{2}", "abyssRaidContent", abyssRaidContent.ContentName, abyssRaidContent.ContentFlag);
+						}
+
+						foreach(var guildIslandContent in guildIslandContents)
+						{
+							sw.WriteLine("{0},{1},{2}", "guildIslandContent", guildIslandContent.ContentName, guildIslandContent.ContentFlag);
+						}
+
+						foreach(var weeklyContent in weeklyContents)
+						{
+							sw.WriteLine("{0},{1},{2}", "weeklyContent", weeklyContent.ContentName, weeklyContent.ContentFlag);
+						}
+
+						foreach(var weeklyEtcContent in weeklyEtcContents)
+						{
+							sw.WriteLine("{0},{1},{2}", "weeklyEtcContent", weeklyEtcContent.ContentName, weeklyEtcContent.ContentFlag);
+						}
+					}
+				}					
 			}
 
-			catch(Exception e)
+			catch (Exception e)
 			{
 
 			}

@@ -13,10 +13,11 @@
     <Setter Property="CanUserResizeRows" Value="False"/>
     <Setter Property="CanUserReorderColumns" Value="False"/>
     <Setter Property="CanUserSortColumns" Value="False"/>
-    <Setter Property="AutoGenerateColumns" Value="False"/>
+    <Setter Property="CanUserAddRows" Value="False"/>
     <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
     <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
     <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+    <Setter Property="AutoGenerateColumns" Value="False"/>
     <Setter Property="ColumnWidth" Value="*"/>
     <Setter Property="HeadersVisibility" Value="Column"/>
     <Setter Property="SelectionMode" Value="Single"/>
@@ -40,6 +41,15 @@
     <Setter Property="Padding" Value="2"/>
     <Setter Property="Width" Value="auto"/>
     <Setter Property="FontSize" Value="20"/>
+  </Style>
+
+  <Style x:Key="setContentsDataGridColumnHeader" TargetType="DataGridColumnHeader">
+    <Setter Property="Background" Value="{StaticResource panelColor}"/>
+    <Setter Property="Foreground" Value="{StaticResource color10}"/>
+    <Setter Property="Padding" Value="2"/>
+    <Setter Property="Width" Value="auto"/>
+    <Setter Property="FontSize" Value="20"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
   </Style>
 
   <Style x:Key="dataGridRowStyle" TargetType="DataGridRow">
