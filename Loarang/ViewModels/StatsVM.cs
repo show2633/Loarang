@@ -80,31 +80,33 @@ namespace Loarang.ViewModels
 						var response = await httpClient.SendAsync(request);
 						string res = await response.Content.ReadAsStringAsync();
 
-						JToken jToken = JToken.Parse(res);
-
-						jToken = jToken["Gems"];
-
-						ObservableCollection<BIJewel> test = new ObservableCollection<BIJewel>();
-
-						foreach (JToken jt in jToken)
+						if (res != "null")
 						{
-							bIJewel = new BIJewel();
+							JToken jToken = JToken.Parse(res);
 
-							JewelName = jt["Name"].ToString();
-							JewelImage = jt["Icon"].ToString();
-							JewelLevel = Int32.Parse(jt["Level"].ToString());
+							jToken = jToken["Gems"];
 
-							if (JewelName.Contains("멸"))
-								Priority = 0.5 + JewelLevel;
-							else
-								Priority = JewelLevel;
+							ObservableCollection<BIJewel> test = new ObservableCollection<BIJewel>();
 
-							BIJewels.Add(bIJewel);
-						}
+							foreach (JToken jt in jToken)
+							{
+								bIJewel = new BIJewel();
 
-						BIJewels = new ObservableCollection<BIJewel>(BIJewels.OrderByDescending(x => x.Priority));
+								JewelName = jt["Name"].ToString();
+								JewelImage = jt["Icon"].ToString();
+								JewelLevel = Int32.Parse(jt["Level"].ToString());
+
+								if (JewelName.Contains("멸"))
+									Priority = 0.5 + JewelLevel;
+								else
+									Priority = JewelLevel;
+
+								BIJewels.Add(bIJewel);
+							}
+
+							BIJewels = new ObservableCollection<BIJewel>(BIJewels.OrderByDescending(x => x.Priority));
+						}						
 					}
-
 
 					using (var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://developer-lostark.game.onstove.com/armories/characters/{e.Name}/profiles"))
 					{
@@ -152,27 +154,30 @@ namespace Loarang.ViewModels
 						var response = await httpClient.SendAsync(request);
 						string res = await response.Content.ReadAsStringAsync();
 
-						JToken jToken = JToken.Parse(res);
-						JToken effectsJToken = jToken["Effects"];
-						JToken engravingsToken = jToken["Engravings"];
-
-						ObservableCollection<BIEngrave> tempBIEngraves = new ObservableCollection<BIEngrave>();
-
-						foreach (JToken jt in effectsJToken)
+						if (res != "null")
 						{
-							bIEngrave = new BIEngrave();
-							EngraveName = jt["Name"].ToString().Substring(0, jt["Name"].ToString().Length - 6);
-							EngraveLevel = jt["Name"].ToString().Substring(jt["Name"].ToString().Length - 6);
+							JToken jToken = JToken.Parse(res);
+							JToken effectsJToken = jToken["Effects"];
+							JToken engravingsToken = jToken["Engravings"];
 
-							string skillImageName = EngraveName.Replace(" ", string.Empty);
-							skillImageName = skillImageName.Replace(":", string.Empty);
+							ObservableCollection<BIEngrave> tempBIEngraves = new ObservableCollection<BIEngrave>();
 
-							EngraveImage = $"..\\Resources\\{skillImageName}.png";
+							foreach (JToken jt in effectsJToken)
+							{
+								bIEngrave = new BIEngrave();
+								EngraveName = jt["Name"].ToString().Substring(0, jt["Name"].ToString().Length - 6);
+								EngraveLevel = jt["Name"].ToString().Substring(jt["Name"].ToString().Length - 6);
 
-							tempBIEngraves.Add(bIEngrave);
+								string skillImageName = EngraveName.Replace(" ", string.Empty);
+								skillImageName = skillImageName.Replace(":", string.Empty);
+
+								EngraveImage = $"..\\Resources\\{skillImageName}.png";
+
+								tempBIEngraves.Add(bIEngrave);
+							}
+
+							BIEngraves = tempBIEngraves;
 						}
-
-						BIEngraves = tempBIEngraves;
 					}
 
 					using (var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://developer-lostark.game.onstove.com/armories/characters/{e.Name}/cards"))
@@ -185,45 +190,48 @@ namespace Loarang.ViewModels
 						var response = await httpClient.SendAsync(request);
 						string res = await response.Content.ReadAsStringAsync();
 
-						JToken jToken = JToken.Parse(res);
-						JToken cardsToken = jToken["Cards"];
-						JToken effectsToken = jToken["Effects"];
-
-						ObservableCollection<BICardImage> tempBICardImages = new ObservableCollection<BICardImage>();
-						ObservableCollection<BICardDescription> tempBICardDescriptions = new ObservableCollection<BICardDescription>();
-
-						foreach (JToken jt in cardsToken)
+						if (res != "null")
 						{
-							bICardImage = new BICardImage();
+							JToken jToken = JToken.Parse(res);
+							JToken cardsToken = jToken["Cards"];
+							JToken effectsToken = jToken["Effects"];
 
-							CardImage = jt["Icon"].ToString();
+							ObservableCollection<BICardImage> tempBICardImages = new ObservableCollection<BICardImage>();
+							ObservableCollection<BICardDescription> tempBICardDescriptions = new ObservableCollection<BICardDescription>();
 
-							tempBICardImages.Add(bICardImage);
-						}
-
-						foreach (JToken jt in effectsToken)
-						{
-							foreach (JToken itemsJt in jt["Items"])
+							foreach (JToken jt in cardsToken)
 							{
-								bICardDescription = new BICardDescription();
+								bICardImage = new BICardImage();
 
-								CardSetName = itemsJt["Name"].ToString();
+								CardImage = jt["Icon"].ToString();
 
-								for (int i = 0; i < itemsJt["Description"].ToString().Length; i++)
-								{
-									if (i % 27 == 0)
-									{
-										CardSetOption += "\n";
-									}
-
-									CardSetOption += itemsJt["Description"].ToString()[i];
-								}
-								tempBICardDescriptions.Add(bICardDescription);
+								tempBICardImages.Add(bICardImage);
 							}
-						}
 
-						BICardImages = tempBICardImages;
-						BICardDescriptions = tempBICardDescriptions;
+							foreach (JToken jt in effectsToken)
+							{
+								foreach (JToken itemsJt in jt["Items"])
+								{
+									bICardDescription = new BICardDescription();
+
+									CardSetName = itemsJt["Name"].ToString();
+
+									for (int i = 0; i < itemsJt["Description"].ToString().Length; i++)
+									{
+										if (i % 27 == 0)
+										{
+											CardSetOption += "\n";
+										}
+
+										CardSetOption += itemsJt["Description"].ToString()[i];
+									}
+									tempBICardDescriptions.Add(bICardDescription);
+								}
+							}
+
+							BICardImages = tempBICardImages;
+							BICardDescriptions = tempBICardDescriptions;
+						}
 					}
 				}
 			}

@@ -3,10 +3,10 @@
   <Style x:Key="eqpProgressBar" TargetType="ProgressBar">
     <Setter Property="Width" Value="100"/>
     <Setter Property="Height" Value="10"/>
+    <Setter Property="Margin" Value="8, 0, 0, 0"/>
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="BorderBrush" Value="{StaticResource color10}"/>
     <Setter Property="BorderThickness" Value="2"/>
-    <Setter Property="Margin" Value="10 0 0 0"/>
     <!--<Style.Resources>
       <Style TargetType="Border">
         <Setter Property="CornerRadius" Value="2"/>

@@ -56,7 +56,7 @@
                      Placement="MousePoint"
                      Opacity="0.95">
                 <Border Width="220" 
-                        Height="300"
+                        Height="500"
                         BorderThickness="2"
                         BorderBrush="{StaticResource color10}"
                         CornerRadius="8"
@@ -67,6 +67,83 @@
                       <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
                     </LinearGradientBrush>
                   </Border.Background>
+                  
+                  <Grid>
+                     <Grid.RowDefinitions>
+                      <RowDefinition Height="25"/>
+                      <RowDefinition Height="20"/>
+                      <RowDefinition Height="50"/>
+                      <RowDefinition Height="20"/>
+                      <RowDefinition Height="380"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="60"/>
+                      <ColumnDefinition Width="160"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Style="{StaticResource equipmentTextBlock}"
+                               Text="{Binding EquipmentName}"/>                       
+                    <Separator Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Width="220"
+                               FontSize="5"
+                               Background="{StaticResource color10}"
+                               HorizontalAlignment="Left"/>                         
+                    <Border Grid.Row="2" 
+                            Grid.Column="0"
+                            Style="{StaticResource eqpBorder}"
+                            HorizontalAlignment="Left">
+                      <Border.Background>
+                        <ImageBrush Stretch="Fill" ImageSource="{Binding EquipmentImage}"/>
+                      </Border.Background>              
+                    </Border> 
+                    <StackPanel Grid.Row="2"
+                                Grid.Column="1"
+                                FlowDirection="LeftToRight"
+                                Orientation="Horizontal">
+                      <Grid>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="30"/>
+                          <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>           
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="110"/>
+                          <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" 
+                                   Grid.ColumnSpan="2"
+                                   Style="{StaticResource equipmentTextBlock}"
+                                   Text="{Binding EquipmentType}"
+                                   Margin="0, 0, 0, 5"/>
+                        <ProgressBar Grid.Row="1"
+                                     Name="eqpPB1"
+                                     Style="{StaticResource eqpProgressBar}"
+                                     HorizontalAlignment="Left"
+                                     Value="{Binding EquipmentQualityValue}"
+                                     Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value, Converter={StaticResource ProgressForegroundConverter}}"/>                        
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Style="{StaticResource equipmentTextBlock}"                                
+                                   Text="{Binding EquipmentQualityValue}"/>  
+                        
+                      </Grid>                     
+                    </StackPanel>
+                    
+                    <Separator Grid.Row="3"
+                               Grid.ColumnSpan="2"
+                               Width="220"
+                               Background="{StaticResource color10}"
+                               HorizontalAlignment="Left"/>     
+                    
+                    <TextBlock Grid.Row="4"
+                               Grid.ColumnSpan="2"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource equipmentTextBlock}"
+                               Text="{Binding EquipmentTooltip}"/>   
+                  </Grid>                  
                 </Border>
               </Popup>
               <Grid>
@@ -84,15 +161,15 @@
                              Text="Lv.3"
                              Width="40"
                              HorizontalAlignment="Left"/>-->
-                  <ProgressBar Name="eqpPB1"
+                  <ProgressBar Name="eqpPB2"
                                Style="{StaticResource eqpProgressBar}"
                                Value="{Binding EquipmentQualityValue}"                                                              
                                Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value, Converter={StaticResource ProgressForegroundConverter}}"
                                />
                   <TextBlock Style="{StaticResource equipmentTextBlock}" 
-                             Text="{Binding EquipmentQualityValue}"/>  
+                             Text="{Binding EquipmentQualityValue}"/>                        
                  </StackPanel>
-              </Grid>
+              </Grid>                   
             </TextBlock>
           </DataTemplate>
         </ItemsControl.ItemTemplate>
@@ -207,3 +284,4 @@
     </Grid>    
   </Border>
 </UserControl>
+
