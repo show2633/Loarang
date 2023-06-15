@@ -133,242 +133,152 @@ namespace Loarang.ViewModels
 								EquipmentType = tooltipJt["Element_001"]["value"]["leftStr0"].ToString() + "\n";
 								EquipmentType += tooltipJt["Element_001"]["value"]["leftStr2"].ToString();
 
+								string elixirElement_1 = string.Empty;
+								string elixirElement_2 = string.Empty;
+								string eqpSetElement = string.Empty;
+
 								if (EquipmentName.Contains("+25"))
 								{
-									if (tooltipJt["Element_007"]["type"].ToString() == "ItemPartBox" 
-										|| tooltipJt["Element_007"]["type"].ToString() == "SingleTextBox")
-									{
-										EquipmentTooltip = tooltipJt["Element_005"]["value"]["Element_001"].ToString() + "\n\n";
-										EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_001"].ToString() + "\n\n";
-
-										if (tooltipJt["Element_007"]["type"].ToString() == "ItemPartBox")
-											EquipmentTooltip += tooltipJt["Element_007"]["value"]["Element_001"].ToString();
-									}
-
-									else
-									{
-										EquipmentTooltip = tooltipJt["Element_005"]["value"]["Element_001"].ToString() + "\n\n";
-										EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_001"].ToString() + "\n\n";
-
-										string[] tempElixirOptions = tooltipJt["Element_007"]["value"]["Element_000"]["contentStr"]
-											["Element_000"]["contentStr"].ToString().Split('\n');
-
-										for (int j = 0; j < tempElixirOptions.Length; j++)
-										{
-											for (int k = 0; k < tempElixirOptions[j].Length; k++)
-											{
-												if (k != 0 && k % 28 == 0)
-												{
-													tempElixirOptions[j] = tempElixirOptions[j].Insert(k, "\n");
-												}
-											}
-
-											EquipmentTooltip += tempElixirOptions[j] + "\n";
-										}
-
-										EquipmentTooltip += "\n";
-
-										try
-										{
-											tempElixirOptions = tooltipJt["Element_007"]["value"]["Element_000"]["contentStr"]
-											["Element_001"]["contentStr"].ToString().Split('\n');
-										}
-
-										catch (Exception ex)
-										{
-											EquipmentTooltip += tooltipJt["Element_009"]["value"]["Element_001"].ToString();
-
-											EquipmentQualityValue = Int32.Parse(tooltipJt["Element_001"]["value"]["qualityValue"].ToString());
-
-											tempEquipments.Add(equipment);
-
-											continue;
-										}
-
-										for (int j = 0; j < tempElixirOptions.Length; j++)
-										{
-											for (int k = 0; k < tempElixirOptions[j].Length; k++)
-											{
-												if (k != 0 && k % 28 == 0)
-												{
-													tempElixirOptions[j] = tempElixirOptions[j].Insert(k, "\n");
-												}
-											}
-
-											EquipmentTooltip += tempElixirOptions[j] + "\n";
-										}
-
-										EquipmentTooltip += "\n";
-
-										if (tooltipJt["Element_008"]["type"].ToString() == "ItemPartBox")
-										{
-											EquipmentTooltip += tooltipJt["Element_008"]["value"]["Element_001"].ToString();
-										}
-
-										else
-										{
-											string[] tempElixirSetOptions = tooltipJt["Element_008"]["value"]["Element_000"]["contentStr"]
-												["Element_000"]["contentStr"].ToString().Split('\n');
-
-											for (int j = 0; j < tempElixirSetOptions.Length; j++)
-											{
-												for (int k = 0; k < tempElixirSetOptions[j].Length; k++)
-												{
-													if (k != 0 && k % 28 == 0)
-													{
-														tempElixirSetOptions[j] = tempElixirSetOptions[j].Insert(k, "\n");
-													}
-												}
-
-												EquipmentTooltip += tempElixirSetOptions[j] + "\n";
-											}
-
-											EquipmentTooltip += "\n";
-
-											tempElixirSetOptions = tooltipJt["Element_008"]["value"]["Element_000"]["contentStr"]
-												["Element_001"]["contentStr"].ToString().Split('\n');
-
-											for (int j = 0; j < tempElixirSetOptions.Length; j++)
-											{
-												for (int k = 0; k < tempElixirSetOptions[j].Length; k++)
-												{
-													if (k != 0 && k % 28 == 0)
-													{
-														tempElixirSetOptions[j] = tempElixirSetOptions[j].Insert(k, "\n");
-													}
-												}
-
-												EquipmentTooltip += tempElixirSetOptions[j] + "\n";
-											}
-
-											EquipmentTooltip += "\n";
-
-											EquipmentTooltip += tooltipJt["Element_009"]["value"]["Element_001"].ToString();
-										}
-									}
+									elixirElement_1 = "Element_007";
+									elixirElement_2 = "Element_008";
+									eqpSetElement = "Element_009";
 								}
 
 								else
 								{
-									if (tooltipJt["Element_008"]["type"].ToString() == "ItemPartBox"
-										|| tooltipJt["Element_008"]["type"].ToString() == "SingleTextBox")
-									{
-										EquipmentTooltip = tooltipJt["Element_005"]["value"]["Element_001"].ToString() + "\n\n";
-										EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_001"].ToString() + "\n\n";
+									elixirElement_1 = "Element_008";
+									elixirElement_2 = "Element_009";
+									eqpSetElement = "Element_010";
+								}
 
-										if (tooltipJt["Element_008"]["type"].ToString() == "ItemPartBox")
-											EquipmentTooltip += tooltipJt["Element_008"]["value"]["Element_001"].ToString();
+								if (tooltipJt[elixirElement_1]["type"].ToString() == "ItemPartBox"
+										|| tooltipJt[elixirElement_1]["type"].ToString() == "SingleTextBox")
+								{
+									EquipmentTooltip = tooltipJt["Element_005"]["value"]["Element_001"].ToString() + "\n\n";
+									EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_001"].ToString() + "\n\n";
+
+									if (tooltipJt[elixirElement_1]["type"].ToString() == "ItemPartBox")
+										EquipmentTooltip += tooltipJt[elixirElement_1]["value"]["Element_001"].ToString();
+								}
+
+								else
+								{
+									EquipmentTooltip = tooltipJt["Element_005"]["value"]["Element_001"].ToString() + "\n\n";
+									EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_001"].ToString() + "\n\n";
+
+									string[] tempElixirOptions = tooltipJt[elixirElement_1]["value"]["Element_000"]["contentStr"]
+										["Element_000"]["contentStr"].ToString().Split('\n');
+
+									for (int j = 0; j < tempElixirOptions.Length; j++)
+									{
+										for (int k = 0; k < tempElixirOptions[j].Length; k++)
+										{
+											if (k != 0 && k % 28 == 0)
+											{
+												tempElixirOptions[j] = tempElixirOptions[j].Insert(k, "\n");
+											}
+										}
+
+										EquipmentTooltip += tempElixirOptions[j] + "\n";
 									}
 
-									else
+									EquipmentTooltip += "\n";
+
+									try
 									{
-										EquipmentTooltip = tooltipJt["Element_005"]["value"]["Element_001"].ToString() + "\n\n";
-										EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_001"].ToString() + "\n\n";
+										tempElixirOptions = tooltipJt[elixirElement_1]["value"]["Element_000"]["contentStr"]
+										["Element_001"]["contentStr"].ToString().Split('\n');
+									}
 
-										string[] tempElixirOptions = tooltipJt["Element_008"]["value"]["Element_000"]["contentStr"]
-											["Element_000"]["contentStr"].ToString().Split('\n');
-
-										for (int j = 0; j < tempElixirOptions.Length; j++)
+									catch (Exception ex)
+									{
+										if (tooltipJt[elixirElement_2]["type"].ToString() == "ItemPartBox")
 										{
-											for (int k = 0; k < tempElixirOptions[j].Length; k++)
-											{
-												if (k != 0 && k % 28 == 0)
-												{
-													tempElixirOptions[j] = tempElixirOptions[j].Insert(k, "\n");
-												}
-											}
-
-											EquipmentTooltip += tempElixirOptions[j] + "\n";
-										}
-
-										EquipmentTooltip += "\n";
-
-										try
-										{
-											tempElixirOptions = tooltipJt["Element_008"]["value"]["Element_000"]["contentStr"]
-											["Element_001"]["contentStr"].ToString().Split('\n');
-										}
-
-										catch (Exception ex)
-										{
-											if (tooltipJt["Element_009"]["type"].ToString() == "ItemPartBox")
-											{
-												EquipmentTooltip += tooltipJt["Element_009"]["value"]["Element_001"].ToString();
-											}
-
-											else
-											{
-												EquipmentTooltip += tooltipJt["Element_009"]["value"]["Element_001"].ToString();
-											}
-
-											EquipmentQualityValue = Int32.Parse(tooltipJt["Element_001"]["value"]["qualityValue"].ToString());
-
-											tempEquipments.Add(equipment);
-
-											continue;
-										}
-
-										for (int j = 0; j < tempElixirOptions.Length; j++)
-										{
-											for (int k = 0; k < tempElixirOptions[j].Length; k++)
-											{
-												if (k != 0 && k % 28 == 0)
-												{
-													tempElixirOptions[j] = tempElixirOptions[j].Insert(k, "\n");
-												}
-											}
-
-											EquipmentTooltip += tempElixirOptions[j] + "\n";
-										}
-
-										EquipmentTooltip += "\n";
-
-										if (tooltipJt["Element_009"]["type"].ToString() == "ItemPartBox")
-										{
-											EquipmentTooltip += tooltipJt["Element_009"]["value"]["Element_001"].ToString();
+											EquipmentTooltip += tooltipJt[elixirElement_2]["value"]["Element_001"].ToString();
 										}
 
 										else
 										{
-											string[] tempElixirSetOptions = tooltipJt["Element_009"]["value"]["Element_000"]["contentStr"]
-												["Element_000"]["contentStr"].ToString().Split('\n');
-
-											for (int j = 0; j < tempElixirSetOptions.Length; j++)
-											{
-												for (int k = 0; k < tempElixirSetOptions[j].Length; k++)
-												{
-													if (k != 0 && k % 28 == 0)
-													{
-														tempElixirSetOptions[j] = tempElixirSetOptions[j].Insert(k, "\n");
-													}
-												}
-
-												EquipmentTooltip += tempElixirSetOptions[j] + "\n";
-											}
-
-											EquipmentTooltip += "\n";
-
-											tempElixirSetOptions = tooltipJt["Element_009"]["value"]["Element_000"]["contentStr"]
-												["Element_001"]["contentStr"].ToString().Split('\n');
-
-											for (int j = 0; j < tempElixirSetOptions.Length; j++)
-											{
-												for (int k = 0; k < tempElixirSetOptions[j].Length; k++)
-												{
-													if (k != 0 && k % 28 == 0)
-													{
-														tempElixirSetOptions[j] = tempElixirSetOptions[j].Insert(k, "\n");
-													}
-												}
-
-												EquipmentTooltip += tempElixirSetOptions[j] + "\n";
-											}
-
-											EquipmentTooltip += "\n";
-
-											EquipmentTooltip += tooltipJt["Element_010"]["value"]["Element_001"].ToString();
+											EquipmentTooltip += tooltipJt[elixirElement_2]["value"]["Element_001"].ToString();
 										}
+
+										EquipmentQualityValue = Int32.Parse(tooltipJt["Element_001"]["value"]["qualityValue"].ToString());
+
+										tempEquipments.Add(equipment);
+
+										continue;
 									}
+
+									for (int j = 0; j < tempElixirOptions.Length; j++)
+									{
+										for (int k = 0; k < tempElixirOptions[j].Length; k++)
+										{
+											if (k != 0 && k % 28 == 0)
+											{
+												tempElixirOptions[j] = tempElixirOptions[j].Insert(k, "\n");
+											}
+										}
+
+										EquipmentTooltip += tempElixirOptions[j] + "\n";
+									}
+
+									EquipmentTooltip += "\n";
+
+									if (tooltipJt[elixirElement_2]["type"].ToString() == "ItemPartBox")
+									{
+										EquipmentTooltip += tooltipJt[elixirElement_2]["value"]["Element_001"].ToString();
+									}
+
+									else
+									{
+										string[] tempElixirSetOptions = tooltipJt[elixirElement_2]["value"]["Element_000"]["contentStr"]
+											["Element_000"]["contentStr"].ToString().Split('\n');
+
+										for (int j = 0; j < tempElixirSetOptions.Length; j++)
+										{
+											for (int k = 0; k < tempElixirSetOptions[j].Length; k++)
+											{
+												if (k != 0 && k % 28 == 0)
+												{
+													tempElixirSetOptions[j] = tempElixirSetOptions[j].Insert(k, "\n");
+												}
+											}
+
+											EquipmentTooltip += tempElixirSetOptions[j] + "\n";
+										}
+
+										EquipmentTooltip += "\n";
+
+										tempElixirSetOptions = tooltipJt[elixirElement_2]["value"]["Element_000"]["contentStr"]
+											["Element_001"]["contentStr"].ToString().Split('\n');
+
+										for (int j = 0; j < tempElixirSetOptions.Length; j++)
+										{
+											for (int k = 0; k < tempElixirSetOptions[j].Length; k++)
+											{
+												if (k != 0 && k % 28 == 0)
+												{
+													tempElixirSetOptions[j] = tempElixirSetOptions[j].Insert(k, "\n");
+												}
+											}
+
+											EquipmentTooltip += tempElixirSetOptions[j] + "\n";
+										}
+
+										EquipmentTooltip += "\n";
+
+										EquipmentTooltip += tooltipJt[eqpSetElement]["value"]["Element_001"].ToString();
+									}
+								}
+
+								if (EquipmentName.Contains("+25")) // 25강
+								{
+								
+								}
+
+								else // 25강 미만
+								{
+									
 								}
 
 								EquipmentQualityValue = Int32.Parse(tooltipJt["Element_001"]["value"]["qualityValue"].ToString());
@@ -441,59 +351,42 @@ namespace Loarang.ViewModels
 
 								else if (EtcEquipmentName.Contains("돌"))
 								{
-									if (tooltipJt["Element_005"]["type"].ToString() == "ItemPartBox" || tooltipJt["Element_005"]["type"].ToString() == "SingleTextBox")
+									string stoneElement = string.Empty;
+
+									if (tooltipJt["Element_005"]["type"].ToString() == "ItemPartBox" 
+										|| tooltipJt["Element_005"]["type"].ToString() == "SingleTextBox")
 									{
-										string tempOption = string.Empty;
-										string firstOption = tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
-											["Element_000"]["contentStr"].ToString().Substring(23);
-
-										firstOption = Regex.Replace(firstOption, @"[^0-9가-힣 ]", "");
-										firstOption = firstOption.Replace("활성도 ", "");
-										tempOption += firstOption + "\n";
-
-										string secondOption = tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
-											["Element_001"]["contentStr"].ToString().Substring(23);
-
-										secondOption = Regex.Replace(secondOption, @"[^0-9가-힣 ]", "");
-										secondOption = secondOption.Replace("활성도 ", "");
-										tempOption += secondOption + "\n";
-
-										string thirdOption = tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
-											["Element_002"]["contentStr"].ToString().Substring(23);
-
-										thirdOption = Regex.Replace(thirdOption, @"[^0-9가-힣 ]", "");
-										thirdOption = thirdOption.Replace("활성도 ", "");
-										tempOption += thirdOption;
-
-										EtcEquipmentOption = tempOption;
+										stoneElement = "Element_006";									
 									}
 
 									else
 									{
-										string tempOption = string.Empty;
-										string firstOption = tooltipJt["Element_005"]["value"]["Element_000"]["contentStr"]
-											["Element_000"]["contentStr"].ToString().Substring(23);
-
-										firstOption = Regex.Replace(firstOption, @"[^0-9가-힣 ]", "");
-										firstOption = firstOption.Replace("활성도 ", "");
-										tempOption += firstOption + "\n";
-
-										string secondOption = tooltipJt["Element_005"]["value"]["Element_000"]["contentStr"]
-											["Element_001"]["contentStr"].ToString().Substring(23);
-
-										secondOption = Regex.Replace(secondOption, @"[^0-9가-힣 ]", "");
-										secondOption = secondOption.Replace("활성도 ", "");
-										tempOption += secondOption + "\n";
-
-										string thirdOption = tooltipJt["Element_005"]["value"]["Element_000"]["contentStr"]
-											["Element_002"]["contentStr"].ToString().Substring(23);
-
-										thirdOption = Regex.Replace(thirdOption, @"[^0-9가-힣 ]", "");
-										thirdOption = thirdOption.Replace("활성도 ", "");
-										tempOption += thirdOption;
-
-										EtcEquipmentOption = tempOption;
+										stoneElement = "Element_005";
 									}
+
+									string tempOption = string.Empty;
+									string firstOption = tooltipJt[stoneElement]["value"]["Element_000"]["contentStr"]
+										["Element_000"]["contentStr"].ToString().Substring(23);
+
+									firstOption = Regex.Replace(firstOption, @"[^0-9가-힣 ]", "");
+									firstOption = firstOption.Replace("활성도 ", "");
+									tempOption += firstOption + "\n";
+
+									string secondOption = tooltipJt[stoneElement]["value"]["Element_000"]["contentStr"]
+										["Element_001"]["contentStr"].ToString().Substring(23);
+
+									secondOption = Regex.Replace(secondOption, @"[^0-9가-힣 ]", "");
+									secondOption = secondOption.Replace("활성도 ", "");
+									tempOption += secondOption + "\n";
+
+									string thirdOption = tooltipJt[stoneElement]["value"]["Element_000"]["contentStr"]
+										["Element_002"]["contentStr"].ToString().Substring(23);
+
+									thirdOption = Regex.Replace(thirdOption, @"[^0-9가-힣 ]", "");
+									thirdOption = thirdOption.Replace("활성도 ", "");
+									tempOption += thirdOption;
+
+									EtcEquipmentOption = tempOption;
 
 									tempEtcEquipments.Add(etcEquipment);
 								}

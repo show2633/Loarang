@@ -102,10 +102,10 @@ namespace Loarang.ViewModels
 									Priority = JewelLevel;
 
 								BIJewels.Add(bIJewel);
-							}
+							}							
+						}
 
-							BIJewels = new ObservableCollection<BIJewel>(BIJewels.OrderByDescending(x => x.Priority));
-						}						
+						BIJewels = new ObservableCollection<BIJewel>(BIJewels.OrderByDescending(x => x.Priority));
 					}
 
 					using (var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://developer-lostark.game.onstove.com/armories/characters/{e.Name}/profiles"))
