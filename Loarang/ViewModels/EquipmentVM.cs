@@ -309,13 +309,15 @@ namespace Loarang.ViewModels
 								etcEquipment = new EtcEquipment();
 								EtcEquipmentName = jToken[i]["Name"].ToString();
 								EtcEquipmentImage = jToken[i]["Icon"].ToString();
-								EquipmentTooltip = ConvertToPlainText(jToken[i]["Tooltip"].ToString());
+								EtcEquipmentTooltip = ConvertToPlainText(jToken[i]["Tooltip"].ToString());
 
-								JToken tooltipJt = JToken.Parse(EquipmentTooltip);
+								JToken tooltipJt = JToken.Parse(EtcEquipmentTooltip);
 
 								EtcEquipmentType = tooltipJt["Element_001"]["value"]["leftStr0"].ToString();
 								if (EtcEquipmentName.Contains("팔찌"))
 								{
+									tooltipJt = JToken.Parse(jToken[i]["Tooltip"].ToString());
+
 									HtmlDocument htmlDoc = new HtmlDocument();
 									htmlDoc.LoadHtml(tooltipJt["Element_004"]["value"]["Element_001"].ToString());
 									HtmlNodeCollection imageNodes = htmlDoc.DocumentNode.SelectNodes("img");
@@ -345,6 +347,27 @@ namespace Loarang.ViewModels
 									}
 
 									EtcEquipmentOption = tempOption;
+
+									tooltipJt = JToken.Parse(EtcEquipmentTooltip);
+
+									string[] tempBraceletOptions = tooltipJt["Element_004"]["value"]["Element_001"].ToString().Split('\n');
+
+									EtcEquipmentTooltip = string.Empty;
+
+									for (int j = 0; j < tempBraceletOptions.Length; j++)
+									{
+										for (int k = 0; k < tempBraceletOptions[j].Length; k++)
+										{
+											tempBraceletOptions[j] = tempBraceletOptions[j].Trim();
+
+											if (k != 0 && k % 28 == 0)
+											{												
+												tempBraceletOptions[j] = tempBraceletOptions[j].Insert(k, "\n");
+											}
+										}
+
+										EtcEquipmentTooltip += tempBraceletOptions[j] + "\n";
+									}
 
 									tempEtcEquipments.Add(etcEquipment);
 								}
