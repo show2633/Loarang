@@ -12,5 +12,6 @@ namespace Loarang.Models
 		public string JewelImage { get; set; }
 		public int JewelLevel { get; set; }
 		public double Priority { get; set; }
+		public string JewelTooltip { get; set; }
 	}
 }

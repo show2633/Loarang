@@ -85,6 +85,7 @@
                                Grid.Column="0"
                                Grid.ColumnSpan="2"
                                Style="{StaticResource equipmentTextBlock}"
+                               Foreground="{StaticResource color11}"
                                Text="{Binding EquipmentName}"/>                       
                     <Separator Grid.Row="1"
                                Grid.ColumnSpan="2"
@@ -142,6 +143,7 @@
                                Grid.ColumnSpan="2"
                                VerticalAlignment="Top"
                                Style="{StaticResource equipmentTextBlock}"
+                               Foreground="{StaticResource color11}"
                                Text="{Binding EquipmentTooltip}"/>   
                   </Grid>                  
                 </Border>
@@ -250,6 +252,7 @@
                                Grid.Column="0"
                                Grid.ColumnSpan="2"
                                Style="{StaticResource equipmentTextBlock}"
+                               Foreground="{StaticResource color11}"
                                Text="{Binding EquipmentName}"/>                       
                     <Separator Grid.Row="1"
                                Grid.ColumnSpan="2"
@@ -307,6 +310,7 @@
                                Grid.ColumnSpan="2"
                                VerticalAlignment="Top"
                                Style="{StaticResource equipmentTextBlock}"
+                               Foreground="{StaticResource color11}"
                                Text="{Binding EquipmentTooltip}"/>   
                   </Grid>                  
                 </Border>
@@ -393,6 +397,7 @@
                                Grid.Column="0"
                                Grid.ColumnSpan="2"
                                Style="{StaticResource equipmentTextBlock}"
+                               Foreground="{StaticResource color11}"
                                Text="{Binding EquipmentName}"/>                       
                     <Separator Grid.Row="1"
                                Grid.ColumnSpan="2"
@@ -439,6 +444,7 @@
                                Grid.ColumnSpan="2"
                                VerticalAlignment="Top"
                                Style="{StaticResource equipmentTextBlock}"
+                               Foreground="{StaticResource color11}"
                                Text="{Binding EquipmentTooltip}"/>   
                   </Grid>                  
                 </Border>

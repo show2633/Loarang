@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using Loarang.Command;
 using Loarang.Models;
+using Loarang.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -92,9 +93,14 @@ namespace Loarang.ViewModels
 							{
 								bIJewel = new BIJewel();
 
-								JewelName = jt["Name"].ToString();
+								JewelName = JsonUtility.ConvertToPlainText(jt["Name"].ToString()).Trim('\r').Trim('\n');
 								JewelImage = jt["Icon"].ToString();
 								JewelLevel = Int32.Parse(jt["Level"].ToString());
+								JewelTooltip = JsonUtility.ConvertToPlainText(jt["Tooltip"].ToString());
+								JToken tooltipJt = JToken.Parse(JewelTooltip);
+								
+								JewelTooltip = tooltipJt["Element_003"]["value"].ToString() + "\n";
+								JewelTooltip += tooltipJt["Element_004"]["value"]["Element_001"].ToString() + "\n";
 
 								if (JewelName.Contains("멸"))
 									Priority = 0.5 + JewelLevel;
@@ -330,8 +336,13 @@ namespace Loarang.ViewModels
 			get => bIJewel.Priority;
 			set { bIJewel.Priority = value; OnPropertyChanged(nameof(Priority)); }
 		}
+		public string JewelTooltip
+		{
+			get => bIJewel.JewelTooltip;
+			set { bIJewel.JewelTooltip = value; OnPropertyChanged(nameof(JewelTooltip)); }
+		}
 		#endregion
-		
+
 		#region Characteristic
 		public int Crit
 		{

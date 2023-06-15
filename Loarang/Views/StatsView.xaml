@@ -185,15 +185,88 @@
               <ItemsControl.ItemTemplate>
                 <DataTemplate>
                   <TextBlock>
-                    <Border Style="{StaticResource jewelBorder}"
-                            Margin="12 5 0 0">
+                    <Border x:Name="jewelImage"
+                            Style="{StaticResource jewelBorder}"
+                            Margin="8 5 0 0">
                       <Border.Background>
                         <ImageBrush Stretch="Fill" 
                                     ImageSource="{Binding JewelImage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                       </Border.Background>
                         <TextBlock Style="{StaticResource jewelTextBlock}"
                                    Text="{Binding JewelLevel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Border>                
+                    </Border>    
+                    
+                    <Popup IsOpen="{Binding ElementName=jewelImage, Path=IsMouseOver, Mode=OneWay}"
+                           AllowsTransparency="True"
+                           PopupAnimation="Fade"
+                           Placement="MousePoint"
+                           Opacity="0.95">    
+                      <Border Width="Auto" 
+                              Height="Auto"
+                              BorderThickness="2"
+                              BorderBrush="{StaticResource color10}"
+                              CornerRadius="8"
+                              Opacity="0.85">
+                        <Border.Background>
+                          <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                            <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                            <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                          </LinearGradientBrush>
+                        </Border.Background>
+                  
+                        <Grid>
+                           <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                          </Grid.RowDefinitions>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                          </Grid.ColumnDefinitions>
+                    
+                          <TextBlock Grid.Row="0"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     Style="{StaticResource jewelTextBlock}"
+                                     HorizontalAlignment="Left"
+                                     Margin="10, 0, 0, 0"
+                                     Foreground="{StaticResource color11}"
+                                     Text="{Binding JewelName}"/>                       
+                          <Separator Grid.Row="1"
+                                     Grid.ColumnSpan="2"
+                                     Width="Auto"
+                                     FontSize="5"
+                                     Background="{StaticResource color10}"
+                                     HorizontalAlignment="Stretch"/>                         
+                          <Border Grid.Row="2" 
+                                  Grid.Column="0"
+                                  Style="{StaticResource eqpBorder}"
+                                  HorizontalAlignment="Left">
+                            <Border.Background>
+                              <ImageBrush Stretch="Fill" ImageSource="{Binding JewelImage}"/>
+                            </Border.Background>              
+                          </Border>                        
+                    
+                          <Separator Grid.Row="3"
+                                     Grid.ColumnSpan="2"
+                                     HorizontalAlignment="Stretch"
+                                     Width="Auto"
+                                     Background="{StaticResource color10}"/>     
+                    
+                          <TextBlock Grid.Row="4"
+                                     Grid.ColumnSpan="2"
+                                     VerticalAlignment="Top"
+                                     Style="{StaticResource jewelTextBlock}"
+                                     Margin="10, 0, 10, 0"
+                                     HorizontalAlignment="Left"
+                                     Foreground="{StaticResource color11}"
+                                     Text="{Binding JewelTooltip}"/>   
+                        </Grid>                  
+                      </Border>
+                    </Popup> 
                   </TextBlock>
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
