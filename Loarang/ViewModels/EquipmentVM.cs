@@ -271,16 +271,6 @@ namespace Loarang.ViewModels
 									}
 								}
 
-								if (EquipmentName.Contains("+25")) // 25강
-								{
-								
-								}
-
-								else // 25강 미만
-								{
-									
-								}
-
 								EquipmentQualityValue = Int32.Parse(tooltipJt["Element_001"]["value"]["qualityValue"].ToString());
 
 								tempEquipments.Add(equipment);
@@ -294,10 +284,18 @@ namespace Loarang.ViewModels
 								EquipmentName = jToken[i]["Name"].ToString();
 								EquipmentType = jToken[i]["Type"].ToString();
 								EquipmentImage = jToken[i]["Icon"].ToString();
-								EquipmentTooltip = jToken[i]["Tooltip"].ToString();
+								EquipmentTooltip = ConvertToPlainText(jToken[i]["Tooltip"].ToString());
 
-								JToken tooltipJt = JToken.Parse(jToken[i]["Tooltip"].ToString());
+								JToken tooltipJt = JToken.Parse(EquipmentTooltip);
 
+								EquipmentTooltip = tooltipJt["Element_004"]["value"]["Element_001"].ToString() + "\n"; // 힘 민 지
+								EquipmentTooltip += tooltipJt["Element_005"]["value"]["Element_001"].ToString() + "\n\n";
+								EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
+									["Element_000"]["contentStr"].ToString();
+								EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
+									["Element_001"]["contentStr"].ToString() + "\n";
+								EquipmentTooltip += tooltipJt["Element_006"]["value"]["Element_000"]["contentStr"]
+									["Element_002"]["contentStr"].ToString();
 
 								EquipmentQualityValue = Int32.Parse(tooltipJt["Element_001"]["value"]["qualityValue"].ToString());
 
@@ -310,9 +308,9 @@ namespace Loarang.ViewModels
 								EtcEquipmentName = jToken[i]["Name"].ToString();
 								EtcEquipmentType = jToken[i]["Type"].ToString();
 								EtcEquipmentImage = jToken[i]["Icon"].ToString();
-								EtcEquipmentTooltip = jToken[i]["Tooltip"].ToString();
+								EquipmentTooltip = ConvertToPlainText(jToken[i]["Tooltip"].ToString());
 
-								JToken tooltipJt = JToken.Parse(jToken[i]["Tooltip"].ToString());
+								JToken tooltipJt = JToken.Parse(EquipmentTooltip);
 
 								if (EtcEquipmentName.Contains("팔찌"))
 								{
