@@ -282,11 +282,12 @@ namespace Loarang.ViewModels
 							{
 								equipment = new Equipment();
 								EquipmentName = jToken[i]["Name"].ToString();
-								EquipmentType = jToken[i]["Type"].ToString();
 								EquipmentImage = jToken[i]["Icon"].ToString();
 								EquipmentTooltip = ConvertToPlainText(jToken[i]["Tooltip"].ToString());
 
 								JToken tooltipJt = JToken.Parse(EquipmentTooltip);
+
+								EquipmentType = tooltipJt["Element_001"]["value"]["leftStr0"].ToString();
 
 								EquipmentTooltip = tooltipJt["Element_004"]["value"]["Element_001"].ToString() + "\n"; // 힘 민 지
 								EquipmentTooltip += tooltipJt["Element_005"]["value"]["Element_001"].ToString() + "\n\n";
@@ -302,16 +303,17 @@ namespace Loarang.ViewModels
 								tempAccessories.Add(equipment);
 							}
 
-							else
+							else if (jToken[i]["Type"].ToString() == "팔찌"
+								|| jToken[i]["Type"].ToString() == "어빌리티 스톤")
 							{
 								etcEquipment = new EtcEquipment();
 								EtcEquipmentName = jToken[i]["Name"].ToString();
-								EtcEquipmentType = jToken[i]["Type"].ToString();
 								EtcEquipmentImage = jToken[i]["Icon"].ToString();
 								EquipmentTooltip = ConvertToPlainText(jToken[i]["Tooltip"].ToString());
 
 								JToken tooltipJt = JToken.Parse(EquipmentTooltip);
 
+								EtcEquipmentType = tooltipJt["Element_001"]["value"]["leftStr0"].ToString();
 								if (EtcEquipmentName.Contains("팔찌"))
 								{
 									HtmlDocument htmlDoc = new HtmlDocument();
@@ -349,12 +351,14 @@ namespace Loarang.ViewModels
 
 								else if (EtcEquipmentName.Contains("돌"))
 								{
+									string stoneHpElement = string.Empty;
+									string stoneExtraHpElement = string.Empty;
 									string stoneElement = string.Empty;
 
-									if (tooltipJt["Element_005"]["type"].ToString() == "ItemPartBox" 
-										|| tooltipJt["Element_005"]["type"].ToString() == "SingleTextBox")
+									if (tooltipJt["Element_005"]["type"].ToString() == "ItemPartBox" )
 									{
-										stoneElement = "Element_006";									
+										stoneElement = "Element_006";
+										stoneExtraHpElement = "Element_005";
 									}
 
 									else
@@ -362,27 +366,29 @@ namespace Loarang.ViewModels
 										stoneElement = "Element_005";
 									}
 
+									stoneHpElement = "Element_004";
+
+									EtcEquipmentTooltip = tooltipJt[stoneHpElement]["value"]["Element_001"].ToString() + "\n";
+
+									if (stoneExtraHpElement != string.Empty)
+										EtcEquipmentTooltip += tooltipJt[stoneExtraHpElement]["value"]["Element_001"].ToString() + "\n\n";
+									else
+										EtcEquipmentTooltip += "\n";
+
 									string tempOption = string.Empty;
 									string firstOption = tooltipJt[stoneElement]["value"]["Element_000"]["contentStr"]
-										["Element_000"]["contentStr"].ToString().Substring(23);
-
-									firstOption = Regex.Replace(firstOption, @"[^0-9가-힣 ]", "");
-									firstOption = firstOption.Replace("활성도 ", "");
-									tempOption += firstOption + "\n";
+										["Element_000"]["contentStr"].ToString();
+									tempOption += firstOption;
 
 									string secondOption = tooltipJt[stoneElement]["value"]["Element_000"]["contentStr"]
-										["Element_001"]["contentStr"].ToString().Substring(23);
-
-									secondOption = Regex.Replace(secondOption, @"[^0-9가-힣 ]", "");
-									secondOption = secondOption.Replace("활성도 ", "");
-									tempOption += secondOption + "\n";
+										["Element_001"]["contentStr"].ToString();
+									tempOption += secondOption;
 
 									string thirdOption = tooltipJt[stoneElement]["value"]["Element_000"]["contentStr"]
-										["Element_002"]["contentStr"].ToString().Substring(23);
-
-									thirdOption = Regex.Replace(thirdOption, @"[^0-9가-힣 ]", "");
-									thirdOption = thirdOption.Replace("활성도 ", "");
+										["Element_002"]["contentStr"].ToString();
 									tempOption += thirdOption;
+
+									EtcEquipmentTooltip += tempOption;
 
 									EtcEquipmentOption = tempOption;
 

@@ -350,16 +350,104 @@
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <TextBlock>
-              <Border Style="{StaticResource eqpBorder}">
+              <Border x:Name="EtcImage"
+                      Style="{StaticResource eqpBorder}">
                 <Border.Background>
                   <ImageBrush Stretch="Fill" 
                               ImageSource="{Binding EquipmentImage}"/>
                 </Border.Background>
               </Border>
+              
+              <Popup IsOpen="{Binding ElementName=EtcImage, Path=IsMouseOver, Mode=OneWay}"
+                     AllowsTransparency="True"
+                     PopupAnimation="Fade"
+                     Placement="MousePoint"
+                     Opacity="0.95">
+                <Border Width="220" 
+                        Height="Auto"
+                        BorderThickness="2"
+                        BorderBrush="{StaticResource color10}"
+                        CornerRadius="8"
+                        Opacity="0.85">
+                  <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                      <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                      <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                  </Border.Background>
+                  
+                  <Grid>
+                     <Grid.RowDefinitions>
+                      <RowDefinition Height="25"/>
+                      <RowDefinition Height="20"/>
+                      <RowDefinition Height="50"/>
+                      <RowDefinition Height="20"/>
+                      <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="60"/>
+                      <ColumnDefinition Width="160"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Style="{StaticResource equipmentTextBlock}"
+                               Text="{Binding EquipmentName}"/>                       
+                    <Separator Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Width="220"
+                               FontSize="5"
+                               Background="{StaticResource color10}"
+                               HorizontalAlignment="Left"/>                         
+                    <Border Grid.Row="2" 
+                            Grid.Column="0"
+                            Style="{StaticResource eqpBorder}"
+                            HorizontalAlignment="Left">
+                      <Border.Background>
+                        <ImageBrush Stretch="Fill" ImageSource="{Binding EquipmentImage}"/>
+                      </Border.Background>              
+                    </Border> 
+                    <StackPanel Grid.Row="2"
+                                Grid.Column="1"
+                                FlowDirection="LeftToRight"
+                                Orientation="Horizontal">
+                      <Grid>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="30"/>
+                          <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>           
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="110"/>
+                          <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" 
+                                   Grid.ColumnSpan="2"
+                                   Style="{StaticResource equipmentTextBlock}"
+                                   Text="{Binding EquipmentType}"
+                                   Margin="0, 0, 0, 5"/>       
+                      </Grid>                     
+                    </StackPanel>
+                    
+                    <Separator Grid.Row="3"
+                               Grid.ColumnSpan="2"
+                               Width="220"
+                               Background="{StaticResource color10}"
+                               HorizontalAlignment="Left"/>     
+                    
+                    <TextBlock Grid.Row="4"
+                               Grid.ColumnSpan="2"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource equipmentTextBlock}"
+                               Text="{Binding EquipmentTooltip}"/>   
+                  </Grid>                  
+                </Border>
+              </Popup> 
+              
               <Grid>
                 <Grid.RowDefinitions>
-                  <RowDefinition Height="27.5"/>
-                  <RowDefinition Height="27.5"/>
+                  <RowDefinition Height="20.5"/>
+                  <RowDefinition Height="34.5"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
                            Style="{StaticResource equipmentTextBlock}"
@@ -370,7 +458,7 @@
                 <TextBlock Style="{StaticResource equipmentTextBlock}" 
                            Text="{Binding EtcEquipmentOption}"
                            Foreground="{StaticResource color11}"
-                           FontSize="8.2"/>  
+                           FontSize="7.2"/>  
                 </StackPanel>
               </Grid>
             </TextBlock>
