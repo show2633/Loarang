@@ -78,7 +78,13 @@
           <fa:IconImage Icon="Search" Style="{StaticResource iconButtonIcon}"/>
         </Button>
         <TextBox Style="{StaticResource searchTextBox}"
-                 Text="{Binding SearchCharName}"/>
+                 Text="{Binding SearchCharName}">
+          <TextBox.InputBindings>
+            <KeyBinding Command="{Binding SearchBattleInfoCommand}"
+                        CommandParameter="{Binding Text, RelativeSource={RelativeSource AncestorType=TextBox, Mode=FindAncestor}}"
+                        Key="Return"/>
+          </TextBox.InputBindings>
+        </TextBox>
       </StackPanel>
 
       <Grid Grid.Row="1">

@@ -30,7 +30,7 @@
               ColumnHeaderStyle="{StaticResource setContentsDataGridColumnHeader}"
               CellStyle="{StaticResource dataGridCellStyle}"
               RowStyle="{StaticResource dataGridRowStyle}"
-              ItemsSource="{Binding SetContentsDT}"
+              ItemsSource="{Binding SetContentsDT.DefaultView}"
               AutoGenerateColumns="True"
               CurrentCellChanged="DataGrid_CurrentCellChanged"
               PreparingCellForEdit="DataGrid_PreparingCellForEdit"

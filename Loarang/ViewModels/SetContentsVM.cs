@@ -31,7 +31,6 @@ namespace Loarang.ViewModels
 			SaveSetContentsCommand = new RelayCommand(SaveSetContents);
 			LoadSetContentsCommand = new RelayCommand(LoadSetContents);
 		}
-
 		private void SaveSetContents(object obj)
 		{
 			try
