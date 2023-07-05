@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon />
+    <ApplicationIcon>Resources\LoarangIcon.ico</ApplicationIcon>
     <Win32Resource />
   </PropertyGroup>
 
@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <None Remove="Fonts\SEBANG Gothic Bold.ttf" />
+    <None Remove="LoarangIcon.ico" />
+    <None Remove="Resources\LoarangIcon.ico" />
     <None Remove="Resources\각성.png" />
     <None Remove="Resources\갈증.png" />
     <None Remove="Resources\강령술.png" />
@@ -110,9 +112,6 @@
     <None Remove="Resources\환류.png" />
     <None Remove="Resources\황제의칙령.png" />
     <None Remove="Resources\황후의은총.png" />
-    <None Remove="test\DM_Item_164.png" />
-    <None Remove="test\test.png" />
-    <None Remove="test\Use_9_55.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -130,6 +129,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="LoarangIcon.ico" />
+    <Resource Include="Resources\LoarangIcon.ico" />
     <Resource Include="Resources\각성.png" />
     <Resource Include="Resources\갈증.png" />
     <Resource Include="Resources\강령술.png" />
@@ -223,9 +224,6 @@
     <Resource Include="Resources\환류.png" />
     <Resource Include="Resources\황제의칙령.png" />
     <Resource Include="Resources\황후의은총.png" />
-    <Resource Include="test\DM_Item_164.png" />
-    <Resource Include="test\test.png" />
-    <Resource Include="test\Use_9_55.png" />
   </ItemGroup>
 
 </Project>

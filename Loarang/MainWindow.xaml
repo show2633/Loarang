@@ -10,7 +10,8 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Width="1250" Height="1020">
+        Width="1250" Height="1020"
+        Icon="/LoarangIcon.ico">
   <Window.DataContext>
     <vm:NavigationVM/>
   </Window.DataContext>
